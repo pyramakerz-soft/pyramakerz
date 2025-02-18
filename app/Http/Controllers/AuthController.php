@@ -39,6 +39,7 @@ class AuthController extends Controller
     // Verify OTP
     public function verifyOTP(Request $request)
     {
+
         $request->validate([
             'email' => 'required|string|email',
             'otp' => 'required|integer',
@@ -50,9 +51,10 @@ class AuthController extends Controller
             return response()->json(['error' => 'User not found'], 404);
         }
 
-        if ($user->otp !== $request->otp) {
+        if ((string)$user->otp !== $request->otp) {
             return response()->json(['error' => 'Invalid OTP'], 400);
         }
+
 
         if (Carbon::now()->greaterThan($user->otp_expires_at)) {
             return response()->json(['error' => 'OTP expired'], 400);

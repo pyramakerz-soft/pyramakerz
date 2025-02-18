@@ -42,6 +42,7 @@
 </head>
 
 <body>
+  @include('layouts.scripts')
   @include('customer.nav')
   <div class="popup" id="popup">
     <div class="popup-overlay"></div>

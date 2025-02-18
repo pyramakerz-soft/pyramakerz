@@ -43,4 +43,18 @@ class CustomerController extends Controller
     {
         return view('customer.coming-soon');
     }
+
+    public function login()
+    {
+        return view('customer.auth.login');
+    }
+
+    public function register()
+    {
+        return view('customer.auth.register');
+    }
+    public function verifyOTP()
+    {
+        return view('customer.auth.verify-otp');
+    }
 }
