@@ -57,4 +57,12 @@ class CustomerController extends Controller
     {
         return view('customer.auth.verify-otp');
     }
+    public function packages()
+    {
+        return view('customer.packages');
+    }
+    public function account()
+    {
+        return view('customer.auth.account');
+    }
 }

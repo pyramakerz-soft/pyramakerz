@@ -26,10 +26,12 @@ Route::get('/schools', [CustomerController::class, 'schools'])->name('customer.s
 Route::get('/students', [CustomerController::class, 'students'])->name('customer.students');
 Route::get('/competitions', [CustomerController::class, 'competitions'])->name('customer.competitions');
 Route::get('/alef-bot', [CustomerController::class, 'alefBot'])->name('customer.alefBot');
+Route::get('/packages', [CustomerController::class, 'packages'])->name('customer.packages');
 
 
 // Login and Registeration
 Route::get('/login', [CustomerController::class, 'login'])->name('customer.login');
 Route::get('/register', [CustomerController::class, 'register'])->name('customer.register');
 Route::get('/verify-otp', [CustomerController::class, 'verifyOTP'])->name('customer.verify-otp');
+Route::get('/account', [CustomerController::class, 'account'])->name('customer.account');
 // Route::post('/resend-otp', [AuthController::class, 'resendOTP']);

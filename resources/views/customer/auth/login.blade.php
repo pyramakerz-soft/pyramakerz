@@ -172,7 +172,14 @@
                 })
                 .then(response => {
                     localStorage.setItem('auth_token', response.data.token);
-                    document.getElementById('loginMessage').innerText = "Login successful!";
+
+                    let redirectPage = localStorage.getItem("redirect_after_login");
+                    if (redirectPage) {
+                        localStorage.removeItem("redirect_after_login");
+                        window.location.href = redirectPage;
+                    } else {
+                        window.location.href = "/";
+                    }
                 })
                 .catch(error => {
                     document.getElementById('loginMessage').innerText = error.response.data.error || "Login failed!";

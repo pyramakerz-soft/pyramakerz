@@ -18,13 +18,14 @@
             <li><a href="/alef-bot">Alef Bot</a></li>
           </ul>
         </li>
+        <li><a class="nav-link scrollto" href="/packages">Packages</a></li>
         <li><a class="nav-link scrollto" href="/blog">Blogs</a></li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle d-none"></i>
     </nav><!-- .navbar -->
 
     <div class="buttons d-flex align-items-center">
-      <a class="btn-getstarted scrollto d-inline-block" href="/#contact" data-aos="flip-up" data-aos-delay="400">Get in touch</a>
+      <a class="btn-getstarted scrollto d-inline-block" style="width: 153px;" href="/#contact" data-aos="flip-up" data-aos-delay="400">Get in touch</a>
 
       <!-- Auth Section -->
       <div id="authLinks"></div>
