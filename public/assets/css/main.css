@@ -3197,7 +3197,7 @@ button.wh-ap-btn {
 
 button.wh-ap-btn::after {
   content: "";
-  background-image: url("//i.imgur.com/cAS6qqn.png");
+  background-image: url(../img/whatsapp.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 60%;

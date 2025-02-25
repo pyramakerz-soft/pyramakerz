@@ -86,25 +86,27 @@
                 <!-- User Orders Section -->
                 <div class="card">
                     <div class="card-body shadow">
-                        <h4>Your Orders</h4>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Plan</th>
-                                    <th>Products</th>
-                                    <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody id="orderslist">
-                                <tr>
-                                    <td colspan="3">Loading orders...</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <h4 class="mb-3">Plan Orders</h4>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped align-middle">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th class="col-2 text-center" style="background-color: var(--color-primary);">Plan</th>
+                                        <th class="col-4 text-center" style="background-color: var(--color-primary);">Products</th>
+                                        <th class="col-2 text-center" style="background-color: var(--color-primary);">Quantity</th>
+                                        <th class="col-2 text-center" style="background-color: var(--color-primary);">Total Price</th>
+                                        <th class="col-2 text-center" style="background-color: var(--color-primary);">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="orderslist">
+                                    <tr>
+                                        <td colspan="3" class="text-center">Loading orders...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-
-
             </div>
         </section>
     </main>
@@ -193,47 +195,43 @@
                 }
             })
             .then(response => {
-                console.log("Fetched Orders:", response.data);
-
                 let ordersList = document.getElementById("orderslist");
                 ordersList.innerHTML = "";
 
                 let orders = response.data.orders;
                 if (!orders || orders.length === 0) {
-                    ordersList.innerHTML = `<tr><td colspan="3">No orders found.</td></tr>`;
+                    ordersList.innerHTML = `<tr><td colspan="3" class="text-center">No orders found.</td></tr>`;
                     return;
                 }
 
                 orders.forEach(order => {
-                    console.log(`Order: ${order.plan_name}`, order);
-
                     if (!order.products || order.products.length === 0) {
                         console.warn(`No products found for order: ${order.plan_name}`);
                         return;
                     }
 
-
-                    order.products.forEach(product => {
-                        console.log("Processing product:", product);
-                    });
-
                     let mappedProducts = order.products.map(product => {
-                        return `<strong>${product.name}</strong> (Qty: ${product.quantity}) - $${parseFloat(product.price).toFixed(2)}`;
+                        return `<strong>${product.name}</strong>`;
+                    });
+                    let mappedQuantity = order.products.map(product => {
+                        return `${product.quantity}`;
+                    });
+                    let mappedPrice = order.products.map(product => {
+                        return `${parseFloat(product.price * parseInt(product.quantity)).toFixed(2)}`;
                     });
 
-                    console.log("Mapped Products:", mappedProducts);
 
                     let productList = mappedProducts.join("<br>");
-
-                    console.log("Final Product List:", productList);
-
+                    let quantityList = mappedQuantity.join("<br>");
+                    let priceList = mappedPrice.join("<br>");
                     let row = document.createElement("tr");
                     row.innerHTML = `
-        <td>${order.plan_name}</td>
-        <td>${productList}</td>
-        <td>${new Date(order.created_at).toLocaleDateString()}</td>
+        <td class="text-center fw-bold">${order.plan_name}</td>
+        <td class="text-center">${productList}</td>
+        <td class="text-center">${quantityList}</td>
+        <td class="text-center">${priceList}</td>
+        <td class="text-center">${new Date(order.created_at).toLocaleDateString()}</td>
     `;
-
                     ordersList.appendChild(row);
                 });
 
