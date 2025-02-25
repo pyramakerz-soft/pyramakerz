@@ -3,9 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\PlanController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\OrderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +38,6 @@ Route::middleware('auth:sanctum')->post('/send-plan-email', [OrderController::cl
 
 Route::middleware('auth:sanctum')->get('/user/orders', [AccountController::class, 'getOrders']);
 Route::middleware('auth:sanctum')->post('/update-password', [AccountController::class, 'updatePassword']);
+
+
+Route::post('/contact-us', [AccountController::class, 'storeContactRequest']);

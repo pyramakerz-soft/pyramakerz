@@ -91,11 +91,11 @@
                             <thead>
                                 <tr>
                                     <th>Plan</th>
-                                    <th>Features</th>
+                                    <th>Products</th>
                                     <th>Date</th>
                                 </tr>
                             </thead>
-                            <tbody id="orders-list">
+                            <tbody id="orderslist">
                                 <tr>
                                     <td colspan="3">Loading orders...</td>
                                 </tr>
@@ -103,6 +103,8 @@
                         </table>
                     </div>
                 </div>
+
+
             </div>
         </section>
     </main>
@@ -191,22 +193,50 @@
                 }
             })
             .then(response => {
-                let ordersList = document.getElementById("orders-list");
-                ordersList.innerHTML = ""; // Clear placeholder
+                console.log("Fetched Orders:", response.data);
 
-                if (response.data.orders.length === 0) {
+                let ordersList = document.getElementById("orderslist");
+                ordersList.innerHTML = "";
+
+                let orders = response.data.orders;
+                if (!orders || orders.length === 0) {
                     ordersList.innerHTML = `<tr><td colspan="3">No orders found.</td></tr>`;
-                } else {
-                    response.data.orders.forEach(order => {
-                        ordersList.innerHTML += `
-                        <tr>
-                            <td>${order.plan_name}</td>
-                            <td>${order.features.join("<br> ")}</td>
-                            <td>${new Date(order.created_at).toLocaleDateString()}</td>
-                        </tr>
-                    `;
-                    });
+                    return;
                 }
+
+                orders.forEach(order => {
+                    console.log(`Order: ${order.plan_name}`, order);
+
+                    if (!order.products || order.products.length === 0) {
+                        console.warn(`No products found for order: ${order.plan_name}`);
+                        return;
+                    }
+
+
+                    order.products.forEach(product => {
+                        console.log("Processing product:", product);
+                    });
+
+                    let mappedProducts = order.products.map(product => {
+                        return `<strong>${product.name}</strong> (Qty: ${product.quantity}) - $${parseFloat(product.price).toFixed(2)}`;
+                    });
+
+                    console.log("Mapped Products:", mappedProducts);
+
+                    let productList = mappedProducts.join("<br>");
+
+                    console.log("Final Product List:", productList);
+
+                    let row = document.createElement("tr");
+                    row.innerHTML = `
+        <td>${order.plan_name}</td>
+        <td>${productList}</td>
+        <td>${new Date(order.created_at).toLocaleDateString()}</td>
+    `;
+
+                    ordersList.appendChild(row);
+                });
+
             })
             .catch(error => {
                 console.error("Error fetching orders:", error.response);

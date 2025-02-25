@@ -849,7 +849,7 @@
 
           </div>
           <div class="col-lg-7" data-aos="flip-right" data-aos-delay="400">
-            <form action="" method="post" role="form" class="php-email-form">
+            <form action="" method="post" id="contactForm" role="form" class="php-email-form">
               <div class="row">
                 <div class="col-md-6 form-group">
                   <label>Name:</label>
@@ -866,7 +866,7 @@
               </div>
               <div class="form-group mt-3">
                 <label>Message:</label>
-                <textarea class="form-control" name="message" placeholder="Message" required></textarea>
+                <textarea class="form-control" name="message" id="message" placeholder="Message" required></textarea>
               </div>
               <div class="my-3">
                 <div class="loading">Loading</div>
@@ -874,6 +874,7 @@
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
               <div class="text-center"><button type="submit" data-aos="flip-up" data-aos-delay="200">Send Message</button></div>
+              <p id="contact-message" class="text-success mt-3 text-center"></p>
             </form>
           </div><!-- End Contact Form -->
 
@@ -1026,7 +1027,27 @@
     //     document.getElementById("popup").style.display = "none";
     // }
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+      event.preventDefault();
 
+      axios.post('/api/contact-us', {
+          name: document.getElementById("name").value,
+          email: document.getElementById("email").value,
+          subject: document.getElementById("subject").value,
+          message: document.getElementById("message").value
+        })
+        .then(response => {
+          document.getElementById("contact-message").innerText = response.data.message;
+          document.getElementById("contact-message").classList.add("text-success");
+        })
+        .catch(error => {
+          document.getElementById("contact-message").innerText = "Failed to send message.";
+          document.getElementById("contact-message").classList.add("text-danger");
+        });
+    });
+  </script>
 
 </body>
 

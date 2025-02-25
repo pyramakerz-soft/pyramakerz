@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
@@ -13,16 +14,21 @@ class OrderController extends Controller
     {
         $request->validate([
             'plan_name' => 'required|string',
-            'features' => 'required|array' // Ensure features is an array
+            'products' => 'required|array',
+            'products.*.id' => 'required|exists:products,id',
+            'products.*.quantity' => 'required|integer|min:1'
         ]);
 
         $order = Order::create([
             'user_id' => Auth::id(),
-            'plan_name' => $request->plan_name,
-            'features' => json_encode($request->features) // Store as JSON
+            'plan_name' => $request->plan_name
         ]);
 
-        return response()->json(['message' => 'Order created successfully.', 'order' => $order], 201);
+        foreach ($request->products as $product) {
+            $order->products()->attach($product['id'], ['quantity' => $product['quantity']]);
+        }
+
+        return response()->json(['message' => 'Order placed successfully.', 'order' => $order], 201);
     }
     public function getUserOrders(Request $request)
     {
@@ -38,21 +44,35 @@ class OrderController extends Controller
             })
         ]);
     }
+
     public function sendEmail(Request $request)
     {
         $request->validate([
             'user_name' => 'required|string',
             'user_email' => 'required|email',
             'selected_plan' => 'required|string',
-            'plan_features' => 'required|array'
+            'plan_products' => 'required|array'
         ]);
 
         $adminEmail = "ahmed.elragal02@gmail.com";
+
+        // Fetch full product details using IDs
+        $productDetails = Product::whereIn('id', collect($request->plan_products)->pluck('id'))
+            ->get()
+            ->map(function ($product) use ($request) {
+                $quantity = collect($request->plan_products)->firstWhere('id', $product->id)['quantity'] ?? 1;
+                return [
+                    'name' => $product->name,
+                    'quantity' => $quantity,
+                    'price' => $product->price
+                ];
+            });
+
         $data = [
             'user_name' => $request->user_name,
             'user_email' => $request->user_email,
             'selected_plan' => $request->selected_plan,
-            'plan_features' => $request->plan_features
+            'products' => $productDetails
         ];
 
         Mail::send('emails.plan-selected', $data, function ($message) use ($adminEmail) {

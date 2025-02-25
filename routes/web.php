@@ -27,6 +27,7 @@ Route::get('/students', [CustomerController::class, 'students'])->name('customer
 Route::get('/competitions', [CustomerController::class, 'competitions'])->name('customer.competitions');
 Route::get('/alef-bot', [CustomerController::class, 'alefBot'])->name('customer.alefBot');
 Route::get('/packages', [CustomerController::class, 'packages'])->name('customer.packages');
+Route::get('/customize', [CustomerController::class, 'customizePackage'])->name('customer.customizePackage');
 
 
 // Login and Registeration

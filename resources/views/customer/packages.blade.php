@@ -72,8 +72,8 @@
                 </div>
 
                 <div class="row justify-content-center">
-                    <!-- Pricing Block -->
-                    <div class="col-lg-3 col-md-6 col-sm-12">
+                    @foreach (array_slice($plans, 0, 3) as $planName => $planProducts)
+                    <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="card border-0 rounded-lg text-center p-4 shadow" data-aos="fade-up" data-aos-delay="200">
                             <div class="card-body">
                                 <div class="icon-box mb-3">
@@ -81,74 +81,29 @@
                                         <i class="fas fa-rocket fa-3x text-primary"></i>
                                     </div>
                                 </div>
-                                <h4 class="price text-uppercase fw-bold text-dark">Bronze</h4>
+                                <h4 class="price text-uppercase fw-bold text-dark">{{ $planName }}</h4>
                                 <hr class="mx-auto w-50">
+
                                 <ul class="list-unstyled features">
-                                    <li class="py-1"><i class="fas fa-check-circle text-success"></i> Feature 1</li>
-                                    <li class="py-1"><i class="fas fa-check-circle text-success"></i> Feature 2</li>
-                                    <li class="py-1"><i class="fas fa-check-circle text-success"></i> Feature 3</li>
-                                    <li class="py-1"><i class="fas fa-check-circle text-success"></i> Feature 4</li>
-                                    <li class="py-1"><i class="fas fa-check-circle text-success"></i> Feature 5</li>
+                                    @foreach ($planProducts as $product)
+                                    <li class="py-1">
+                                        <i class="fas fa-check-circle text-success"></i> {{ $product->name }}
+                                    </li>
+                                    @endforeach
                                 </ul>
+
                                 <button class="btn btn-primary btn-lg mt-3 choose-plan"
-                                    data-plan="Bronze"
-                                    data-features='["Feature 1", "Feature 2", "Feature 3", "Feature 4", "Feature 5"]'>
+                                    data-plan="{{ $planName }}"
+                                    data-products='@json($planProducts->map(fn($p) => ["id" => $p->id, "quantity" => 1]))'>
                                     Request Package
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="card border-0 rounded-lg text-center p-4 shadow" data-aos="fade-up" data-aos-delay="200">
-                            <div class="card-body">
-                                <div class="icon-box mb-3">
-                                    <div class="icon-outer">
-                                        <i class="fas fa-rocket fa-3x text-primary"></i>
-                                    </div>
-                                </div>
-                                <h4 class="price text-uppercase fw-bold text-dark">Silver</h4>
-                                <hr class="mx-auto w-50">
-                                <ul class="list-unstyled features">
-                                    <li class="py-1"><i class="fas fa-check-circle text-success"></i> Feature 1</li>
-                                    <li class="py-1"><i class="fas fa-check-circle text-success"></i> Feature 2</li>
-                                    <li class="py-1"><i class="fas fa-check-circle text-success"></i> Feature 3</li>
-                                    <li class="py-1"><i class="fas fa-check-circle text-success"></i> Feature 4</li>
-                                    <li class="py-1"><i class="fas fa-check-circle text-success"></i> Feature 5</li>
-                                </ul>
-                                <button class="btn btn-primary btn-lg mt-3 choose-plan"
-                                    data-plan="Silver"
-                                    data-features='["Feature 1", "Feature 2", "Feature 3", "Feature 4", "Feature 5"]'>
-                                    Request Package
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="card border-0 rounded-lg text-center p-4 shadow" data-aos="fade-up" data-aos-delay="200">
-                            <div class="card-body">
-                                <div class="icon-box mb-3">
-                                    <div class="icon-outer">
-                                        <i class="fas fa-rocket fa-3x text-primary"></i>
-                                    </div>
-                                </div>
-                                <h4 class="price text-uppercase fw-bold text-dark">Gold</h4>
-                                <hr class="mx-auto w-50">
-                                <ul class="list-unstyled features">
-                                    <li class="py-1"><i class="fas fa-check-circle text-success"></i> Feature 1</li>
-                                    <li class="py-1"><i class="fas fa-check-circle text-success"></i> Feature 2</li>
-                                    <li class="py-1"><i class="fas fa-check-circle text-success"></i> Feature 3</li>
-                                    <li class="py-1"><i class="fas fa-check-circle text-success"></i> Feature 4</li>
-                                    <li class="py-1"><i class="fas fa-check-circle text-success"></i> Feature 5</li>
-                                </ul>
-                                <button class="btn btn-primary btn-lg mt-3 choose-plan"
-                                    data-plan="Gold"
-                                    data-features='["Feature 1", "Feature 2", "Feature 3", "Feature 4", "Feature 5"]'>
-                                    Request Package
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12">
+                    @endforeach
+
+                    <!-- Custom Plan (unchanged) -->
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-12">
                         <div class="card border-0 rounded-lg text-center p-4 shadow" data-aos="fade-up" data-aos-delay="200">
                             <div class="card-body">
                                 <div class="icon-box mb-3">
@@ -158,6 +113,7 @@
                                 </div>
                                 <h4 class="price text-uppercase fw-bold text-dark">Custom</h4>
                                 <hr class="mx-auto w-50">
+
                                 <ul class="list-unstyled features">
                                     <li class="py-1"><i class="fas fa-check-circle text-success"></i> Feature 1</li>
                                     <li class="py-1"><i class="fas fa-check-circle text-success"></i> Feature 2</li>
@@ -165,15 +121,23 @@
                                     <li class="py-1"><i class="fas fa-check-circle text-success"></i> Feature 4</li>
                                     <li class="py-1"><i class="fas fa-check-circle text-success"></i> Feature 5</li>
                                 </ul>
-                                <button class="btn btn-primary btn-lg mt-3 choose-plan"
-                                    data-plan="Custom"
-                                    data-features='["Feature 1", "Feature 2", "Feature 3", "Feature 4", "Feature 5"]'>
-                                    Request Package
+
+                                <button class="btn btn-primary btn-lg mt-3"
+                                    onclick="window.location.href='/packages/customize'">
+                                    Customize
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
+                <div class="row justify-content-center mt-5" data-aos="zoom-in-up">
+                    <button class="btn btn-primary btn-lg mt-3 col-lg-3"
+                        onclick="window.location.href='/customize'">
+                        Customize Package
+                    </button>
+                </div>
+
+
             </div>
 
         </section>
@@ -217,23 +181,22 @@
 
         buttons.forEach(button => {
             button.addEventListener("click", function() {
-                let plan = this.getAttribute("data-plan"); // Get plan name
-                let features = JSON.parse(this.getAttribute("data-features")); // Get features as an array
-                let token = localStorage.getItem('auth_token'); // Check if user is logged in
+                let plan = this.getAttribute("data-plan");
+                let products = JSON.parse(this.getAttribute("data-products"));
+                let token = localStorage.getItem('auth_token');
 
                 if (!token) {
-                    // If user is not logged in, redirect to login and store last page
                     localStorage.setItem("redirect_after_login", "/packages");
                     window.location.href = "/login";
                 } else {
                     // If user is logged in, proceed with email and order creation
-                    sendPlanEmail(plan, features);
-                    createOrder(plan, features);
+                    sendPlanEmail(plan, products);
+                    createOrder(plan, products);
                 }
             });
         });
 
-        function sendPlanEmail(plan, features) {
+        function sendPlanEmail(plan, products) {
             let token = localStorage.getItem('auth_token');
 
             axios.get('/api/user', {
@@ -248,7 +211,7 @@
                             user_name: user.name,
                             user_email: user.email,
                             selected_plan: plan,
-                            plan_features: features // Send features array
+                            plan_products: products // Sending products array
                         }, {
                             headers: {
                                 Authorization: `Bearer ${token}`
@@ -268,12 +231,11 @@
                 });
         }
 
-        function createOrder(plan, features) {
+        function createOrder(plan, products) {
             let token = localStorage.getItem('auth_token');
-
             axios.post('/api/orders', {
                     plan_name: plan,
-                    features: features
+                    products: products
                 }, {
                     headers: {
                         Authorization: `Bearer ${token}`
