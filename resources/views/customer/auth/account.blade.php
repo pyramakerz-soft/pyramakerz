@@ -52,21 +52,21 @@
 
             <div class="container mt-3">
                 <div class="section-header text-center" data-aos="zoom-in-up">
-                    <h2 class="fw-bold text-uppercase fs-2">Manage Account</h2>
+                    <h2 class="fw-bold text-uppercase fs-1">Manage Account</h2>
                 </div>
                 <!-- User Information Section -->
-                <div class="card mb-4 shadow">
+                <div class="card mb-4 shadow" data-aos="zoom-in-up">
                     <div class="card-body">
-                        <h4>Profile Information</h4>
+                        <h4 class="fs-2 mb-3">Profile Information</h4>
                         <p><strong>Name:</strong> <span id="user-name"></span></p>
                         <p><strong>Email:</strong> <span id="user-email"></span></p>
                     </div>
                 </div>
 
                 <!-- Update Password Section -->
-                <div class="card mb-4">
+                <div class="card mb-4" data-aos="zoom-in-up">
                     <div class="card-body shadow">
-                        <h4>Change Password</h4>
+                        <h4 class="fs-2 mb-3">Change Password</h4>
                         <form id="updatePasswordForm">
                             @csrf
                             <div class="mb-3">
@@ -84,9 +84,9 @@
                 </div>
 
                 <!-- User Orders Section -->
-                <div class="card">
+                <div class="card" data-aos="fade-up">
                     <div class="card-body shadow">
-                        <h4 class="mb-3">Plan Orders</h4>
+                        <h4 class="mb-3 fs-2">Plan Orders</h4>
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped align-middle">
                                 <thead class="table-dark">
@@ -211,7 +211,7 @@
                     }
 
                     let mappedProducts = order.products.map(product => {
-                        return `<strong>${product.name}</strong>`;
+                        return `${product.name}`;
                     });
                     let mappedQuantity = order.products.map(product => {
                         return `${product.quantity}`;
