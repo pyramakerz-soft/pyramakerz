@@ -81,7 +81,7 @@
                                     </div>
 
                                     <h2 class="title">
-                                        <a href="/blog-detail1">
+                                        <a href="{{ route('customer.blogs1') }}">
                                             Embracing the Future: <br>
                                             STEAM Education as the Key to Unlocking Tomorrow's Potential
                                         </a>
@@ -98,7 +98,7 @@
                                     </div>
 
                                     <div class="read-more mt-auto align-self-end">
-                                        <a href="/blog-detail1">Read More</a>
+                                        <a href="{{ route('customer.blogs1') }}">Read More</a>
                                     </div>
 
                                 </article>
@@ -112,7 +112,7 @@
                                     </div>
 
                                     <h2 class="title">
-                                        <a href="/blog-detail2">
+                                        <a href="{{ route('customer.blogs2') }}">
                                             Exploring the Intersection of AI and Robotics:<br> Transforming the Future
                                         </a>
                                     </h2>
@@ -128,7 +128,7 @@
                                     </div>
 
                                     <div class="read-more mt-auto align-self-end">
-                                        <a href="/blog-detail2">Read More</a>
+                                        <a href="{{ route('customer.blogs2') }}">Read More</a>
                                     </div>
 
                                 </article>
@@ -142,7 +142,7 @@
                                     </div>
 
                                     <h2 class="title">
-                                        <a href="/blog-detail3">
+                                        <a href="{{ route('customer.blogs3') }}">
                                             Empowering Educators:<br> The Importance of Training Teachers in STEAM
                                             Education </a>
                                     </h2>
@@ -158,7 +158,7 @@
                                     </div>
 
                                     <div class="read-more mt-auto align-self-end">
-                                        <a href="/blog-detail3">Read More</a>
+                                        <a href="{{ route('customer.blogs3') }}">Read More</a>
                                     </div>
 
                                 </article>
@@ -211,42 +211,32 @@
                                     <div class="post-item mt-3">
                                         <img src="assets/img/blog1.jpg" alt="" class="flex-shrink-0">
                                         <div>
-                                            <h4><a href="/blog-detail1">Embracing the Future:</a></h4>
+                                            <h4><a href="{{ route('customer.blogs1') }}">Embracing the Future:</a></h4>
 
                                         </div>
-                                    </div><!-- End recent post item-->
 
-                                    <div class="post-item">
-                                        <img src="assets/img/blog2.jpg" alt="" class="flex-shrink-0">
-                                        <div>
-                                            <h4><a href="/blog-detail2">Exploring the Intersection of AI and
-                                                    Robotics:</a></h4>
+                                        <div class="post-item">
+                                            <img src="assets/img/blog2.jpg" alt="" class="flex-shrink-0">
+                                            <div>
+                                                <h4><a href="{{ route('customer.blogs2') }}">Exploring the Intersection
+                                                        of AI and Robotics:</a></h4>
 
-                                        </div>
-                                    </div><!-- End recent post item-->
+                                            </div>
+                                        </div><!-- End recent post item-->
 
-                                    <div class="post-item">
-                                        <img src="assets/img/blog3.jpeg" alt="" class="flex-shrink-0">
-                                        <div>
-                                            <h4><a href="/blog-detail3"> Empowering Educators:</a></h4>
+                                        <div class="post-item">
+                                            <img src="assets/img/blog3.jpeg" alt="" class="flex-shrink-0">
+                                            <div>
+                                                <h4><a href="{{ route('customer.blogs3') }}"> Empowering Educators:</a>
+                                                </h4>
 
-                                        </div>
-                                    </div><!-- End recent post item-->
+                                            </div>
+                                        </div><!-- End recent post item-->
 
+
+                                    </div>
 
                                 </div>
-
-                            </div><!-- End sidebar recent posts-->
-
-
-
-                        </div><!-- End Blog Sidebar -->
-
-                    </div>
-
-                </div>
-
-            </div>
         </section><!-- End Blog Section -->
 
     </main><!-- End #main -->
