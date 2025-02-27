@@ -1,7 +1,17 @@
 @extends('layouts.layout')
-
+@section('page_css')
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/aos.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/icofont.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+@endsection
 @section('content')
-    <main id="main">
+    <main id="main" style="margin-top: 110px">
 
         <!-- theme fixed shadow -->
         <div>
@@ -101,18 +111,18 @@
                         <div class="course__sidebar__wraper" data-aos="fade-up">
                             <div class="categori__wraper">
                                 <div class="course__heading">
-                                    <h5>Categories</h5>
+                                    <h5>Products</h5>
                                 </div>
                                 <div class="course__categories__list">
                                     <ul>
-                                        {{-- @foreach ($categories as $category) --}}
-                                            <li>
-                                                {{-- <a href="{{ route('courses.index', ['category' => $category->id]) }}">
-                                                    {{ $category->name }}
+                                        {{-- @foreach ($products as $product)
+                                        <li>
+                                            <a href="{{ route('courses.index', ['category' => $category->id]) }}">
+                                                    {{ $product->name }}
                                                     <span>{{ $category->courses->count() }}</span>
-                                                </a> --}}
-                                            </li>
-                                        {{-- @endforeach --}}
+                                                </a>
+                                        </li>
+                                        @endforeach --}}
 
 
 
@@ -212,16 +222,16 @@
 
                                 <div class="row">
 
-                                    {{-- @foreach ($courses as $course) --}}
+                                    @foreach ($products as $product)
                                         <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 col-12" data-aos="fade-up">
                                             <div class="gridarea__wraper gridarea__wraper__2">
                                                 <div class="gridarea__img">
-                                                    {{-- <img loading="lazy"
-                                                        src="{{ $course->image ? asset($course->image) : asset('img/course.jpg') }}"
-                                                        alt="{{ $course->name }}"> --}}
+                                                    <img loading="lazy"
+                                                        src="{{ $product->image ? asset($product->image) : asset('img/product.jpg') }}"
+                                                        alt="{{ $product->name }}">
                                                     <div class="gridarea__small__button">
                                                         <div class="grid__badge orange__color">
-                                                            {{-- {{ $course->course_path ?? 'General' }} --}}
+                                                            {{ $product->course_path ?? 'General' }}
                                                         </div>
                                                     </div>
                                                     <div class="gridarea__small__icon">
@@ -243,8 +253,8 @@
                                                     </div>
                                                     <div class="gridarea__heading">
                                                         <h3>
-                                                            {{-- <a
-                                                                href="{{ route('courses.show', $course->id) }}">{{ $course->name }}</a> --}}
+                                                            <a
+                                                                href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
                                                         </h3>
                                                     </div>
                                                     <div class="gridarea__bottom">
@@ -259,7 +269,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    {{-- @endforeach --}}
+                                    @endforeach
 
                                 </div>
                                 <div class="main__pagination__wrapper" data-aos="fade-up">
@@ -270,65 +280,65 @@
 
                             <div class="tab-pane fade" id="projects__two" role="tabpanel"
                                 aria-labelledby="projects__two">
-                                {{-- @foreach ($courses as $course) --}}
+                                @foreach ($products as $product)
                                     <div class="gridarea__wraper gridarea__wraper__2 gridarea__course__list"
                                         data-aos="fade-up">
                                         <div class="gridarea__img">
                                             <a href="course-details.html">
-                                                {{-- <img loading="lazy"
-                                                    src="{{ $course->image ? asset($course->image) : asset('img/course.jpg') }}"
-                                                    alt="{{ $course->name }}"> --}}
-                                                </a>
+                                                <img loading="lazy"
+                                                    src="{{ $product->image ? asset($product->image) : asset('img/product.jpg') }}"
+                                                    alt="{{ $product->name }}">
+                                            </a>
                                             <div class="gridarea__small__button">
                                                 <div class="grid__badge orange__color">
                                                     {{-- {{ $course->course_path ?? 'General' }}</div> --}}
-                                            </div>
-                                            <div class="gridarea__small__icon">
-                                                <a href="#"><i class="icofont-heart-alt"></i></a>
-                                            </div>
+                                                </div>
+                                                <div class="gridarea__small__icon">
+                                                    <a href="#"><i class="icofont-heart-alt"></i></a>
+                                                </div>
 
-                                        </div>
-                                        <div class="gridarea__content">
-                                            <div class="gridarea__list">
-                                                <ul>
-                                                    <li>
-                                                        <i class="icofont-book-alt"></i>
-                                                        {{-- {{ $course->totalLessonsCount() ?? 0 }} Lesson --}}
-                                                    </li>
-                                                    <li>
-                                                        <i class="icofont-clock-time"></i>
-                                                        {{-- {{ $course->duration ?? 'N/A' }} --}}
-                                                    </li>
-                                                </ul>
                                             </div>
-                                            <div class="gridarea__heading">
-                                                <h3><a href="course-details.html">Become a product Manager learn the
-                                                        skills & job.
-                                                    </a></h3>
-                                            </div>
+                                            <div class="gridarea__content">
+                                                <div class="gridarea__list">
+                                                    <ul>
+                                                        <li>
+                                                            <i class="icofont-book-alt"></i>
+                                                            {{-- {{ $course->totalLessonsCount() ?? 0 }} Lesson --}}
+                                                        </li>
+                                                        <li>
+                                                            <i class="icofont-clock-time"></i>
+                                                            {{-- {{ $course->duration ?? 'N/A' }} --}}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="gridarea__heading">
+                                                    <h3><a href="course-details.html">Become a product Manager learn the
+                                                            skills & job.
+                                                        </a></h3>
+                                                </div>
 
-                                            <div class="gridarea__bottom">
-                                                <div class="gridarea__bottom__left">
+                                                <div class="gridarea__bottom">
+                                                    <div class="gridarea__bottom__left">
 
 
-                                                    <div class="gridarea__star">
-                                                        <i class="icofont-star"></i>
-                                                        <i class="icofont-star"></i>
-                                                        <i class="icofont-star"></i>
-                                                        <i class="icofont-star"></i>
-                                                        {{-- <span>({{ $course->rating ?? 0 }})</span> --}}
+                                                        <div class="gridarea__star">
+                                                            <i class="icofont-star"></i>
+                                                            <i class="icofont-star"></i>
+                                                            <i class="icofont-star"></i>
+                                                            <i class="icofont-star"></i>
+                                                            {{-- <span>({{ $course->rating ?? 0 }})</span> --}}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="gridarea__details">
+                                                        <a href="{{ route('products.show', $product->id) }}">See Details
+                                                            <i class="icofont-arrow-right"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
-
-                                                <div class="gridarea__details">
-                                                    {{-- <a href="{{ route('courses.show', $course->id) }}">See Details
-                                                        <i class="icofont-arrow-right"></i>
-                                                    </a> --}}
-                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                {{-- @endforeach --}}
+                                @endforeach
 
                                 <div class="main__pagination__wrapper" data-aos="fade-up">
                                     {{-- {{ $courses->links('pagination::bootstrap-5') }} --}}
