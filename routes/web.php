@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/', [CustomerController::class, 'index'])->name('customer.index');
 Route::get('/blog', [CustomerController::class, 'blogs'])->name('customer.blogs');
+Route::resource('products', ProductsController::class);
 Route::get('/blog-detail1', [CustomerController::class, 'blogs1'])->name('customer.blogs1');
 Route::get('/blog-detail2', [CustomerController::class, 'blogs2'])->name('customer.blogs2');
 Route::get('/blog-detail3', [CustomerController::class, 'blogs3'])->name('customer.blogs3');
