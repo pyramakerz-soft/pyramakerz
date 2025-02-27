@@ -34,10 +34,10 @@
         <div class="col-lg-2 col-md-6 footer-links">
           <h4>Our Solutions</h4>
           <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="/schools">School Portal</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="/students">Student Portal</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="/competitions">Competitions</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="/alef-bot">Alef Bot</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.schools') }}">School Portal</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.students') }}">Student Portal</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.competitions') }}">Competitions</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.alefBot') }}">Alef Bot</a></li>
 
           </ul>
         </div>

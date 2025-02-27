@@ -89,7 +89,7 @@
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top justify-content-center" data-scrollto-offset="0">
         <div class="container-fluid d-flex align-items-center justify-content-center">
-            <a href="/" class="logo d-flex align-items-center justify-content-center scrollto me-auto me-lg-0">
+            <a href="{{ route('customer.index') }}" class="logo d-flex align-items-center justify-content-center scrollto me-auto me-lg-0">
                 <img src="./assets/img/logo-orange.png">
             </a>
         </div>
@@ -172,7 +172,10 @@
                 })
                 .then(response => {
                     localStorage.setItem('auth_token', response.data.token);
-
+                    if (response.data.user.role === 'admin') {
+                        window.location.href = @json(route('admin.addProduct'));
+                        return;
+                    }
                     let redirectPage = localStorage.getItem("redirect_after_login");
                     if (redirectPage) {
                         localStorage.removeItem("redirect_after_login");

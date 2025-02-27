@@ -53,8 +53,8 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Blog Details</h2>
           <ol>
-            <li><a href="/">Home</a></li>
-            <li><a href="/blog">Blog</a></li>
+            <li><a href="{{ route('customer.index') }}">Home</a></li>
+            <li><a href="{{ route('customer.blogs') }}">Blog</a></li>
             <li>Blog Details</li>
           </ol>
         </div>
@@ -166,7 +166,7 @@
                   <div class="post-item mt-3">
                     <img src="assets/img/blog1.jpg" alt="" class="flex-shrink-0">
                     <div>
-                      <h4><a href="/blog-detail1">Embracing the Future:</a></h4>
+                      <h4><a href="{{ route('customer.blogs1') }}">Embracing the Future:</a></h4>
 
                     </div>
                   </div><!-- End recent post item-->
@@ -174,7 +174,7 @@
                   <div class="post-item">
                     <img src="assets/img/blog2.jpg" alt="" class="flex-shrink-0">
                     <div>
-                      <h4><a href="/blog-detail2">Exploring the Intersection of AI and Robotics:</a></h4>
+                      <h4><a href="{{ route('customer.blogs2') }}">Exploring the Intersection of AI and Robotics:</a></h4>
 
                     </div>
                   </div><!-- End recent post item-->
@@ -182,7 +182,7 @@
                   <div class="post-item">
                     <img src="assets/img/blog3.jpeg" alt="" class="flex-shrink-0">
                     <div>
-                      <h4><a href="/blog-detail3"> Empowering Educators:</a></h4>
+                      <h4><a href="{{ route('customer.blogs3') }}"> Empowering Educators:</a></h4>
 
                     </div>
                   </div><!-- End recent post item-->

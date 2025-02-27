@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,9 @@ Route::get('/competitions', [CustomerController::class, 'competitions'])->name('
 Route::get('/alef-bot', [CustomerController::class, 'alefBot'])->name('customer.alefBot');
 Route::get('/packages', [CustomerController::class, 'packages'])->name('customer.packages');
 Route::get('/customize', [CustomerController::class, 'customizePackage'])->name('customer.customizePackage');
+
+Route::get('/admin/add_product', [AdminController::class, 'addProduct'])->name('admin.addProduct');
+
 
 
 // Login and Registeration

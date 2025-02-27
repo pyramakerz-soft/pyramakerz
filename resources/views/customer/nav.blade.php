@@ -2,24 +2,24 @@
 <header id="header" class="header fixed-top" data-scrollto-offset="0">
   <div class="container-fluid d-flex align-items-center justify-content-between">
 
-    <a href="/" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
+    <a href="{{ route('customer.index') }}" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
       <img src="./assets/img/logo-orange.png">
     </a>
 
     <nav id="navbar" class="navbar">
       <ul>
-        <li><a class="nav-link scrollto" href="/">Home</a></li>
+        <li><a class="nav-link scrollto" href="{{ route('customer.index') }}">Home</a></li>
         <li><a class="nav-link scrollto" href="/#about">About</a></li>
         <li class="dropdown"><a href="/#solution">Solutions <i class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
-            <li><a href="/schools">School Portal</a></li>
-            <li><a href="/students">Student Portal</a></li>
-            <li><a href="/competitions">Competitions</a></li>
-            <li><a href="/alef-bot">Alef Bot</a></li>
+            <li><a href="{{ route('customer.schools') }}">School Portal</a></li>
+            <li><a href="{{ route('customer.students') }}">Student Portal</a></li>
+            <li><a href="{{ route('customer.competitions') }}">Competitions</a></li>
+            <li><a href="{{ route('customer.alefBot') }}">Alef Bot</a></li>
           </ul>
         </li>
-        <li><a class="nav-link scrollto" href="/packages">Packages</a></li>
-        <li><a class="nav-link scrollto" href="/blog">Blogs</a></li>
+        <li><a class="nav-link scrollto" href="{{ route('customer.packages') }}">Packages</a></li>
+        <li><a class="nav-link scrollto" href="{{ route('customer.blogs') }}">Blogs</a></li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle d-none"></i>
     </nav><!-- .navbar -->

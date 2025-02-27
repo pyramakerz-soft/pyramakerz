@@ -25,6 +25,8 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'customer
+            ',
         ]);
 
         // Generate OTP
@@ -66,7 +68,7 @@ class AuthController extends Controller
             'email_verified_at' => now()
         ]);
 
-        return response()->json(['message' => 'Email verified successfully.'], 200);
+        return response()->json(['message' => 'Email verified successfully.', 'user' => $user], 200);
     }
 
     // Login User

@@ -237,7 +237,7 @@
                   <div class="col-xl-8 col-md-8">
                     <h4>School Portal</h4>
                     <p>Our primary goal is to provide STEAM solutions to schools and expert training to teachers, assisting students in developing a strong foundation to excel in STEAM fields.</p>
-                    <a href="schools.php" class="btn-get-started scrollto ">See More</a>
+                    <a href="{{ route('customer.schools') }}" class="btn-get-started scrollto ">See More</a>
 
                   </div>
                 </div>
@@ -257,7 +257,7 @@
                     <h4>Student Portal</h4>
                     <p>We understand that every student has unique needs and our programs provide personalized learning paths to nurture strengths and address growth areas.</p>
                     <br>
-                    <a href="indexb2c.php" class="btn-get-started scrollto ">See More</a>
+                    <a href="{{ route('customer.students') }}" class="btn-get-started scrollto ">See More</a>
                   </div>
                 </div>
               </div>
@@ -278,7 +278,7 @@
                     <h4>Alef Bot</h4>
                     <p>Our robotics kits provide a comprehensive range of learning tools for science, technology, engineering, and mathematics enthusiasts of all ages.</p>
                     <br>
-                    <a href="coming-soon.php" class="btn-get-started scrollto ">See More</a>
+                    <a href="{{ route('customer.alefBot') }}" class="btn-get-started scrollto ">See More</a>
 
                   </div>
                 </div>
@@ -297,7 +297,7 @@
                   <div class="col-xl-8 col-md-8">
                     <h4>Competitions</h4>
                     <p>we take pride in our commitment to excellence and one way we showcase this is through active participation in robotics competitions and various educational events</p>
-                    <a href="competition-soon.php" class="btn-get-started scrollto ">See More</a>
+                    <a href="{{ route('customer.competitions') }}" class="btn-get-started scrollto ">See More</a>
 
                   </div>
                 </div>
@@ -378,7 +378,7 @@
                 As we enter a new era marked by rapid technological advancements and unprecedented global challenges, the future of education has never been more crucial. In this blog post, we will delve into the transformative influence of STEAM education.
               </p>
               <br>
-              <a href="blog-detail1.php" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+              <a href="{{ route('customer.blogs1') }}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
 
@@ -392,7 +392,7 @@
                 In recent years, the fields of Artificial Intelligence (AI) and Robotics have witnessed remarkable advancements, revolutionizing industries and reshaping the way we interact with technology. In this blog post, we'll explore the fascinating intersection of AI and robotics
               </p>
 
-              <a href="blog-detail2.php" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+              <a href="{{ route('customer.blogs2') }}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
 
@@ -407,7 +407,7 @@
                 In today's rapidly evolving world, the demand for STEAM (Science, Technology, Engineering, Arts, and Mathematics) education has never been greater. As educators strive to prepare students for success in the 21st century, training teachers in STEAM education has become increasingly essential.
               </p>
 
-              <a href="blog-detail3.php" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+              <a href="{{ route('customer.blogs3') }}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
 
