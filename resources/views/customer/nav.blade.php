@@ -3,7 +3,7 @@
   <div class="container-fluid d-flex align-items-center justify-content-between">
 
     <a href="{{ route('customer.index') }}" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
-      <img src="./assets/img/logo-orange.png">
+      <img src="{{ asset('/assets/img/logo-orange.png') }}">
     </a>
 
     <nav id="navbar" class="navbar">
