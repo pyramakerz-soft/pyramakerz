@@ -1,0 +1,64 @@
+{
+    "_comment": "index.blade.php(main page)",
+    "welcome_popup_title": "Welcome to Pyramakerz!",
+    "welcome_popup_message": "Join our Whatsapp Community of young innovators!",
+    "join_now": "Join Now",
+    "remind_me_later": "Remind Me Later",
+    "get_in_touch": "Get In Touch",
+    "see_more": "See More",
+
+    "empowering_minds": "Empowering Minds",
+    "empowering_minds_text": "Unlocking potential in over 20,000 students across Egypt and the GCC.",
+
+    "innovating_futures": "Innovating Futures",
+    "innovating_futures_text": "Shaping tomorrow's leaders with more than 2.5 million Training Hours Delivered.",
+
+    "fostering_collaboration": "Fostering Collaboration",
+    "fostering_collaboration_text": "Building communities through shared knowledge in 30+ educational Institutions.",
+
+    "cultivating_excellence": "Cultivating Excellence",
+    "cultivating_excellence_text": "Nurturing talents to reach new heights, with 6+ years of leading in EdTech.",
+
+    "driving_innovation": "Driving Innovation",
+    "driving_innovation_text": "Transforming education for a brighter future, accredited by STEM.org since August 2019.",
+
+    "about_us": "About Us",
+    "pyramakerz_description": "Since 2019, Pyramakerz Technologies S.A.E. has been a leading EdTech company on a mission to transform STEAM education. We provide high-quality, culturally relevant STEAM solutions to empower millions of learners worldwide.",
+
+    "our_solutions": "Our Solutions",
+    "school_portal": "School Portal",
+    "school_portal_description": "Our primary goal is to provide STEAM solutions to schools and expert training to teachers, assisting students in developing a strong foundation to excel in STEAM fields.",
+
+    "student_portal": "Student Portal",
+    "student_portal_description": "We understand that every student has unique needs and our programs provide personalized learning paths to nurture strengths and address growth areas.",
+
+    "alef_bot": "Alef Bot",
+    "alef_bot_description": "Our robotics kits provide a comprehensive range of learning tools for science, technology, engineering, and mathematics enthusiasts of all ages.",
+
+    "competitions": "Competitions",
+    "competitions_description": "We take pride in our commitment to excellence and showcase this through active participation in robotics competitions and various educational events.",
+
+    "our_partners": "Our Successful Partners",
+    "blog": "Blog",
+    "embracing_future": "Embracing the Future:",
+    "embracing_future_cont": " STEAM Education as the Key to Unlocking Tomorrow's Potential",
+    "embracing_future_text": " As we enter a new era marked by rapid technological advancements and unprecedented global challenges, the future of education has never been more crucial. In this blog post, we will delve into the transformative influence of STEAM education.",
+
+    "read_more": "Read More",
+    "explore_more": "Explore More",
+
+    "exploring_interaction": "Exploring the Intersection of AI and Robotics:",
+    "exploring_interaction_cont": "Transforming the Future",
+    "exploring_interaction_text": "In recent years, the fields of Artificial Intelligence (AI) and Robotics have witnessed remarkable advancements, revolutionizing industries and reshaping the way we interact with technology. In this blog post, we'll explore the fascinating intersection of AI and robotics",
+
+    "empowering_educators": "Empowering Educators:",
+    "empowering_educators_cont": "The Importance of Training Teachers in STEAM Education",
+    "empowering_educators_text": "In today's rapidly evolving world, the demand for STEAM (Science, Technology, Engineering, Arts, and Mathematics) education has never been greater. As educators strive to prepare students for success in the 21st century, training teachers in STEAM education has become increasingly essential.",
+
+    "contact_us": "Get In Touch",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "send_message": "Send Message"
+}

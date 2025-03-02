@@ -4,6 +4,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +46,13 @@ Route::get('/register', [CustomerController::class, 'register'])->name('customer
 Route::get('/verify-otp', [CustomerController::class, 'verifyOTP'])->name('customer.verify-otp');
 Route::get('/account', [CustomerController::class, 'account'])->name('customer.account');
 // Route::post('/resend-otp', [AuthController::class, 'resendOTP']);
+
+// Langauge Change Route
+Route::get('lang/{locale}', function ($locale) {
+    if (!in_array($locale, ['en', 'ar'])) {
+        abort(400);
+    }
+    Session::put('locale', $locale);
+    App::setLocale($locale);
+    return Redirect::back();
+})->name('change.lang');

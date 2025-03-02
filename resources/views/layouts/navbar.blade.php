@@ -8,24 +8,35 @@
 
     <nav id="navbar" class="navbar">
       <ul>
-        <li><a class="nav-link scrollto" href="/">Home</a></li>
-        <li><a class="nav-link scrollto" href="/#about">About</a></li>
-        <li class="dropdown"><a href="/#solution">Solutions <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+        <li><a class="nav-link scrollto" href="/">{{ __('navbar.home') }}</a></li>
+        <li><a class="nav-link scrollto" href="/#about">{{ __('navbar.about') }}</a></li>
+        <li class="dropdown"><a href="/#solution">{{ __('navbar.solutions') }} <i class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
-            <li><a href="{{ route('customer.schools') }}">School Portal</a></li>
-            <li><a href="{{ route('customer.students') }}">Student Portal</a></li>
-            <li><a href="{{ route('customer.competitions') }}">Competitions</a></li>
-            <li><a href="{{ route('customer.alefBot') }}">Alef Bot</a></li>
+            <li><a href="{{ route('customer.schools') }}">{{ __('navbar.school_portal') }}</a></li>
+            <li><a href="{{ route('customer.students') }}">{{ __('navbar.student_portal') }}</a></li>
+            <li><a href="{{ route('customer.competitions') }}">{{ __('navbar.competitions') }}</a></li>
+            <li><a href="{{ route('customer.alefBot') }}">{{ __('navbar.alef_bot') }}</a></li>
           </ul>
         </li>
-        <li><a class="nav-link scrollto" href="{{ route('customer.packages') }}">Packages</a></li>
-        <li><a class="nav-link scrollto" href="{{ route('customer.blogs') }}">Blogs</a></li>
+        <li><a class="nav-link scrollto" href="{{ route('customer.packages') }}">{{ __('navbar.packages') }}</a></li>
+        <li><a class="nav-link scrollto" href="{{ route('customer.blogs') }}">{{ __('navbar.blogs') }}</a></li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle d-none"></i>
     </nav><!-- .navbar -->
 
     <div class="buttons d-flex align-items-center">
-      <a class="btn-getstarted scrollto d-inline-block" style="width: 153px;" href="/#contact" data-aos="flip-up" data-aos-delay="400">Get in touch</a>
+      <a class="btn-getstarted scrollto d-inline-block" style="width: 153px;" href="/#contact" data-aos="flip-up" data-aos-delay="400">{{ __('navbar.contact') }}</a>
+
+      <!-- Language Switcher -->
+      <div class="dropdown mx-3">
+        <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">
+          🌍 {{ strtoupper(app()->getLocale()) }}
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="{{ route('change.lang', 'en') }}">English</a></li>
+          <li><a class="dropdown-item" href="{{ route('change.lang', 'ar') }}">العربية</a></li>
+        </ul>
+      </div>
 
       <!-- Auth Section -->
       <div id="authLinks"></div>
@@ -47,16 +58,16 @@
                           <i class="bi bi-person-circle" style="font-size: 24px; color: #ff7f00;"></i>
                       </a>
                       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
-                          <li><a class="dropdown-item" href="/account">Manage Account</a></li>
+                          <li><a class="dropdown-item" href="/account">{{ __('navbar.manage_account') }}</a></li>
                           <li><hr class="dropdown-divider"></li>
-                          <li><button class="dropdown-item text-danger" onclick="logout()">Logout</button></li>
+                          <li><button class="dropdown-item text-danger" onclick="logout()">{{ __('navbar.logout') }}</button></li>
                       </ul>
                   </div>
               `;
     } else {
       // If not logged in, show Login button
       document.getElementById("authLinks").innerHTML = `
-                  <a class="btn-getstarted scrollto d-inline-block" href="/login" data-aos="flip-up" data-aos-delay="400">Login</a>
+                  <a class="btn-getstarted scrollto d-inline-block" href="/login" data-aos="flip-up" data-aos-delay="400">{{ __('navbar.login') }}</a>
               `;
     }
   });

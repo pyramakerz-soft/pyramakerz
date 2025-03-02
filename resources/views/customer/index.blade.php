@@ -7,10 +7,11 @@
   <div class="popup-overlay"></div>
   <div class="popup-content">
     <span class="close" onclick="closePopup()">&times;</span>
-    <h2>Welcome to <span> Pyramakerz!</span></h2>
-    <p>Join our Whatsapp Community of young innovators!</p>
-    <a href="https://api.whatsapp.com/send?phone=+201220016331&text=Welcome to Pyramakerz" target="blank" class="btn join-btn">Join Now <i class="fab fa-whatsapp"></i></a>
-    <button class="btn remind-btn" onclick="closePopup()">Remind Me Later</button>
+    <h2>{{ __('welcome_popup_title') }}</h2>
+    <p>{{ __('welcome_popup_message') }}</p>
+    <a href="https://api.whatsapp.com/send?phone=+201220016331&text=Welcome to Pyramakerz" target="blank" class="btn join-btn">{{ __('join_now') }} <i class="fab fa-whatsapp"></i></a>
+    <button class="btn remind-btn" onclick="closePopup()">{{ __('remind_me_later') }}</button>
+
   </div>
 </div>
 
@@ -23,16 +24,13 @@
         <div class="row align-items-center justify-content-center gy-6">
 
           <div class="col-lg-6 ">
-            <h2><span>Empowering Minds </span> </h2>
-            <p>
-              Unlocking potential in over 20,000 students across Egypt and the GCC.
-            </p>
-            <a href="index.php#contact" class="btn-get-started scrollto ">Get in touch</a>
+            <h2><span>{{ __('empowering_minds') }} </span> </h2>
+            <p>{{ __('empowering_minds_text') }}</p>
+            <a href="index.php#contact" class="btn-get-started scrollto ">{{ __('get_in_touch') }}</a>
           </div>
           <div class="col-lg-6 col-md-6">
             <img src="assets/img/slide1.png" alt="" class="img-fluid img">
           </div>
-
         </div>
       </div>
     </div><!-- End Carousel Item 1 -->
@@ -42,11 +40,11 @@
         <div class="row align-items-center justify-content-center gy-6">
 
           <div class="col-lg-6 ">
-            <h2><span>Innovating Futures </span> </h2>
+            <h2><span>{{ __('innovating_futures') }} </span> </h2>
             <p>
-              Shaping tomorrow's leaders <span>with more than 2.5 million</span> Training Hours Delivered.
+              {{ __('innovating_futures_text') }}
             </p>
-            <a href="index.php#contact" class="btn-get-started scrollto ">Get in touch</a>
+            <a href="index.php#contact" class="btn-get-started scrollto ">{{ __('get_in_touch') }}</a>
           </div>
           <div class="col-lg-6 col-md-6">
             <img src="assets/img/slide2.png" alt="" class="img-fluid img">
@@ -61,11 +59,11 @@
         <div class="row align-items-center justify-content-center gy-6">
 
           <div class="col-lg-6 ">
-            <h2><span>Fostering Collaboration </span> </h2>
+            <h2><span>{{ __('fostering_collaboration') }}</span> </h2>
             <p>
-              Building communities through shared knowledge in <span>30+ educational</span> Institutions.
+              {{ __('fostering_collaboration_text') }}
             </p>
-            <a href="index.php#contact" class="btn-get-started scrollto ">Get in touch</a>
+            <a href="index.php#contact" class="btn-get-started scrollto ">{{ __('get_in_touch') }}</a>
           </div>
           <div class="col-lg-6 col-md-6">
             <img src="assets/img/slide3.png" alt="" class="img-fluid img">
@@ -80,11 +78,11 @@
         <div class="row align-items-center justify-content-center gy-6">
 
           <div class="col-lg-6 ">
-            <h2><span>Cultivating Excellence </span> </h2>
+            <h2><span>{{ __('cultivating_excellence') }}</span> </h2>
             <p>
-              Nurturing talents to reach new heights,<span>with 6+ years </span> of leading in EdTech.
+              {{ __('cultivating_excellence_text') }}
             </p>
-            <a href="index.php#contact" class="btn-get-started scrollto ">Get in touch</a>
+            <a href="index.php#contact" class="btn-get-started scrollto ">{{ __('get_in_touch') }}</a>
           </div>
           <div class="col-lg-6 col-md-6">
             <img src="assets/img/slide4.png" alt="" class="img-fluid img">
@@ -99,12 +97,11 @@
         <div class="row align-items-center justify-content-center gy-6">
 
           <div class="col-lg-6 ">
-            <h2><span>Driving Innovation </span> </h2>
+            <h2><span>{{ __('driving_innovation') }}</span> </h2>
             <p>
-              Transforming education for a brighter future,<span>accredited by STEM.org</span> since August 2019.
-
+              {{ __('driving_innovation_text') }}
             </p>
-            <a href="index.php#contact" class="btn-get-started scrollto ">Get in touch</a>
+            <a href="index.php#contact" class="btn-get-started scrollto ">{{ __('get_in_touch') }}</a>
           </div>
           <div class="col-lg-6 col-md-6">
             <img src="assets/img/slide5.png" alt="" class="img-fluid img">
@@ -134,7 +131,7 @@
   <section id="about" class="about">
     <div class="container">
       <div class="section-header" data-aos="zoom-in-up" data-aos-delay="200">
-        <h2>About Us</h2>
+        <h2>{{ __('about_us') }}</h2>
       </div>
 
       <div class="row ">
@@ -157,9 +154,7 @@
 
             <div class="tab-pane fade show active align-items-center justify-content-center" style="margin: auto; ">
 
-              <p>
-                Since 2019, Pyramakerz Technologies S.A.E. has been a leading EdTech company on a mission to transform STEAM education. We provide high-quality, culturally relevant STEAM solutions to empower millions of learners worldwide, from schools and organizations to individual students. By demystifying and gamifying STEAM, we ignite a passion for creativity and critical thinking, shaping a future generation of confident innovators who will tackle the world's challenges.
-              </p>
+              <p>{{ __('pyramakerz_description') }}</p>
 
             </div><!-- End Tab 1 Content -->
 
@@ -180,7 +175,7 @@
     <div class="container" data-aos="fade-up">
 
       <div class="section-header" data-aos="zoom-in-up" data-aos="zoom-in-right" data-aos-delay="200">
-        <h2>Our Solutions</h2>
+        <h2>{{ __('our_solutions') }}</h2>
       </div>
 
       <div class="row gy-5">
@@ -194,9 +189,9 @@
                   <img src="./assets/img/schoolbg.png">
                 </div>
                 <div class="col-xl-8 col-md-8">
-                  <h4>School Portal</h4>
-                  <p>Our primary goal is to provide STEAM solutions to schools and expert training to teachers, assisting students in developing a strong foundation to excel in STEAM fields.</p>
-                  <a href="{{ route('customer.schools') }}" class="btn-get-started scrollto ">See More</a>
+                  <h4>{{ __('school_portal') }}</h4>
+                  <p>{{ __('school_portal_description') }}</p>
+                  <a href="{{ route('customer.schools') }}" class="btn-get-started scrollto ">{{ __('see_more') }}</a>
 
                 </div>
               </div>
@@ -213,10 +208,10 @@
                   <img src="./assets/img/studentbg.png">
                 </div>
                 <div class="col-xl-8 col-md-8">
-                  <h4>Student Portal</h4>
-                  <p>We understand that every student has unique needs and our programs provide personalized learning paths to nurture strengths and address growth areas.</p>
+                  <h4>{{ __('student_portal') }}</h4>
+                  <p>{{ __('student_portal_description') }}</p>
                   <br>
-                  <a href="{{ route('customer.students') }}" class="btn-get-started scrollto ">See More</a>
+                  <a href="{{ route('customer.students') }}" class="btn-get-started scrollto ">{{ __('see_more') }}</a>
                 </div>
               </div>
             </div>
@@ -234,10 +229,10 @@
                   <img src="./assets/img/alefbg.png">
                 </div>
                 <div class="col-xl-8 col-md-8">
-                  <h4>Alef Bot</h4>
-                  <p>Our robotics kits provide a comprehensive range of learning tools for science, technology, engineering, and mathematics enthusiasts of all ages.</p>
+                  <h4>{{ __('alef_bot') }}</h4>
+                  <p>{{ __('alef_bot_description') }}</p>
                   <br>
-                  <a href="{{ route('customer.alefBot') }}" class="btn-get-started scrollto ">See More</a>
+                  <a href="{{ route('customer.alefBot') }}" class="btn-get-started scrollto ">{{ __('see_more') }}</a>
 
                 </div>
               </div>
@@ -254,9 +249,9 @@
                   <img src="./assets/img/compbg.png">
                 </div>
                 <div class="col-xl-8 col-md-8">
-                  <h4>Competitions</h4>
-                  <p>we take pride in our commitment to excellence and one way we showcase this is through active participation in robotics competitions and various educational events</p>
-                  <a href="{{ route('customer.competitions') }}" class="btn-get-started scrollto ">See More</a>
+                  <h4>{{ __('competitions') }}</h4>
+                  <p>{{ __('competitions_description') }}</p>
+                  <a href="{{ route('customer.competitions') }}" class="btn-get-started scrollto ">{{ __('see_more') }}</a>
 
                 </div>
               </div>
@@ -278,7 +273,7 @@
 
     <div class="container" data-aos="zoom-out">
       <div class="section-header" data-aos="zoom-in-up">
-        <h2>Our Successful Partners</h2>
+        <h2>{{ __('our_partners') }}</h2>
       </div>
       <div class="clients-slider swiper">
         <div class="swiper-wrapper align-items-center">
@@ -322,7 +317,7 @@
     <div class="container" data-aos="fade-up">
 
       <div class="section-header" data-aos="zoom-in-up">
-        <h2>Blog</h2>
+        <h2>{{ __('blog') }}</h2>
       </div>
 
       <div class="row posts-list">
@@ -331,13 +326,12 @@
           <div class="post-box">
             <div class="post-img"><img src="assets/img/blog1.jpg" class="img-fluid" alt=""></div>
 
-            <h3 class="post-title">Embracing the Future: <br>
-              STEAM Education as the Key to Unlocking Tomorrow's Potential</h3>
-            <p>
-              As we enter a new era marked by rapid technological advancements and unprecedented global challenges, the future of education has never been more crucial. In this blog post, we will delve into the transformative influence of STEAM education.
-            </p>
+            <h3 class="post-title"> {{ __('embracing_future') }} <br>
+              {{ __('embracing_future_cont') }}
+            </h3>
+            <p>{{ __('embracing_future_text') }}</p>
             <br>
-            <a href="{{ route('customer.blogs1') }}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+            <a href="{{ route('customer.blogs1') }}" class="readmore stretched-link"><span>{{ __('read_more') }}</span><i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
 
@@ -345,13 +339,11 @@
           <div class="post-box">
             <div class="post-img"><img src="assets/img/blog2.jpg" class="img-fluid" alt=""></div>
 
-            <h3 class="post-title">Exploring the Intersection of AI and Robotics:<br> Transforming the Future</h3>
+            <h3 class="post-title">{{ __('exploring_interaction') }}<br>{{ __('exploring_interaction_cont') }}</h3>
             <br>
-            <p>
-              In recent years, the fields of Artificial Intelligence (AI) and Robotics have witnessed remarkable advancements, revolutionizing industries and reshaping the way we interact with technology. In this blog post, we'll explore the fascinating intersection of AI and robotics
-            </p>
+            <p>{{ __('exploring_interaction_text') }}</p>
 
-            <a href="{{ route('customer.blogs2') }}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+            <a href="{{ route('customer.blogs2') }}" class="readmore stretched-link"><span>{{ __('read_more') }}</span><i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
 
@@ -360,13 +352,11 @@
             <div class="post-img"><img src="assets/img/blog3.jpeg" class="img-fluid" alt=""></div>
 
             <h3 class="post-title">
-              Empowering Educators:<br> The Importance of Training Teachers in STEAM Education</h3>
+              {{ __('empowering_educators') }}<br> {{ __('empowering_educators_cont') }}
+            </h3>
             <br>
-            <p>
-              In today's rapidly evolving world, the demand for STEAM (Science, Technology, Engineering, Arts, and Mathematics) education has never been greater. As educators strive to prepare students for success in the 21st century, training teachers in STEAM education has become increasingly essential.
-            </p>
-
-            <a href="{{ route('customer.blogs3') }}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+            <p>{{ __('empowering_educators_text') }}</p>
+            <a href="{{ route('customer.blogs3') }}" class="readmore stretched-link"><span>{{ __('read_more') }}</span><i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
 
@@ -381,7 +371,7 @@
     <div class="container">
 
       <div class="section-header" data-aos="zoom-in-up" data-aos-delay="200">
-        <h2>Get In Touch </h2>
+        <h2>{{ __('get_in_touch') }}</h2>
       </div>
 
     </div>
@@ -399,20 +389,20 @@
           <form action="" method="post" role="form" class="php-email-form">
             <div class="row">
               <div class="col-md-6 form-group">
-                <label>Name:</label>
+                <label>{{ __('name') }}</label>
                 <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
               </div>
               <div class="col-md-6 form-group mt-3 mt-md-0">
-                <label>Email:</label>
+                <label>{{ __('email') }}</label>
                 <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
               </div>
             </div>
             <div class="form-group mt-3">
-              <label>Subject:</label>
+              <label>{{ __('subject') }}</label>
               <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
             </div>
             <div class="form-group mt-3">
-              <label>Message:</label>
+              <label>{{ __('message') }}</label>
               <textarea class="form-control" name="message" placeholder="Message" required></textarea>
             </div>
             <div class="my-3">
@@ -420,7 +410,7 @@
               <div class="error-message"></div>
               <div class="sent-message">Your message has been sent. Thank you!</div>
             </div>
-            <div class="text-center"><button type="submit" data-aos="flip-up" data-aos-delay="200">Send Message</button></div>
+            <div class="text-center"><button type="submit" data-aos="flip-up" data-aos-delay="200">{{ __('send_message') }}</button></div>
           </form>
         </div><!-- End Contact Form -->
 

@@ -1,0 +1,16 @@
+<?php
+return [
+    'home' => 'Home',
+    'about' => 'About',
+    'solutions' => 'Solutions',
+    'school_portal' => 'School Portal',
+    'student_portal' => 'Student Portal',
+    'competitions' => 'Competitions',
+    'alef_bot' => 'Alef Bot',
+    'packages' => 'Packages',
+    'blogs' => 'Blogs',
+    'contact' => 'Get in touch',
+    'manage_account' => 'Manage Account',
+    'login' => 'Login',
+    'logout' => 'Logout',
+];
