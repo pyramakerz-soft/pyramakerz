@@ -147,7 +147,7 @@
         // Register User
         document.getElementById('registerUserForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            axios.post('/api/register', {
+            axios.post(@json(url('/api/register')), {
                     name: document.getElementById('name').value,
                     email: document.getElementById('email').value,
                     password: document.getElementById('password').value
@@ -163,7 +163,7 @@
         // Login User
         document.getElementById('loginUserForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            axios.post('/api/login', {
+            axios.post(@json(url('/api/login')), {
                     email: document.getElementById('loginEmail').value,
                     password: document.getElementById('loginPassword').value
                 })

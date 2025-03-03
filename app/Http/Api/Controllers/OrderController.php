@@ -31,20 +31,20 @@ class OrderController extends Controller
 
         return response()->json(['message' => 'Order placed successfully.', 'order' => $order], 201);
     }
-    public function getUserOrders(Request $request)
-    {
-        $orders = Order::where('user_id', $request->user()->id)->get();
+    // public function getUserOrders(Request $request)
+    // {
+    //     $orders = Order::where('user_id', $request->user()->id)->get();
 
-        return response()->json([
-            'orders' => $orders->map(function ($order) {
-                return [
-                    'plan_name' => $order->plan_name,
-                    'features' => json_decode($order->features), // Convert JSON to array
-                    'created_at' => $order->created_at
-                ];
-            })
-        ]);
-    }
+    //     return response()->json([
+    //         'orders' => $orders->map(function ($order) {
+    //             return [
+    //                 'plan_name' => $order->plan_name,
+    //                 'features' => json_decode($order->features), // Convert JSON to array
+    //                 'created_at' => $order->created_at
+    //             ];
+    //         })
+    //     ]);
+    // }
 
     public function sendEmail(Request $request)
     {

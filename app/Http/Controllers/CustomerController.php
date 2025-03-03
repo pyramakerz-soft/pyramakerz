@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Package;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -61,23 +62,11 @@ class CustomerController extends Controller
     }
     public function packages()
     {
-        // Fetch all products (or filter based on specific plans)
-        $products = Product::all();
-
-        // Define plans and assign relevant products
-        $plans = [
-            'Bronze' => Product::whereIn('id', [1, 2, 9])->get(),
-            'Silver' => Product::whereIn('id', [3, 4, 5])->get(),
-            'Gold' => Product::whereIn('id', [6, 7, 8])->get(),
-        ];
-        // $orders = Order::where('user_id', 20)
-        //     ->with('products')
-        //     ->get();
-        // dd($orders);
-
-
+        // Fetch all packages with their associated products
+        $plans = Package::with('products')->get();
         return view('customer.packages', compact('plans'));
     }
+
     public function account()
     {
         return view('customer.auth.account');

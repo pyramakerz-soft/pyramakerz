@@ -20,6 +20,16 @@
         </li>
         <li><a class="nav-link scrollto" href="{{ route('customer.packages') }}">{{ __('navbar.packages') }}</a></li>
         <li><a class="nav-link scrollto" href="{{ route('customer.blogs') }}">{{ __('navbar.blogs') }}</a></li>
+
+
+
+        <li class="dropdown" id="admin-menu" style="display: none;"><a href=" /">Admin Menu <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <ul>
+            <li class="admin_choices"><a class="nav-link scrollto" href="{{ route('admin.addProduct') }}">Add Product</a></li>
+            <li class="admin_choices"><a class="nav-link scrollto" href="{{ route('admin.addPackage') }}">Add Package</a></li>
+          </ul>
+        </li>
+
       </ul>
       <i class="bi bi-list mobile-nav-toggle d-none"></i>
     </nav><!-- .navbar -->
@@ -28,7 +38,7 @@
       <a class="btn-getstarted scrollto d-inline-block" style="width: 153px;" href="/#contact" data-aos="flip-up" data-aos-delay="400">{{ __('navbar.contact') }}</a>
 
       <!-- Language Switcher -->
-      <div class="dropdown mx-3">
+      <!-- <div class="dropdown mx-3">
         <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">
           🌍 {{ strtoupper(app()->getLocale()) }}
         </a>
@@ -36,7 +46,7 @@
           <li><a class="dropdown-item" href="{{ route('change.lang', 'en') }}">English</a></li>
           <li><a class="dropdown-item" href="{{ route('change.lang', 'ar') }}">العربية</a></li>
         </ul>
-      </div>
+      </div> -->
 
       <!-- Auth Section -->
       <div id="authLinks"></div>
@@ -46,6 +56,30 @@
 </header><!-- End Header -->
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let token = localStorage.getItem("auth_token");
+
+    if (token) {
+      axios.get("/api/user", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then(response => {
+          let user = response.data;
+
+          // Check if user has the 'admin' role
+          if (user.role === "admin") {
+            document.getElementById("admin-menu").style.display = "block"; // Show menu
+          }
+        })
+        .catch(error => {
+          console.error("Failed to fetch user:", error);
+        });
+    }
+  });
+</script>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     let token = localStorage.getItem('auth_token');
@@ -75,7 +109,7 @@
   function logout() {
     let token = localStorage.getItem('auth_token');
 
-    axios.post('/api/logout', {}, {
+    axios.post(@json(url('/api/logout')), {}, {
         headers: {
           Authorization: `Bearer ${token}`
         }

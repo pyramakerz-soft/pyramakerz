@@ -677,7 +677,7 @@
   document.getElementById("contactForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
-    axios.post('/api/contact-us', {
+    axios.post(@json(url('/api/contact-us')), {
         name: document.getElementById("name").value,
         email: document.getElementById("email").value,
         subject: document.getElementById("subject").value,

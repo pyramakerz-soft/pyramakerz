@@ -115,7 +115,7 @@
 
             let email = localStorage.getItem('otp_email'); // Get stored email
             let otp = document.getElementById('otp').value;
-            axios.post('/api/verify-otp', {
+            axios.post(@json(url('/api/verify-otp')), {
                     email,
                     otp
                 })
@@ -135,7 +135,7 @@
         function resendOTP() {
             let email = localStorage.getItem('otp_email');
 
-            axios.post('/api/resend-otp', {
+            axios.post(@json(url('/api/resend-otp')), {
                     email
                 })
                 .then(response => {

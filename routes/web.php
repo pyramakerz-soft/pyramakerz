@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
@@ -25,7 +26,8 @@ use Illuminate\Support\Facades\Redirect;
 // });
 Route::get('/', [CustomerController::class, 'index'])->name('customer.index');
 Route::get('/blog', [CustomerController::class, 'blogs'])->name('customer.blogs');
-Route::resource('products', ProductsController::class);
+// Route::resource('products', ProductsController::class);
+
 Route::get('/blog-detail1', [CustomerController::class, 'blogs1'])->name('customer.blogs1');
 Route::get('/blog-detail2', [CustomerController::class, 'blogs2'])->name('customer.blogs2');
 Route::get('/blog-detail3', [CustomerController::class, 'blogs3'])->name('customer.blogs3');
@@ -37,9 +39,12 @@ Route::get('/packages', [CustomerController::class, 'packages'])->name('customer
 Route::get('/customize', [CustomerController::class, 'customizePackage'])->name('customer.customizePackage');
 
 Route::get('/admin/add_product', [AdminController::class, 'addProduct'])->name('admin.addProduct');
+Route::get('/admin/add_package', [AdminController::class, 'addPackage'])->name('admin.addPackage');
+/////
+// Route::get('/view-products', [ProductsController::class, 'index'])->name('products.index');
+Route::get('/packages/{package}', [PlanController::class, 'show'])->name('customer.package_info');
 
-
-
+//////
 // Login and Registeration
 Route::get('/login', [CustomerController::class, 'login'])->name('customer.login');
 Route::get('/register', [CustomerController::class, 'register'])->name('customer.register');

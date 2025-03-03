@@ -95,7 +95,7 @@
         }
 
         // Fetch User Details
-        axios.get('/api/user', {
+        axios.get(@json(url('/api/user')), {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -113,7 +113,7 @@
         document.getElementById("updatePasswordForm").addEventListener("submit", function(event) {
             event.preventDefault();
 
-            axios.post('/api/update-password', {
+            axios.post(@json(url('/api/update-password')), {
                     current_password: document.getElementById("current_password").value,
                     new_password: document.getElementById("new_password").value
                 }, {
@@ -130,7 +130,7 @@
         });
 
         // Fetch Orders
-        axios.get('/api/user/orders', {
+        axios.get(@json(url('/api/user/orders')), {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

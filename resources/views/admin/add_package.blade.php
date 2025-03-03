@@ -7,28 +7,26 @@
 <main id="main" class="mt-5">
     <section id="contact" class="contact">
         <div class="container">
-
             <div class="section-header" data-aos="zoom-in-up" data-aos-delay="200">
-                <h2>Add Product </h2>
+                <h2>Add Package</h2>
             </div>
         </div>
 
         <div class="container">
-            <div class="row gy-5 ">
+            <div class="row gy-5">
                 <div class="col-lg-5" data-aos="flip-left" data-aos-delay="400">
                     <img src="{{ asset('/assets/img/logo.png') }}" class="img-form">
-
                 </div>
                 <div class="col-lg-7" data-aos="flip-right" data-aos-delay="400">
-                    <form id="product-form" method="post" enctype="multipart/form-data">
+                    <form id="package-form" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                <label>English Name:</label>
+                                <label>Package Name (English):</label>
                                 <input type="text" name="en_name" class="form-control" id="en_name" placeholder="English Name" required>
                             </div>
                             <div class="col-md-6 form-group mt-3 mt-md-0">
-                                <label>Arabic Name:</label>
+                                <label>Package Name (Arabic):</label>
                                 <input type="text" class="form-control" name="ar_name" id="ar_name" placeholder="Arabic Name" required>
                             </div>
                         </div>
@@ -44,8 +42,28 @@
                             <label>Upload Image:</label>
                             <input type="file" class="form-control" name="image" id="image" accept="image/*" required>
                         </div>
+
+                        <!-- Select Products & Quantities -->
+                        <div class="form-group mt-3">
+                            <label>Select Products:</label>
+                            <div id="product-selection">
+                                @foreach($products as $product)
+                                <div class="d-flex align-items-center my-2">
+                                    <!-- Checkbox to select product -->
+                                    <input type="checkbox" class="product-checkbox" value="{{ $product->id }}" onclick="toggleQuantityInput(this)">
+
+                                    <!-- Product Name -->
+                                    <label class="mx-2">{{ $product->name }}</label>
+
+                                    <!-- Quantity Input (Initially Hidden) -->
+                                    <input type="number" class="form-control product-quantity d-none" placeholder="Quantity" min="1" value="1" style="width: 80px;">
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+
                         <div class="text-center">
-                            <button type="submit" data-aos="flip-up" data-aos-delay="200">Add Product</button>
+                            <button type="submit" data-aos="flip-up" data-aos-delay="200">Add Package</button>
                         </div>
                     </form>
                 </div>
@@ -54,42 +72,28 @@
 
         </div>
     </section>
-
 </main>
 
-<div class="wh-api">
-    <div class="wh-fixed whatsapp-pulse">
-        <a href="https://api.whatsapp.com/send?phone=+201220016331&text=Welcome to Pyramakerz" target="blank">
-            <button class="wh-ap-btn"></button>
-        </a>
-    </div>
-</div>
-
 <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
 <div id="preloader"></div>
 @endsection
-<!-- Vendor JS Files -->
+
 @section('page_js')
-
-<!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
-
 <script>
-    // pop up
-    document.addEventListener("DOMContentLoaded", function() {
-        setTimeout(function() {
-            document.getElementById("popup").style.display = "flex";
-        }, 3000); // Adjust the delay as needed (in milliseconds)
-    });
+    function toggleQuantityInput(checkbox) {
+        let quantityInput = checkbox.closest('.d-flex').querySelector('.product-quantity');
 
-    function closePopup() {
-        document.getElementById("popup").style.display = "none";
+        if (checkbox.checked) {
+            quantityInput.classList.remove('d-none'); // Show input
+        } else {
+            quantityInput.classList.add('d-none'); // Hide input
+            quantityInput.value = 1; // Reset quantity
+        }
     }
 </script>
-
 <script>
-    document.getElementById("product-form").addEventListener("submit", function(e) {
+    document.getElementById("package-form").addEventListener("submit", function(e) {
         e.preventDefault();
 
         let formData = new FormData();
@@ -99,23 +103,37 @@
         formData.append("price", document.getElementById("price").value);
         formData.append("image", document.getElementById("image").files[0]);
 
+        let selectedProducts = [];
+        document.querySelectorAll(".product-checkbox:checked").forEach((checkbox) => {
+            let productId = checkbox.value;
+            let quantityInput = checkbox.closest('.d-flex').querySelector('.product-quantity');
+            let quantity = quantityInput.value;
+
+            selectedProducts.push({
+                id: productId,
+                quantity: quantity
+            });
+        });
+
+        formData.append("products", JSON.stringify(selectedProducts));
+
         let token = localStorage.getItem("auth_token");
 
-        axios.post(@json(url('/api/products')), formData, {
+        axios.post(@json(url('/api/packages')), formData, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "multipart/form-data"
                 }
             })
             .then(response => {
-                alert("Product added successfully!");
-                // console.log(response.data);
-                document.getElementById("product-form").reset();
+                alert("Package added successfully!");
+                document.getElementById("package-form").reset();
             })
             .catch(error => {
-                console.error("Error adding product:", error.response);
-                alert("Failed to add product.");
+                console.error("Error adding package:", error.response);
+                alert("Failed to add package.");
             });
     });
 </script>
+
 @endsection

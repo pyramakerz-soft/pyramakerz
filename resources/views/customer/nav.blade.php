@@ -64,7 +64,7 @@
   function logout() {
     let token = localStorage.getItem('auth_token');
 
-    axios.post('/api/logout', {}, {
+    axios.post(@json(url('/api/logout')), {}, {
         headers: {
           Authorization: `Bearer ${token}`
         }
