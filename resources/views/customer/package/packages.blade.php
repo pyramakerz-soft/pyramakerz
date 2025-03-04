@@ -28,12 +28,17 @@
                 <div class="col-xl-12">
                     <div class="breadcrumb__content__wraper" data-aos="fade-up">
                         <div class="breadcrumb__title">
-                            <h2 class="heading">Packages</h2>
+                            <h2 class="heading" style="text-align: center !important;">{{ __('packages.packages') }}</h2>
                         </div>
                         <div class="breadcrumb__inner">
                             <ul>
-                                <li><a href="{{ route('customer.index') }}">Home</a></li>
-                                <li>Packages</li>
+                                @if (app()->getLocale() === 'ar')
+                                <li>{{ __('packages.packages') }}</li>
+                                <li><a href="{{ route('customer.index') }}">{{ __('packages.home') }}</a></li>
+                                @else
+                                <li><a href="{{ route('customer.index') }}">{{ __('packages.home') }}</a></li>
+                                <li>{{ __('packages.packages') }}</li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -230,7 +235,7 @@
                                                 src="{{ asset('package/' . $package->image) }}" alt="{{ $package->name }}">
                                             <div class="gridarea__small__button">
                                                 <div class="grid__badge orange__color">
-                                                    {{ $package->name ?? 'General' }}
+                                                    {{ app()->getLocale() === 'ar' ? $package->ar_name : $package->name }}
                                                 </div>
                                             </div>
 
@@ -241,7 +246,7 @@
                                                     <li>
                                                         <i class="icofont-book-alt"></i>
                                                         {{-- {{ $course->totalLessonsCount() ?? 0 }} Lessons --}}
-                                                        {{ $package->products->count() ?? 0 }} Products
+                                                        {{ $package->products->count() ?? 0 }} {{ __('packages.product') }}
                                                     </li>
                                                     <li>
                                                         <i class="icofont-clock-time"></i>
@@ -252,8 +257,9 @@
                                             </div>
                                             <div class="gridarea__heading">
                                                 <h3>
-                                                    <a
-                                                        href="{{ route('customer.package_info', ['package' => $package->id]) }}">{{ $package->name }}</a>
+                                                    <a href="{{ route('customer.package_info', ['package' => $package->id]) }}">
+                                                        {{ app()->getLocale() === 'ar' ? $package->ar_name : $package->name }}
+                                                    </a>
                                                 </h3>
                                             </div>
                                             <!-- <div class="gridarea__bottom">
@@ -277,7 +283,7 @@
                                                 src="{{ asset('package/' . $package->image) }}" alt="{{ $package->name }}">
                                             <div class="gridarea__small__button">
                                                 <div class="grid__badge orange__color">
-                                                    Custom
+                                                    {{ app()->getLocale() === 'ar' ? 'مخصص' : 'Custom' }}
                                                 </div>
                                             </div>
 
@@ -288,19 +294,19 @@
                                                     <li>
                                                         <i class="icofont-book-alt"></i>
                                                         {{-- {{ $course->totalLessonsCount() ?? 0 }} Lessons --}}
-                                                        Variable
+                                                        {{ __('packages.variable') }}
                                                     </li>
                                                     <li>
                                                         <i class="icofont-clock-time"></i>
                                                         {{-- {{ $course->duration ?? 'N/A' }} --}}
-                                                        Variable Price
+                                                        {{ __('packages.variable_price') }}
                                                     </li>
                                                 </ul>
                                             </div>
                                             <div class="gridarea__heading">
                                                 <h3>
                                                     <a
-                                                        href="{{ route('customer.customizePackage') }}">Custom</a>
+                                                        href="{{ route('customer.customizePackage') }}"> {{ app()->getLocale() === 'ar' ? 'مخصص' : 'Custom' }}</a>
                                                 </h3>
                                             </div>
                                             <!-- <div class="gridarea__bottom">

@@ -16,36 +16,50 @@
 <main class="main_wrapper overflow-hidden">
     <div class="breadcrumbarea breadcrumbarea--2">
         <div class="container">
-            <div class="row">
+            <div class="row mt-5">
                 <div class="col-xl-8">
-                    <div class="breadcrumb__content__wraper" style="margin-top: 100px" data-aos="fade-up">
-                        <div class="breadcrumb__inner text-start">
+
+                    @if (app()->getLocale() === 'ar')
+                    <div class="breadcrumb__content__wraper" style="margin-top: 100px; text-align: right;" data-aos="fade-up">
+                        <div class="breadcrumb__inner text-right">
                             <ul>
-                                <li><a href="{{ route('customer.packages') }}">Packages</a></li>
-                                <li>{{ $package->name ?? 'Course Details' }}</li>
+                                <li>{{ app()->getLocale() === 'ar' ? $package->ar_name : $package->name }}</li>
+                                <li><a href="{{ route('customer.packages') }}">{{ __('packages.packages') }}</a></li>
                             </ul>
                         </div>
                     </div>
-
-                    <div class="course__details__top--2">
-                        <div class="course__button__wraper" data-aos="fade-up">
-                            <div class="course__button">
-                                <a href="#">Featured</a>
-                                {{-- <a class="course__2" href="#">{{ $product->skill_level ?? 'N/A' }}</a> --}}
-                            </div>
-                        </div>
-                        <div class="product__details__heading" data-aos="fade-up">
-                            <h3>{{ $package->name }} Package</h3>
-                        </div>
-                        <div class="product__details__price" data-aos="fade-up">
+                    @else
+                    <d class="breadcrumb__content__wraper" style="margin-top: 100px;" data-aos="fade-up">
+                        <div class="breadcrumb__inner text-start">
                             <ul>
-                                <li>
-                                    <div class="product__details__date">
-                                        <!-- <i class="icofont-book-alt"></i> -->
-                                        {{-- {{ $product->totalLessonsCount() }} Lessons --}}
-                                    </div>
-                                </li>
-                                <!-- <li>
+                                <li><a href="{{ route('customer.packages') }}">{{ __('packages.packages') }}</a></li>
+                                <li>{{ app()->getLocale() === 'ar' ? $package->ar_name : $package->name }}</li>
+                            </ul>
+                        </div>
+                </div>
+                @endif
+
+
+
+                <div class="course__details__top--2">
+                    <div class="course__button__wraper" data-aos="fade-up">
+                        <div class="course__button">
+                            <a href="#">{{ __('packages.featured') }}</a>
+                            {{-- <a class="course__2" href="#">{{ $product->skill_level ?? 'N/A' }}</a> --}}
+                        </div>
+                    </div>
+                    <div class="product__details__heading" data-aos="fade-up">
+                        <h3>{{ app()->getLocale() === 'ar' ? $package->ar_name : $package->name }}</h3>
+                    </div>
+                    <div class="product__details__price" data-aos="fade-up">
+                        <ul>
+                            <li>
+                                <div class="product__details__date">
+                                    <!-- <i class="icofont-book-alt"></i> -->
+                                    {{-- {{ $product->totalLessonsCount() }} Lessons --}}
+                                </div>
+                            </li>
+                            <!-- <li>
                                     <div class="product__star">
                                         <i class="icofont-star"></i>
                                         <i class="icofont-star"></i>
@@ -55,14 +69,14 @@
                                         <span>(44 Reviews)</span>
                                     </div>
                                 </li> -->
-                            </ul>
-                        </div>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- <div class="shape__icon__2">
+    <!-- <div class="shape__icon__2">
             <img loading="lazy" class="shape__icon__img shape__icon__img__1"
                 src="{{ asset('img/herobanner/herobanner__1.png') }}" alt="photo">
             <img loading="lazy" class="shape__icon__img shape__icon__img__2"
@@ -85,13 +99,13 @@
                                         <li class="nav-item" role="presentation">
                                             <button class="single__tab__link active" data-bs-toggle="tab"
                                                 data-bs-target="#products" type="button">
-                                                <i class="icofont-book-alt"></i> Products
+                                                <i class="icofont-book-alt"></i> {{ __('packages.products') }}
                                             </button>
                                         </li>
                                         <li class="nav-item" role="presentation">
                                             <button class="single__tab__link" data-bs-toggle="tab"
                                                 data-bs-target="#description" type="button">
-                                                <i class="icofont-paper"></i> Description
+                                                <i class="icofont-paper"></i> {{ __('packages.description') }}
                                             </button>
                                         </li>
                                     </ul>
@@ -109,15 +123,15 @@
                                                     data-bs-target="#product{{ $product->id }}"
                                                     aria-expanded="false"
                                                     aria-controls="product{{ $product->id }}">
-                                                    <strong>{{ $product->name }}</strong>
+                                                    <strong>{{ app()->getLocale() === 'ar' ? $product->ar_name : $product->name }}</strong>
                                                 </button>
                                             </h2>
                                             <div id="product{{ $product->id }}" class="accordion-collapse collapse"
                                                 data-bs-parent="#accordionExample">
                                                 <div class="accordion-body">
-                                                    <p><strong>Description:</strong> {{ $product->description ?? 'No description available.' }}</p>
-                                                    <p><strong>Price:</strong>{{ number_format($product->price, 2) }} SAR</p>
-                                                    <p><strong>Quantity:</strong> {{ $product->pivot->quantity }}</p>
+                                                    <p><strong>{{ __('packages.description') }}: </strong> {{ $product->description ?? 'No description available.' }}</p>
+                                                    <p><strong>{{ __('packages.price') }}:</strong>{{ number_format($product->price, 2) }} SAR</p>
+                                                    <p><strong>{{ __('packages.quantity') }}:</strong> {{ $product->pivot->quantity }}</p>
 
                                                     @if ($product->image)
                                                     <div class="text-center">
@@ -138,7 +152,7 @@
                                 <!-- Description Tab -->
                                 <div class="tab-pane fade" id="description" role="tabpanel">
                                     <div class="experence__heading">
-                                        <h5>Package Description</h5>
+                                        <h5>{{ __('packages.package_description') }}</h5>
                                     </div>
                                     <div class="experence__description">
                                         <p>{{ $package->description ?? 'No description available for this package' }}
@@ -163,9 +177,10 @@
                             <div class="course__summery__button">
                                 <!-- <a class="default__button" href="#">Enroll Now</a> -->
                                 <button class="default__button choose-plan"
+                                    style="text-align: center !important;"
                                     data-plan="{{ $package->name }}"
                                     data-products='@json($package->products->map(fn($p) => ["id" => $p->id, "quantity" => $p->pivot->quantity]))'>
-                                    Request Package
+                                    {{ __('packages.request_package') }}
                                 </button>
                             </div>
 
@@ -173,7 +188,7 @@
                                 <ul>
                                     <li>
                                         <div class="course__summery__item">
-                                            <span class="sb_label">Price:</span>
+                                            <span class="sb_label">{{ __('packages.price') }}: </span>
                                             <span class="sb_content"><a href="#">{{ $package->price ?? '0' }} SAR</a></span>
                                         </div>
                                     </li>

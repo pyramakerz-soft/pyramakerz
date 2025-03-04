@@ -16,27 +16,27 @@ class CustomerController extends Controller
 
     public function blogs()
     {
-        return view('customer.blog');
+        return view('customer.blog.blog');
     }
     public function blogs1()
     {
-        return view('customer.blog-detail1');
+        return view('customer.blog.blog-detail1');
     }
     public function blogs2()
     {
-        return view('customer.blog-detail2');
+        return view('customer.blog.blog-detail2');
     }
     public function blogs3()
     {
-        return view('customer.blog-detail3');
+        return view('customer.blog.blog-detail3');
     }
     public function schools()
     {
-        return view('customer.schools');
+        return view('customer.schools.schools');
     }
     public function students()
     {
-        return view('customer.indexb2c');
+        return view('customer.student.indexb2c');
     }
     public function competitions()
     {
@@ -64,7 +64,7 @@ class CustomerController extends Controller
     {
         // Fetch all packages with their associated products
         $plans = Package::with('products')->get();
-        return view('customer.packages', compact('plans'));
+        return view('customer.package.packages', compact('plans'));
     }
 
     public function account()
@@ -74,6 +74,6 @@ class CustomerController extends Controller
     public function customizePackage()
     {
         $products = Product::all();
-        return view('customer.customize_package', compact('products'));
+        return view('customer.package.customize_package', compact('products'));
     }
 }

@@ -16,37 +16,48 @@
 <main class="main_wrapper overflow-hidden">
     <div class="breadcrumbarea breadcrumbarea--2">
         <div class="container">
-            <div class="row">
+            <div class="row mt-5">
                 <div class="col-xl-8">
-                    <div class="breadcrumb__content__wraper" style="margin-top: 100px" data-aos="fade-up">
-                        <div class="breadcrumb__inner text-start">
+                    @if (app()->getLocale() === 'ar')
+                    <div class="breadcrumb__content__wraper" style="margin-top: 100px; text-align: right;" data-aos="fade-up">
+                        <div class="breadcrumb__inner text-right">
                             <ul>
-                                <li><a href="{{ route('customer.packages') }}">Packages</a></li>
-                                <li>Custom</li>
+                                <li>مخصص</li>
+                                <li><a href="{{ route('customer.packages') }}">{{ __('packages.packages') }}</a></li>
                             </ul>
                         </div>
                     </div>
-
-                    <div class="course__details__top--2">
-                        <div class="course__button__wraper" data-aos="fade-up">
-                            <div class="course__button">
-                                <a href="#">Featured</a>
-                                {{-- <a class="course__2" href="#">{{ $product->skill_level ?? 'N/A' }}</a> --}}
-                            </div>
-                        </div>
-                        <div class="product__details__heading" data-aos="fade-up">
-                            <h3>Custom Package</h3>
-                        </div>
-                        <div class="product__details__price" data-aos="fade-up">
+                    @else
+                    <d class="breadcrumb__content__wraper" style="margin-top: 100px;" data-aos="fade-up">
+                        <div class="breadcrumb__inner text-start">
                             <ul>
-                                <li>
-                                    <div class="product__details__date">
-                                        <i class="icofont-book-alt"></i>
-                                        {{-- {{ $product->totalLessonsCount() }} Lessons --}}
-                                    </div>
-                                </li>
-                                <li>
-                                    <!-- <div class="product__star">
+                                <li><a href="{{ route('customer.packages') }}">{{ __('packages.packages') }}</a></li>
+                                <li>Custom</li>
+                            </ul>
+                        </div>
+                </div>
+                @endif
+
+                <div class="course__details__top--2">
+                    <div class="course__button__wraper" data-aos="fade-up">
+                        <div class="course__button">
+                            <a href="#">{{ __('packages.featured') }}</a>
+                            {{-- <a class="course__2" href="#">{{ $product->skill_level ?? 'N/A' }}</a> --}}
+                        </div>
+                    </div>
+                    <div class="product__details__heading" data-aos="fade-up">
+                        <h3>{{ app()->getLocale() === 'ar' ? 'مخصص' : 'Custom' }}</h3>
+                    </div>
+                    <div class="product__details__price" data-aos="fade-up">
+                        <ul>
+                            <li>
+                                <div class="product__details__date">
+                                    <i class="icofont-book-alt"></i>
+                                    {{-- {{ $product->totalLessonsCount() }} Lessons --}}
+                                </div>
+                            </li>
+                            <li>
+                                <!-- <div class="product__star">
                                         <i class="icofont-star"></i>
                                         <i class="icofont-star"></i>
                                         <i class="icofont-star"></i>
@@ -54,15 +65,15 @@
                                         <i class="icofont-star"></i>
                                         <span>(44 Reviews)</span>
                                     </div> -->
-                                </li>
-                            </ul>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- <div class="shape__icon__2">
+    <!-- <div class="shape__icon__2">
             <img loading="lazy" class="shape__icon__img shape__icon__img__1"
                 src="{{ asset('img/herobanner/herobanner__1.png') }}" alt="photo">
             <img loading="lazy" class="shape__icon__img shape__icon__img__2"
@@ -85,7 +96,7 @@
                                         <li class="nav-item" role="presentation">
                                             <button class="single__tab__link active" data-bs-toggle="tab"
                                                 data-bs-target="#products" type="button">
-                                                <i class="icofont-book-alt"></i> Choose Products
+                                                <i class="icofont-book-alt"></i> {{ __('packages.choose_products') }}
                                             </button>
                                         </li>
                                         <!-- <li class="nav-item" role="presentation">
@@ -111,7 +122,7 @@
                                                     id="product-{{ $product->id }}">
 
                                                 <div class="d-flex align-items-center">
-                                                    <label style="font-size: 16px; display: none;" id="quantity-label{{ $product->id }}">Quantity:</label>
+                                                    <label style="font-size: 16px; display: none;" id="quantity-label{{ $product->id }}">{{ __('packages.quantity') }}:</label>
                                                     <input type="number" class="form-control quantity-input ms-2"
                                                         id="quantity-{{ $product->id }}" value="1" min="1"
                                                         style="width: 60px; display: none;">
@@ -121,15 +132,15 @@
                                                     data-bs-target="#product{{ $product->id }}"
                                                     aria-expanded="false"
                                                     aria-controls="product{{ $product->id }}">
-                                                    <strong>{{ $product->name }} - {{ number_format($product->price, 2) }} SAR</strong>
+                                                    <strong>{{ app()->getLocale() === 'ar' ? $product->ar_name : $product->name }} - {{ number_format($product->price, 2) }} SAR</strong>
                                                 </button>
 
                                             </h2>
                                             <div id="product{{ $product->id }}" class="accordion-collapse collapse"
                                                 data-bs-parent="#accordionExample">
                                                 <div class="accordion-body">
-                                                    <p><strong>Description:</strong> {{ $product->description ?? 'No description available.' }}</p>
-                                                    <p><strong>Price:</strong> {{ number_format($product->price, 2) }} SAR</p>
+                                                    <p><strong>{{ __('packages.description') }}: </strong> {{ $product->description ?? 'No description available.' }}</p>
+                                                    <p><strong>{{ __('packages.price') }}:</strong> {{ number_format($product->price, 2) }} SAR</p>
 
                                                     <!-- Quantity Input (Hidden initially) -->
 
@@ -155,7 +166,7 @@
                                     <div class="experence__description">
                                         <ul id="selected-products-list"></ul>
                                     </div>
-                                    <h4 class="text-center mt-4">Total Price: <span id="total-price" class="fw-bold">0.00 SAR</span></h4>
+                                    <h4 class="text-center mt-4">{{ __('packages.total_price') }}: <span id="total-price" class="fw-bold">0.00 SAR</span></h4>
                                 </div>
                             </div>
                         </div>
@@ -171,14 +182,14 @@
                             </div>
 
                             <div class="course__summery__button">
-                                <button class="default__button" id="submitCustomPlan">Submit Custom Plan</button>
+                                <button class="default__button" style="text-align: center !important;" id="submitCustomPlan"> {{ __('packages.request_package') }}</button>
                             </div>
 
                             <div class="course__summery__lists">
                                 <ul>
                                     <li>
                                         <div class="course__summery__item">
-                                            <span class="sb_label">Total Price:</span>
+                                            <span class="sb_label">{{ __('packages.total_price') }}: </span>
                                             <span class="sb_content" id="total-price2"><a href="#" id="sidebar-total">0.00 SAR</a></span>
                                         </div>
                                     </li>

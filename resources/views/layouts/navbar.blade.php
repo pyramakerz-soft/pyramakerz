@@ -35,7 +35,7 @@
     </nav><!-- .navbar -->
 
     <div class="buttons d-flex align-items-center">
-      <a class="btn-getstarted scrollto d-inline-block" style="width: 153px;" href="/#contact" data-aos="flip-up" data-aos-delay="400">{{ __('navbar.contact') }}</a>
+      <a class="btn-getstarted scrollto d-inline-block" style="width: 153px; text-align: center;" href="/#contact" data-aos="flip-up" data-aos-delay="400">{{ __('navbar.contact') }}</a>
 
       <!-- Language Switcher -->
       <!-- <div class="dropdown mx-3">
