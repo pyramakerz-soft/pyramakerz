@@ -55,7 +55,7 @@ class OrderController extends Controller
             'plan_products' => 'required|array'
         ]);
 
-        $adminEmail = "ahmed.elragal02@gmail.com";
+        $adminEmail = "info@pyramakerz.com";
 
         // Fetch full product details using IDs
         $productDetails = Product::whereIn('id', collect($request->plan_products)->pluck('id'))
