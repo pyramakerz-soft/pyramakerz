@@ -1,0 +1,20 @@
+<?php
+return [
+    "company_description" => "Pyramakerz Technologies S.A.E is a leading Edtech corporation. Since 2019, we have provided various STEAM education solutions to schools, organizations, and individuals.",
+    "explore" => "Explore",
+    "home" => "Home",
+    "about_us" => "About us",
+    "blogs" => "Blogs",
+    "careers" => "Careers",
+    "our_solutions" => "Our Solutions",
+    "school_portal" => "School Portal",
+    "student_portal" => "Student Portal",
+    "competitions" => "Competitions",
+    "alef_bot" => "Alef Bot",
+    "location" => "Location:",
+    "cairo" => "Cairo: 17 Al-Saada Street, Behind Raneen, Zahraa Al-Maadi, First Floor, Cairo Governorate",
+    "alexandria" => "Alexandria: Elwezarah, 509 Abou Quer St, 3rd floor",
+    "email" => "Email:",
+    "call" => "Call:",
+    "copyright" => "&copy; Copyright <strong><span>Pyramakerz</span></strong>. All Rights Reserved",
+];

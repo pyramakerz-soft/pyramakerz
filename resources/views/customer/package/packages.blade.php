@@ -226,7 +226,7 @@
                             aria-labelledby="projects__one">
 
                             <div class="row">
-
+                                @if (!empty($plans))
                                 @foreach ($plans as $package)
                                 <div class="col-xl-3 col-lg-6 col-md-12 col-sm-6 col-12" data-aos="fade-up">
                                     <div class="gridarea__wraper gridarea__wraper__2">
@@ -275,12 +275,15 @@
                                     </div>
                                 </div>
                                 @endforeach
+                                @endif
                                 <!-- Custom Plan -->
                                 <div class="col-xl-3 col-lg-6 col-md-12 col-sm-6 col-12" data-aos="fade-up">
                                     <div class="gridarea__wraper gridarea__wraper__2">
                                         <div class="gridarea__img">
+                                            @if (isset($package))
                                             <img loading="lazy"
                                                 src="{{ asset('package/' . $package->image) }}" alt="{{ $package->name }}">
+                                            @endif
                                             <div class="gridarea__small__button">
                                                 <div class="grid__badge orange__color">
                                                     {{ app()->getLocale() === 'ar' ? 'مخصص' : 'Custom' }}

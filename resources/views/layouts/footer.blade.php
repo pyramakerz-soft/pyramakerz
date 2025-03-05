@@ -8,8 +8,7 @@
                     <div class="footer-info">
                         <img src="./assets/img/logo-orange.png">
                         <p>
-                            Pyramakerz Technologies S.A.E is a leading Edtech corporation, Since 2019 we have provided
-                            various STEAM education solutions, to schools, organizations, and individuals.
+                            {{ __('footer.company_description') }}
                         </p>
 
                     </div>
@@ -26,23 +25,23 @@
                 </div>
 
                 <div class="col-lg-2 col-md-6 footer-links">
-                    <h4>Explore</h4>
+                    <h4> {{ __('footer.explore') }}</h4>
                     <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="/">Home</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="/#about">About us</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="/#blog">Blogs</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="/#contact">Careers</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="/"> {{ __('footer.home') }}</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="/#about"> {{ __('footer.about_us') }}</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="/#blog"> {{ __('footer.blogs') }}</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="/#contact"> {{ __('footer.careers') }}</a></li>
 
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-md-6 footer-links">
-                    <h4>Our Solutions</h4>
+                    <h4> {{ __('footer.our_solutions') }}</h4>
                     <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="/schools">School Portal</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="/students">Student Portal</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="/competitions">Competitions</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="/alef-bot">Alef Bot</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="/schools"> {{ __('footer.school_portal') }}</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="/students"> {{ __('footer.student_portal') }}</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="/competitions"> {{ __('footer.competitions') }}</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="/alef-bot"> {{ __('footer.alef_bot') }}</a></li>
 
                     </ul>
                 </div>
@@ -56,18 +55,16 @@
                         <div class="info-item d-flex">
                             <i class="bi bi-geo-alt flex-shrink-0"></i>
                             <div>
-                                <h4>Location:</h4>
-                                <p>Cairo :
-                                    17 Al-Saada Street, Behind Raneen, Zahraa Al-Maadi, First Floor, Cairo Governorate
-                                </p>
-                                <p>Alexandira : Elwezarah, 509 Abou Quer St, 3rd floor</p>
+                                <h4> {{ __('footer.location') }}</h4>
+                                <p> {{ __('footer.cairo') }}</p>
+                                <p> {{ __('footer.alexandria') }}</p>
                             </div>
                         </div><!-- End Info Item -->
 
                         <div class="info-item d-flex">
                             <i class="bi bi-envelope flex-shrink-0"></i>
                             <div>
-                                <h4>Email:</h4>
+                                <h4> {{ __('footer.email') }}</h4>
                                 <p><a href="mailto:info@pyramakerz.com" target="_blank">info@pyramakerz.com</a></p>
                             </div>
                         </div><!-- End Info Item -->
@@ -75,7 +72,7 @@
                         <div class="info-item d-flex">
                             <i class="bi bi-phone flex-shrink-0"></i>
                             <div>
-                                <h4>Call:</h4>
+                                <h4> {{ __('footer.call') }}</h4>
                                 <p><a href="tel:00201220016331" target="_blank">+201220016331</a></p>
                                 <p><a href="tel:002 03 5825247" target="_blank">+2 03 5825247</a></p>
                             </div>

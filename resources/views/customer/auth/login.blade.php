@@ -148,24 +148,38 @@
         document.getElementById('registerUserForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
+            let registerButton = event.target.querySelector('button');
+            let originalText = registerButton.innerText;
+            registerButton.innerText = "Please wait...";
+            registerButton.disabled = true;
+
             axios.post(@json(url('/api/register')), {
                     name: document.getElementById('name').value,
                     email: document.getElementById('email').value,
                     password: document.getElementById('password').value
                 })
                 .then(response => {
-                    localStorage.setItem('otp_email', document.getElementById('email').value); // Store email for OTP verification
-                    window.location.href = "/verify-otp"; // Redirect to OTP page
+                    localStorage.setItem('otp_email', document.getElementById('email').value);
+                    window.location.href = "/verify-otp";
                 })
                 .catch(error => {
                     document.getElementById('registerMessage').innerText = error.response.data.error || "Error registering!";
+                })
+                .finally(() => {
+                    registerButton.innerText = originalText;
+                    registerButton.disabled = false;
                 });
         });
-
 
         // Login User
         document.getElementById('loginUserForm').addEventListener('submit', function(event) {
             event.preventDefault();
+
+            let loginButton = event.target.querySelector('button');
+            let originalText = loginButton.innerText;
+            loginButton.innerText = "Please wait...";
+            loginButton.disabled = true;
+
             axios.post(@json(url('/api/login')), {
                     email: document.getElementById('loginEmail').value,
                     password: document.getElementById('loginPassword').value
@@ -186,9 +200,14 @@
                 })
                 .catch(error => {
                     document.getElementById('loginMessage').innerText = error.response.data.error || "Login failed!";
+                })
+                .finally(() => {
+                    loginButton.innerText = originalText;
+                    loginButton.disabled = false;
                 });
         });
     </script>
+
 </body>
 
 </html>

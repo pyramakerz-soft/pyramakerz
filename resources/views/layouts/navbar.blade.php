@@ -38,7 +38,7 @@
       <a class="btn-getstarted scrollto d-inline-block" style="width: 153px; text-align: center;" href="/#contact" data-aos="flip-up" data-aos-delay="400">{{ __('navbar.contact') }}</a>
 
       <!-- Language Switcher -->
-      <!-- <div class="dropdown mx-3">
+      <div class="dropdown mx-3">
         <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">
           🌍 {{ strtoupper(app()->getLocale()) }}
         </a>
@@ -46,7 +46,7 @@
           <li><a class="dropdown-item" href="{{ route('change.lang', 'en') }}">English</a></li>
           <li><a class="dropdown-item" href="{{ route('change.lang', 'ar') }}">العربية</a></li>
         </ul>
-      </div> -->
+      </div>
 
       <!-- Auth Section -->
       <div id="authLinks"></div>
