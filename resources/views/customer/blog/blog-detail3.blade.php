@@ -11,11 +11,11 @@
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
-        <h2>Blog Details</h2>
+        <h2>{{ __('blog.blog_detail') }}</h2>
         <ol>
-          <li><a href="{{ route('customer.index') }}">Home</a></li>
-          <li><a href="{{ route('customer.blogs') }}">Blog</a></li>
-          <li>Blog Details</li>
+          <li><a href="{{ route('customer.index') }}">{{ __('blog.home') }}</a></li>
+          <li><a href="{{ route('customer.blogs') }}">{{ __('blog.blog') }}</a></li>
+          <li>{{ __('blog.blog_detail') }}</li>
         </ol>
       </div>
 
@@ -38,45 +38,44 @@
 
             <h2 class="title">
               <span>
-                Empowering Educators:
+                {{ __('blog.blog3_title') }}
               </span>
               <br>
-              The Importance of Training Teachers in STEAM Education
+              {{ __('blog.blog3_heading1') }}
             </h2>
 
 
             <div class="content">
               <p>
-                In today's rapidly evolving world, the demand for STEAM (Science, Technology, Engineering, Arts, and Mathematics) education has never been greater. As educators strive to prepare students for success in the 21st century, training teachers in STEAM education has become increasingly essential. In this blog post, we'll explore the importance of training educators in STEAM education and the transformative impact it can have on both teachers and students.
+                {{ __('blog.blog3_content1') }}
               </p>
 
-              <h3>Equipping Teachers with Essential Skills:</h3>
+              <h3>{{ __('blog.blog3_heading2') }}</h3>
               <p>
-                Training teachers in STEAM education is essential to equip them with the necessary skills and knowledge for integrating STEAM principles into their teaching practices. Educators can benefit from training in areas such as project-based learning, interdisciplinary teaching methods, and technology integration to prepare them better to engage students in meaningful STEAM experiences that foster creativity, critical thinking, and problem-solving skills.
+                {{ __('blog.blog3_content2') }}
               </p>
 
 
               <h3>
-                Promoting Student Engagement and Success:
+                {{ __('blog.blog3_heading3') }}
               </h3>
               <p>
-                Research has shown that students who are exposed to STEAM education experience higher levels of engagement, motivation, and academic achievement. By training teachers in STEAM pedagogy, schools can create learning environments that inspire curiosity, exploration, and innovation, ultimately leading to improved student outcomes and a deeper understanding of STEM concepts.
+                {{ __('blog.blog3_content3') }}
+              </p>
+              <h3>{{ __('blog.blog3_heading4') }}
+              </h3>
+              <p>
+                {{ __('blog.blog3_content4') }}
               </p>
               <h3>
-                Fostering Collaboration and Professional Growth:
+                {{ __('blog.blog3_heading5') }}
               </h3>
               <p>
-                STEAM education emphasizes collaboration and teamwork, both among students and educators. By providing teachers with opportunities for professional development and collaboration, schools can cultivate a culture of continuous improvement and innovation. Through workshops, conferences, and networking events, teachers can share best practices, exchange ideas, and support one another in their journey to deliver high-quality STEAM education.
-              </p>
-              <h3>
-                Preparing Students for Future Success:
-              </h3>
-              <p>
-                In today's increasingly technology-driven world, proficiency in STEAM subjects and 21st-century skills is critical for success in higher education and the workforce. By training teachers in STEAM education, schools can ensure that students are well-prepared to meet the demands of the future job market. Through hands-on, inquiry-based learning experiences, students develop the skills and competencies needed to thrive in a rapidly evolving global economy.
+                {{ __('blog.blog3_content5') }}
               </p>
 
               <p>
-                As we look towards the future of education, it's clear that STEAM education. By investing in the professional development and training of teachers in STEAM education, schools can create learning environments that inspire creativity, foster innovation, and empower students to become lifelong learners and leaders in their communities. Together, let's empower educators to unlock the full potential of STEAM education and shape a brighter future for generations to come.
+                {{ __('blog.blog3_content6') }}
               </p>
 
             </div><!-- End post content -->
@@ -118,7 +117,7 @@
             <!-- End sidebar categories-->
 
             <div class="sidebar-item recent-posts">
-              <h3 class="sidebar-title">Recent Posts</h3>
+              <h3 class="sidebar-title">{{ __('blog.recent_posts') }}</h3>
 
               <div class="mt-3">
 
@@ -126,7 +125,7 @@
                 <div class="post-item mt-3">
                   <img src="assets/img/blog1.jpg" alt="" class="flex-shrink-0">
                   <div>
-                    <h4><a href="{{ route('customer.blogs1') }}">Embracing the Future:</a></h4>
+                    <h4><a href="{{ route('customer.blogs1') }}">{{ __('blog.title1') }}</a></h4>
 
                   </div>
                 </div><!-- End recent post item-->
@@ -134,7 +133,7 @@
                 <div class="post-item">
                   <img src="assets/img/blog2.jpg" alt="" class="flex-shrink-0">
                   <div>
-                    <h4><a href="{{ route('customer.blogs2') }}">Exploring the Intersection of AI and Robotics:</a></h4>
+                    <h4><a href="{{ route('customer.blogs2') }}">{{ __('blog.title2') }}</a></h4>
 
                   </div>
                 </div><!-- End recent post item-->
@@ -142,19 +141,13 @@
                 <div class="post-item">
                   <img src="assets/img/blog3.jpeg" alt="" class="flex-shrink-0">
                   <div>
-                    <h4><a href="{{ route('customer.blogs3') }}"> Empowering Educators:</a></h4>
+                    <h4><a href="{{ route('customer.blogs3') }}"> {{ __('blog.title3') }}</a></h4>
 
                   </div>
                 </div><!-- End recent post item-->
-
-
-
-
-
               </div>
 
             </div><!-- End sidebar recent posts-->
-
 
           </div><!-- End Blog Sidebar -->
 

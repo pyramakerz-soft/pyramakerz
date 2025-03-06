@@ -10,11 +10,11 @@
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
-        <h2>Blog Details</h2>
+        <h2>{{ __('blog.blog_detail') }}</h2>
         <ol>
-          <li><a href="{{ route('customer.index') }}">Home</a></li>
-          <li><a href="{{ route('customer.blogs') }}">Blog</a></li>
-          <li>Blog Details</li>
+          <li><a href="{{ route('customer.index') }}">{{ __('blog.home') }}</a></li>
+          <li><a href="{{ route('customer.blogs') }}">{{ __('blog.blog') }}</a></li>
+          <li>{{ __('blog.blog_detail') }}</li>
         </ol>
       </div>
 
@@ -32,64 +32,37 @@
           <article class="blog-details">
 
             <div class="post-img">
-              <img src="assets/img/blog1.1.jpg" alt="" class="img-fluid">
+              <img src="{{ asset('assets/img/blog1.1.jpg') }}" alt="" class="img-fluid">
             </div>
 
             <h2 class="title">
-              <span>
-                Embracing the Future:
-              </span>
+              <span>{{ __('blog.title') }}</span>
               <br>
-              STEAM Education as the Key to Unlocking Tomorrow's Potential
+              {{ __('blog.title_cont') }}
             </h2>
 
-
             <div class="content">
-              <p>
-                As we enter a new era marked by rapid technological advancements and unprecedented global challenges, the future of education has never been more crucial. In this blog post, we will delve into the transformative influence of STEAM education (Science, Technology, Engineering, Arts, and Mathematics)
-                and how it can equip students with the necessary skills for success in the 21st century and beyond.
-              </p>
+              <p>{{ __('blog.content1') }}</p>
 
-              <h3>The Importance of Adaptability:</h3>
-              <p>
-                In today's rapidly changing world, The ability to adapt and innovate is now more important than ever. Conventional education models often emphasize rote memorization and standardized testing, which may not be adequate to tackle the complexities of the modern world. STEAM education, on the other hand, takes a comprehensive approach
-                , encouraging students to think critically, solve problems creatively, and collaborate across disciplines.
-              </p>
+              <h3>{{ __('blog.heading1') }}</h3>
+              <p>{{ __('blog.content2') }}</p>
 
+              <h3>{{ __('blog.heading2') }}</h3>
+              <p>{{ __('blog.content3') }}</p>
 
-              <h3>
-                Fostering Creativity and Innovation:
-              </h3>
-              <p>
-                At the heart of STEAM education lies a commitment to nurturing creativity and innovation. By integrating arts and design principles into traditional STEM subjects, students are empowered to explore new ideas, experiment with different solutions, and unleash their imagination. Whether they're designing a prototype in engineering class or composing a piece of music in a digital arts workshop, STEAM education provides students with the tools they need to become innovators and change-makers in their own right.
-              </p>
+              <h3>{{ __('blog.heading3') }}</h3>
+              <p>{{ __('blog.content4') }}</p>
 
-              <h3>
-                Preparing for the Jobs of Tomorrow:
-              </h3>
+              <h3>{{ __('blog.heading4') }}</h3>
+              <p>{{ __('blog.content5') }}</p>
 
-              <p>
-                The jobs of tomorrow will require a diverse set of skills, including technical proficiency, critical thinking, and communication skills. STEAM education equips students with these essential skills, preparing them for a wide range of career opportunities in fields such as engineering, technology, healthcare, and the arts. By fostering a deep understanding of core STEM concepts while also encouraging creativity and interdisciplinary thinking, STEAM education ensures that students are well-prepared to thrive in the rapidly evolving job market.
-              </p>
+              <p>{{ __('blog.content6') }}</p>
 
-              <h3>
-                Addressing Global Challenges:
-              </h3>
-
-              <p>
-                The world is currently facing a variety of complex challenges, ranging from climate change to global health pandemics. Addressing these challenges will require innovative solutions, which can be provided through STEAM education. This type of education empowers students by equipping them with the necessary knowledge, skills, and mindset needed to tackle real-world problems. By being educated in the fields of science, technology, engineering, arts, and mathematics, students can develop sustainable technologies, design renewable energy systems, and create solutions to combat poverty and inequality. STEAM-educated students are the future leaders and change-makers that society needs to overcome the challenges of tomorrow.
-              </p>
-              <p>
-                Looking toward the future, it is evident that STEAM education will have a critical role in shaping the upcoming generation of innovators, thinkers, and problem-solvers. By adopting STEAM principles in our classrooms and communities, we can empower students to unlock their full potential and create a brighter and more sustainable future for all.
-              </p>
-
-              <h3>At Pyramakerz Technologies, we take the risk to develop education in Egypt and the MENA region, and we aspire to provide our services worldwide.</h3>
-
+              <h3>{{ __('blog.company_statement') }}</h3>
             </div><!-- End post content -->
 
-
-
           </article><!-- End blog post -->
+
 
 
 
@@ -124,7 +97,7 @@
             <!-- End sidebar categories-->
 
             <div class="sidebar-item recent-posts">
-              <h3 class="sidebar-title">Recent Posts</h3>
+              <h3 class="sidebar-title">{{ __('blog.recent_posts') }}</h3>
 
               <div class="mt-3">
 
@@ -132,7 +105,7 @@
                 <div class="post-item mt-3">
                   <img src="assets/img/blog1.jpg" alt="" class="flex-shrink-0">
                   <div>
-                    <h4><a href="{{ route('customer.blogs1') }}">Embracing the Future:</a></h4>
+                    <h4><a href="{{ route('customer.blogs1') }}">{{ __('blog.title1') }}</a></h4>
 
                   </div>
                 </div><!-- End recent post item-->
@@ -140,7 +113,7 @@
                 <div class="post-item">
                   <img src="assets/img/blog2.jpg" alt="" class="flex-shrink-0">
                   <div>
-                    <h4><a href="{{ route('customer.blogs2') }}">Exploring the Intersection of AI and Robotics:</a></h4>
+                    <h4><a href="{{ route('customer.blogs2') }}">{{ __('blog.title2') }}</a></h4>
 
                   </div>
                 </div><!-- End recent post item-->
@@ -148,15 +121,10 @@
                 <div class="post-item">
                   <img src="assets/img/blog3.jpeg" alt="" class="flex-shrink-0">
                   <div>
-                    <h4><a href="{{ route('customer.blogs3') }}"> Empowering Educators:</a></h4>
+                    <h4><a href="{{ route('customer.blogs3') }}"> {{ __('blog.title3') }}</a></h4>
 
                   </div>
                 </div><!-- End recent post item-->
-
-
-
-
-
               </div>
 
             </div><!-- End sidebar recent posts-->

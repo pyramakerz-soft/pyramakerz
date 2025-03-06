@@ -11,11 +11,11 @@
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
-        <h2>Blog Details</h2>
+        <h2>{{ __('blog.blog_detail') }}</h2>
         <ol>
-          <li><a href="{{ route('customer.index') }}">Home</a></li>
-          <li><a href="{{ route('customer.blogs') }}">Blog</a></li>
-          <li>Blog Details</li>
+          <li><a href="{{ route('customer.index') }}">{{ __('blog.home') }}</a></li>
+          <li><a href="{{ route('customer.blogs') }}">{{ __('blog.blog') }}</a></li>
+          <li>{{ __('blog.blog_detail') }}</li>
         </ol>
       </div>
 
@@ -33,59 +33,34 @@
           <article class="blog-details">
 
             <div class="post-img">
-              <img src="assets/img/blog2.1.jpg" alt="" class="img-fluid">
+              <img src="{{ asset('assets/img/blog2.1.jpg') }}" alt="" class="img-fluid">
             </div>
 
             <h2 class="title">
-              <span>
-                Exploring the Intersection of AI and Robotics:
-              </span>
+              <span>{{ __('blog.blog2_title') }}</span>
               <br>
-              Transforming the Future
+              {{ __('blog.blog2_title_cont') }}
             </h2>
 
-
             <div class="content">
-              <p>
-                In recent years, the fields of Artificial Intelligence (AI) and Robotics have witnessed remarkable advancements, revolutionizing industries and reshaping the way we interact with technology. In this blog post, we'll explore the fascinating intersection of AI and robotics, exploring how these cutting-edge technologies drive innovation and transform the future.
-              </p>
+              <p>{{ __('blog.blog2_content1') }}</p>
 
-              <h3>AI and Robotics: A Powerful Combination:</h3>
-              <p>
-                AI and robotics are two fields that are closely related and work together in a very meaningful way. Robotics is about creating machines that can physically interact with the world, while AI is about giving machines the ability to think, reason, and act independently. By combining these two fields, we can create intelligent systems that are capable of performing a wide range of tasks with accuracy and efficiency.
-              </p>
+              <h3>{{ __('blog.blog2_heading1') }}</h3>
+              <p>{{ __('blog.blog2_content2') }}</p>
 
+              <h3>{{ __('blog.blog2_heading2') }}</h3>
+              <p>{{ __('blog.blog2_content3') }}</p>
 
-              <h3>
-                Applications Across Industries:
-              </h3>
-              <p>
-                From manufacturing and healthcare to transportation and entertainment, AI and robotics are being applied across a diverse array of industries. In manufacturing, robots equipped with AI-powered vision systems can perform complex assembly tasks with unparalleled speed and accuracy. In healthcare, robotic surgeons guided by AI algorithms can assist doctors in performing delicate surgeries with greater precision. In transportation, autonomous vehicles powered by AI are poised to revolutionize the way we travel, making roads safer and more efficient.
-              </p>
+              <h3>{{ __('blog.blog2_heading3') }}</h3>
+              <p>{{ __('blog.blog2_content4') }}</p>
 
-              <h3>
-                Enabling Innovation and Creativity:
-              </h3>
+              <h3>{{ __('blog.blog2_heading4') }}</h3>
+              <p>{{ __('blog.blog2_content5') }}</p>
 
-              <p>
-                AI and robotics are changing various industries and promoting innovation and creativity. Entrepreneurs and researchers are exploring new frontiers, creating pioneering technologies that have the potential to transform the future in significant ways. Whether it is designing humanoid robots that can communicate with humans naturally or developing AI-driven drones for autonomous delivery, the possibilities are limitless.
-              </p>
-              <h3>
-                Addressing Ethical and Societal Implications:
-              </h3>
-              <p>
-                As AI and robotics continue to advance, it's essential to consider the ethical and societal implications of these technologies. Questions surrounding privacy, job displacement, and algorithmic bias must be addressed to ensure that AI and robotics are used responsibly and ethically. Additionally, efforts must be made to ensure that these technologies are accessible and beneficial to all members of society.
-              </p>
-              <p>
-                As we navigate the exciting frontier of AI and robotics, it's clear that these technologies have the potential to revolutionize the world in profound ways. By exploring the intersection of AI and robotics and harnessing their combined power, we can unlock new opportunities for innovation, creativity, and societal advancement. Together, let's embrace the future and shape a world where AI and robotics enrich lives and drive positive change.
-              </p>
+              <p>{{ __('blog.blog2_content6') }}</p>
             </div><!-- End post content -->
 
-
-
           </article><!-- End blog post -->
-
-
 
 
 
@@ -118,7 +93,7 @@
             <!-- End sidebar categories-->
 
             <div class="sidebar-item recent-posts">
-              <h3 class="sidebar-title">Recent Posts</h3>
+              <h3 class="sidebar-title">{{ __('blog.recent_posts') }}</h3>
 
               <div class="mt-3">
 
@@ -126,7 +101,7 @@
                 <div class="post-item mt-3">
                   <img src="assets/img/blog1.jpg" alt="" class="flex-shrink-0">
                   <div>
-                    <h4><a href="{{ route('customer.blogs1') }}">Embracing the Future:</a></h4>
+                    <h4><a href="{{ route('customer.blogs1') }}">{{ __('blog.title1') }}</a></h4>
 
                   </div>
                 </div><!-- End recent post item-->
@@ -134,7 +109,7 @@
                 <div class="post-item">
                   <img src="assets/img/blog2.jpg" alt="" class="flex-shrink-0">
                   <div>
-                    <h4><a href="{{ route('customer.blogs2') }}">Exploring the Intersection of AI and Robotics:</a></h4>
+                    <h4><a href="{{ route('customer.blogs2') }}">{{ __('blog.title2') }}</a></h4>
 
                   </div>
                 </div><!-- End recent post item-->
@@ -142,19 +117,13 @@
                 <div class="post-item">
                   <img src="assets/img/blog3.jpeg" alt="" class="flex-shrink-0">
                   <div>
-                    <h4><a href="{{ route('customer.blogs3') }}"> Empowering Educators:</a></h4>
+                    <h4><a href="{{ route('customer.blogs3') }}"> {{ __('blog.title3') }}</a></h4>
 
                   </div>
                 </div><!-- End recent post item-->
-
-
-
-
-
               </div>
 
             </div><!-- End sidebar recent posts-->
-
 
           </div><!-- End Blog Sidebar -->
 
