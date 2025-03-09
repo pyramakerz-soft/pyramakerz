@@ -15,14 +15,17 @@ class OrderController extends Controller
     {
         $request->validate([
             'plan_name' => 'required|string',
+            'plan_name_ar' => 'required|string',
             'products' => 'required|array',
             'products.*.id' => 'required|exists:products,id',
             'products.*.quantity' => 'required|integer|min:1'
         ]);
+        // return response()->json(['request' => $request->all()], 201);
 
         $order = Order::create([
             'user_id' => Auth::id(),
-            'plan_name' => $request->plan_name
+            'plan_name' => $request->plan_name,
+            'plan_name_ar' => $request->plan_name_ar
         ]);
 
         foreach ($request->products as $product) {
@@ -55,7 +58,12 @@ class OrderController extends Controller
             'plan_products' => 'required|array'
         ]);
 
-        $adminEmail = "info@pyramakerz.com";
+        $adminEmail = "ahmed.elragal02@gmail.com";
+
+        // $adminEmail = "chairman@pyramakerz.com";
+        // $adminEmail2 = "ahmed.elmohamady@pyramakerz.com";
+        // $adminEmail3 = "magieginidy@pyramakerz.com";
+        $userEmail = $request->user_email;
 
         // Fetch full product details using IDs
         $productDetails = Product::whereIn('id', collect($request->plan_products)->pluck('id'))
@@ -76,10 +84,22 @@ class OrderController extends Controller
             'products' => $productDetails
         ];
 
+        Mail::send('emails.plan-selected', $data, function ($message) use ($userEmail) {
+            $message->to($userEmail)
+                ->subject('New Order');
+        });
         Mail::send('emails.plan-selected', $data, function ($message) use ($adminEmail) {
             $message->to($adminEmail)
-                ->subject('New Plan Selected');
+                ->subject('New Package Order');
         });
+        // Mail::send('emails.plan-selected', $data, function ($message) use ($adminEmail2) {
+        //     $message->to($adminEmail2)
+        //         ->subject('New Package Order');
+        // });
+        // Mail::send('emails.plan-selected', $data, function ($message) use ($adminEmail3) {
+        //     $message->to($adminEmail3)
+        //         ->subject('New Package Order');
+        // });
 
         return response()->json(['message' => 'Email sent successfully.'], 200);
     }

@@ -179,6 +179,7 @@
                                 <button class="default__button choose-plan"
                                     style="text-align: center !important;"
                                     data-plan="{{ $package->name }}"
+                                    data-plan-ar="{{ $package->ar_name }}"
                                     data-products='@json($package->products->map(fn($p) => ["id" => $p->id, "quantity" => $p->pivot->quantity]))'>
                                     {{ __('packages.request_package') }}
                                 </button>
@@ -229,16 +230,17 @@
         buttons.forEach(button => {
             button.addEventListener("click", function() {
                 let plan = this.getAttribute("data-plan");
+                let plan_ar = this.getAttribute("data-plan-ar");
                 let products = JSON.parse(this.getAttribute("data-products"));
                 let token = localStorage.getItem('auth_token');
 
                 if (!token) {
-                    localStorage.setItem("redirect_after_login", "/packages");
-                    window.location.href = "/login";
+                    localStorage.setItem("redirect_after_login", "{{ route('customer.packages') }}");
+                    window.location.href = "{{ route('customer.login') }}";
                 } else {
                     // If user is logged in, proceed with email and order creation
                     sendPlanEmail(plan, products);
-                    createOrder(plan, products);
+                    createOrder(plan, plan_ar, products);
                 }
             });
         });
@@ -278,10 +280,11 @@
                 });
         }
 
-        function createOrder(plan, products) {
+        function createOrder(plan, plan_ar, products) {
             let token = localStorage.getItem('auth_token');
             axios.post(@json(url('/api/orders')), {
                     plan_name: plan,
+                    plan_name_ar: plan_ar,
                     products: products
                 }, {
                     headers: {
@@ -290,7 +293,7 @@
                 })
                 .then(response => {
                     alert("Your order has been placed successfully!");
-                    window.location.href = "/packages";
+                    window.location.href = "{{ route('customer.packages') }}";
                 })
                 .catch(error => {
                     console.error("Error creating order:", error.response);

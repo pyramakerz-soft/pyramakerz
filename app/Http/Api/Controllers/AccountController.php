@@ -20,11 +20,11 @@ class AccountController extends Controller
         return response()->json([
             'orders' => $orders->map(function ($order) {
                 return [
-                    'plan_name' => $order->plan_name,
+                    'plan_name' => app()->getLocale() === 'ar' ? $order->plan_name_ar : $order->plan_name,
                     'products' => $order->products->map(function ($product) {
                         return [
                             'id' => $product->id,
-                            'name' => $product->name,
+                            'name' => app()->getLocale() === 'ar' ? $product->ar_name : $product->name,
                             'price' => $product->price,
                             'quantity' => $product->pivot->quantity,
                         ];
@@ -50,8 +50,11 @@ class AccountController extends Controller
         }
 
         $user->update(['password' => Hash::make($request->new_password)]);
-
-        return response()->json(['message' => 'Password updated successfully']);
+        if (app()->getLocale() === 'ar') {
+            return response()->json(['message' => 'تم تحديث كلمة المرور بنجاح']);
+        } else {
+            return response()->json(['message' => 'Password updated successfully']);
+        }
     }
     public function storeContactRequest(Request $request)
     {

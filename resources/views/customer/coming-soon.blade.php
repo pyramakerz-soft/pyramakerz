@@ -10,12 +10,12 @@
       <div class="container">
         <div class="row align-items-center justify-content-center gy-6">
 
-          <div class="col-lg-6 ">
-            <h2>Alef Bot <br><span>is coming soon </span> </h2>
+          <div class="col-lg-6">
+            <h2>{{ __('others.alef_bot') }} <br><span>{{ __('others.alef_bot_coming_soon') }}</span></h2>
             <p>
-              Our robotics kits provide a comprehensive range of learning tools for science, technology, engineering, and mathematics enthusiasts of all ages.
+              {{ __('others.alef_bot_description') }}
             </p>
-            <a href="index.php" class="btn-get-started scrollto ">Go Back</a>
+            <a href="{{ route('customer.index') }}" class="btn-get-started scrollto ">{{ __('others.go_back') }}</a>
           </div>
           <div class="col-lg-6 col-md-6">
             <img src="assets/img/slide4.png" alt="" class="img-fluid img">

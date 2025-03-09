@@ -226,7 +226,7 @@
 
         if (!token) {
             localStorage.setItem("redirect_after_login", "/customize");
-            window.location.href = "/login";
+            window.location.href = "{{ route('customer.login') }}";
         }
         const checkboxes = document.querySelectorAll(".product-checkbox");
         const totalPriceElement = document.getElementById("total-price");
@@ -295,8 +295,8 @@
             let token = localStorage.getItem('auth_token');
 
             if (!token) {
-                localStorage.setItem("redirect_after_login", "/customize");
-                window.location.href = "/login";
+                localStorage.setItem("redirect_after_login", "{{ route('customer.customizePackage') }}");
+                window.location.href = "{{ route('customer.login') }}";
             } else {
                 createOrder(selectedProducts);
                 sendCustomPlanEmail(selectedProducts);
@@ -341,6 +341,7 @@
 
             axios.post(@json(url('/api/orders')), {
                     plan_name: "Custom",
+                    plan_name_ar: "مخصص",
                     products: selectedProducts
                 }, {
                     headers: {

@@ -9,32 +9,32 @@
 
         <div class="container mt-3">
             <div class="section-header text-center" data-aos="zoom-in-up">
-                <h2 class="fw-bold text-uppercase fs-1">Manage Account</h2>
+                <h2 class="fw-bold text-uppercase fs-1">{{ __('account.manage_account') }}</h2>
             </div>
             <!-- User Information Section -->
             <div class="card mb-4 shadow" data-aos="zoom-in-up">
                 <div class="card-body">
-                    <h4 class="fs-2 mb-3">Profile Information</h4>
-                    <p><strong>Name:</strong> <span id="user-name"></span></p>
-                    <p><strong>Email:</strong> <span id="user-email"></span></p>
+                    <h4 class="fs-2 mb-3">{{ __('account.profile_info') }}</h4>
+                    <p><strong>{{ __('account.name') }}:</strong> <span id="user-name"></span></p>
+                    <p><strong>{{ __('account.email') }}:</strong> <span id="user-email"></span></p>
                 </div>
             </div>
 
             <!-- Update Password Section -->
             <div class="card mb-4" data-aos="zoom-in-up">
                 <div class="card-body shadow">
-                    <h4 class="fs-2 mb-3">Change Password</h4>
+                    <h4 class="fs-2 mb-3">{{ __('account.change_password') }}</h4>
                     <form id="updatePasswordForm">
                         @csrf
                         <div class="mb-3">
-                            <label>Current Password</label>
+                            <label>{{ __('account.current_password') }}</label>
                             <input type="password" id="current_password" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label>New Password</label>
+                            <label>{{ __('account.new_password') }}</label>
                             <input type="password" id="new_password" class="form-control" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Update Password</button>
+                        <button type="submit" class="btn btn-primary">{{ __('account.update_password') }}</button>
                         <p id="password-message" class="text-success mt-2"></p>
                     </form>
                 </div>
@@ -48,11 +48,11 @@
                         <table class="table table-bordered table-striped align-middle">
                             <thead class="table-dark">
                                 <tr>
-                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">Plan</th>
-                                    <th class="col-4 text-center" style="background-color: var(--color-primary);">Products</th>
-                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">Quantity</th>
-                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">Total Price</th>
-                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">Date</th>
+                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('account.plan') }}</th>
+                                    <th class="col-4 text-center" style="background-color: var(--color-primary);">{{ __('account.products') }}</th>
+                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('account.quantity') }}</th>
+                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('account.total_price') }}</th>
+                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('account.date') }}</th>
                                 </tr>
                             </thead>
                             <tbody id="orderslist">
@@ -125,7 +125,7 @@
                     document.getElementById("password-message").innerText = response.data.message;
                 })
                 .catch(error => {
-                    document.getElementById("password-message").innerText = error.response.data.error || "Password update failed!";
+                    document.getElementById("password-message").innerText = error.response.data.error || "Ensure new password is minimum 6 characters";
                 });
         });
 

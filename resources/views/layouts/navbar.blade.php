@@ -8,9 +8,9 @@
 
     <nav id="navbar" class="navbar">
       <ul>
-        <li><a class="nav-link scrollto" href="/">{{ __('navbar.home') }}</a></li>
-        <li><a class="nav-link scrollto" href="/#about">{{ __('navbar.about') }}</a></li>
-        <li class="dropdown"><a href="/#solution">{{ __('navbar.solutions') }} <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+        <li><a class="nav-link scrollto" href="{{ route('customer.index') }}">{{ __('navbar.home') }}</a></li>
+        <li><a class="nav-link scrollto" href="{{ route('customer.index') }}/#about">{{ __('navbar.about') }}</a></li>
+        <li class="dropdown"><a href="{{ route('customer.index') }}/#solution">{{ __('navbar.solutions') }} <i class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
             <li><a href="{{ route('customer.schools') }}">{{ __('navbar.school_portal') }}</a></li>
             <li><a href="{{ route('customer.students') }}">{{ __('navbar.student_portal') }}</a></li>

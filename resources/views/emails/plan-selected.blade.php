@@ -2,11 +2,11 @@
 <html>
 
 <head>
-    <title>New Plan Selected</title>
+    <title>New Package Request</title>
 </head>
 
 <body>
-    <h2>New Plan Selected</h2>
+    <h2>New Package Selected</h2>
 
     <p><strong>User Name:</strong> {{ $user_name }}</p>
     <p><strong>User Email:</strong> {{ $user_email }}</p>
@@ -18,7 +18,7 @@
             <tr>
                 <th>Product Name</th>
                 <th>Quantity</th>
-                <th>Price (USD)</th>
+                <th>Total Price(SAR)</th>
             </tr>
         </thead>
         <tbody>
@@ -26,13 +26,11 @@
             <tr>
                 <td>{{ $product['name'] }}</td>
                 <td>{{ $product['quantity'] }}</td>
-                <td>${{ number_format($product['price'], 2) }}</td>
+                <td>${{ number_format($product['price'] * $product['quantity'], 2) }}</td>
             </tr>
             @endforeach
         </tbody>
     </table>
-
-    <p>Thank you!</p>
 </body>
 
 </html>
