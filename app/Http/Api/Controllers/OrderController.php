@@ -58,11 +58,11 @@ class OrderController extends Controller
             'plan_products' => 'required|array'
         ]);
 
-        $adminEmail = "ahmed.elragal02@gmail.com";
+        // $adminEmail = "ahmed.elragal02@gmail.com";
 
-        // $adminEmail = "chairman@pyramakerz.com";
-        // $adminEmail2 = "ahmed.elmohamady@pyramakerz.com";
-        // $adminEmail3 = "magieginidy@pyramakerz.com";
+        $adminEmail = "chairman@pyramakerz.com";
+        $adminEmail2 = "ahmed.elmohamady@pyramakerz.com";
+        $adminEmail3 = "magieginidy@pyramakerz.com";
         $userEmail = $request->user_email;
 
         // Fetch full product details using IDs
@@ -92,14 +92,14 @@ class OrderController extends Controller
             $message->to($adminEmail)
                 ->subject('New Package Order');
         });
-        // Mail::send('emails.plan-selected', $data, function ($message) use ($adminEmail2) {
-        //     $message->to($adminEmail2)
-        //         ->subject('New Package Order');
-        // });
-        // Mail::send('emails.plan-selected', $data, function ($message) use ($adminEmail3) {
-        //     $message->to($adminEmail3)
-        //         ->subject('New Package Order');
-        // });
+        Mail::send('emails.plan-selected', $data, function ($message) use ($adminEmail2) {
+            $message->to($adminEmail2)
+                ->subject('New Package Order');
+        });
+        Mail::send('emails.plan-selected', $data, function ($message) use ($adminEmail3) {
+            $message->to($adminEmail3)
+                ->subject('New Package Order');
+        });
 
         return response()->json(['message' => 'Email sent successfully.'], 200);
     }
