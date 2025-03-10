@@ -16,7 +16,7 @@
 <main class="main_wrapper overflow-hidden">
     <div class="breadcrumbarea breadcrumbarea--2">
         <div class="container">
-            <div class="row mt-5">
+            < class="row mt-5">
                 <div class="col-xl-8">
 
                     @if (app()->getLocale() === 'ar')
@@ -72,8 +72,8 @@
                         </ul>
                     </div>
                 </div>
-            </div>
         </div>
+    </div>
     </div>
 
     <!-- <div class="shape__icon__2">
@@ -174,6 +174,25 @@
                                     src="{{ asset('package/' . $package->image) }}" alt="{{ $package->name }}">
                             </div>
 
+
+                            <div class="course__summery__lists">
+                                <input type="text" id="promocode" class="form-control mb-2" placeholder="{{ __('packages.enter_promocode') }}">
+                                <button id="apply-promocode" class="btn btn-secondary mb-3">{{ __('packages.apply_promocode') }}</button>
+
+                                <p id="discount-info" class="text-success" style="display: none;"></p>
+                                <p id="final-price" class="text-danger">{{ __('packages.total_price') }}: <span id="calculated-price">{{ $package->price ?? '0' }}</span> SAR</p>
+                            </div>
+                            <div class="course__summery__lists">
+                                <ul>
+                                    <li>
+                                        <div class="course__summery__item">
+                                            <span class="sb_label">{{ __('packages.price') }}: </span>
+                                            <span class="sb_content"><a href="#"><span id="calculated-price">{{ $package->price ?? '0' }}</span> SAR</a></span>
+                                        </div>
+                                        <p id="discount-info" class="text-success" style="display: none;"></p>
+                                    </li>
+                                </ul>
+                            </div>
                             <div class="course__summery__button">
                                 <!-- <a class="default__button" href="#">Enroll Now</a> -->
                                 <button class="default__button choose-plan"
@@ -183,30 +202,6 @@
                                     data-products='@json($package->products->map(fn($p) => ["id" => $p->id, "quantity" => $p->pivot->quantity]))'>
                                     {{ __('packages.request_package') }}
                                 </button>
-                            </div>
-
-                            <div class="course__summery__lists">
-                                <ul>
-                                    <li>
-                                        <div class="course__summery__item">
-                                            <span class="sb_label">{{ __('packages.price') }}: </span>
-                                            <span class="sb_content"><a href="#">{{ $package->price ?? '0' }} SAR</a></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <!-- <div class="course__summery__item">
-                                            <span class="sb_label">Skill Level:</span>
-                                            {{-- <span class="sb_content">{{ $course->skill_level ?? 'N/A' }}</span> --}}
-                                        </div> -->
-                                    </li>
-                                    <li>
-                                        <!-- <div class="course__summery__item">
-                                            <span class="sb_label">Language:</span>
-                                            {{-- <span class="sb_content">
-                                                    {{ $course->language ?? 'N/A' }}</span> --}}
-                                        </div> -->
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -225,9 +220,44 @@
 <script src="app.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const buttons = document.querySelectorAll(".choose-plan");
+        let appliedPromocode = null;
+        let discountAmount = 0;
+        let discountType = "fixed";
 
-        buttons.forEach(button => {
+        document.getElementById("apply-promocode").addEventListener("click", function() {
+            let promocode = document.getElementById("promocode").value.trim();
+            if (!promocode) {
+                alert("{{ __('packages.enter_valid_promocode') }}");
+                return;
+            }
+
+            axios.post(@json(url('/api/validate-promocode')), {
+                    code: promocode
+                })
+                .then(response => {
+                    discountAmount = response.data.discount_amount;
+                    discountType = response.data.discount_type;
+                    appliedPromocode = promocode;
+
+                    let originalPrice = parseFloat(document.getElementById("calculated-price").innerText);
+
+                    // Apply discount based on type
+                    let newPrice = (discountType === 'percentage') ?
+                        originalPrice - (originalPrice * discountAmount / 100) :
+                        originalPrice - discountAmount;
+
+                    newPrice = Math.max(newPrice, 0); // Ensure price doesn't go below zero
+
+                    document.getElementById("calculated-price").innerText = newPrice.toFixed(2);
+                    document.getElementById("discount-info").innerText = `{{ __('packages.discount_applied') }}: ${discountAmount} ${(discountType === 'percentage') ? '%' : 'SAR'}`;
+                    document.getElementById("discount-info").style.display = "block";
+                })
+                .catch(error => {
+                    alert("{{ __('packages.invalid_promocode') }}");
+                });
+        });
+
+        document.querySelectorAll(".choose-plan").forEach(button => {
             button.addEventListener("click", function() {
                 let plan = this.getAttribute("data-plan");
                 let plan_ar = this.getAttribute("data-plan-ar");
@@ -238,66 +268,30 @@
                     localStorage.setItem("redirect_after_login", "{{ route('customer.packages') }}");
                     window.location.href = "{{ route('customer.login') }}";
                 } else {
-                    // If user is logged in, proceed with email and order creation
                     sendPlanEmail(plan, products);
-                    createOrder(plan, plan_ar, products);
+                    createOrder(plan, plan_ar, products, appliedPromocode);
                 }
             });
         });
 
-        function sendPlanEmail(plan, products) {
-            let token = localStorage.getItem('auth_token_pyra12234');
-
-            axios.get(@json(url('/api/user')), {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                })
-                .then(response => {
-                    let user = response.data; // Get logged-in user details
-
-                    axios.post(@json(url('/api/send-plan-email')), {
-                            user_name: user.name,
-                            user_email: user.email,
-                            selected_plan: plan,
-                            plan_products: products // Sending products array
-                        }, {
-                            headers: {
-                                Authorization: `Bearer ${token}`
-                            }
-                        })
-                        .then(response => {
-                            console.log("Email sent successfully.");
-                        })
-                        .catch(error => {
-                            console.error("Error sending email:", error.response);
-                            alert("Failed to send email.");
-                        });
-                })
-                .catch(error => {
-                    console.error("Error fetching user details:", error.response);
-                    alert("Failed to retrieve user details.");
-                });
-        }
-
-        function createOrder(plan, plan_ar, products) {
+        function createOrder(plan, plan_ar, products, promocode) {
             let token = localStorage.getItem('auth_token_pyra12234');
             axios.post(@json(url('/api/orders')), {
                     plan_name: plan,
                     plan_name_ar: plan_ar,
-                    products: products
+                    products: products,
+                    promocode: promocode
                 }, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 })
                 .then(response => {
-                    alert("Your order has been placed successfully!");
+                    alert("{{ __('packages.order_success') }}");
                     window.location.href = "{{ route('customer.packages') }}";
                 })
                 .catch(error => {
-                    console.error("Error creating order:", error.response);
-                    alert("Failed to create order.");
+                    alert("{{ __('packages.order_failed') }}");
                 });
         }
     });

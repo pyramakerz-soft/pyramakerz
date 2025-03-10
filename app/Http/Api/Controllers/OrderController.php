@@ -3,6 +3,7 @@
 namespace App\Http\Api\Controllers;
 
 use App\Models\Product;
+use App\Models\Promocode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
@@ -21,11 +22,39 @@ class OrderController extends Controller
             'products.*.quantity' => 'required|integer|min:1'
         ]);
         // return response()->json(['request' => $request->all()], 201);
+        $discount = 0;
+        $discountType = 'fixed';
+
+        if ($request->promocode) {
+            $promocode = Promocode::where('code', $request->promocode)
+                ->where('is_active', 1)
+                ->where('valid_until', '>=', now())
+                ->first();
+
+            if ($promocode) {
+                $discount = $promocode->discount_amount;
+                $discountType = $promocode->discount_type;
+                $promocode->increment('times_used'); // Track usage
+            }
+        }
+        $totalPrice = collect($request->products)->sum(fn($p) => $p['quantity'] * Product::find($p['id'])->price);
+
+        // Apply discount based on type
+        if ($discountType === 'percentage') {
+            $totalPrice -= ($totalPrice * $discount / 100);
+        } else {
+            $totalPrice -= $discount;
+        }
+
+        $totalPrice = max($totalPrice, 0);
 
         $order = Order::create([
             'user_id' => Auth::id(),
             'plan_name' => $request->plan_name,
-            'plan_name_ar' => $request->plan_name_ar
+            'plan_name_ar' => $request->plan_name_ar,
+            'total_price' => $totalPrice,
+            'discount_applied' => $discount,
+            'discount_type' => $discountType
         ]);
 
         foreach ($request->products as $product) {

@@ -14,6 +14,9 @@ class Order extends Model
         'plan_name',
         'plan_name_ar',
         'features',
+        'total_price',
+        'discount_applied',
+        'discount_type'
     ];
 
     protected $casts = [

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Api\Controllers\AuthController;
+use App\Http\Api\Controllers\PromocodeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Api\Controllers\AccountController;
@@ -41,6 +42,7 @@ Route::middleware('auth:sanctum')->post('/send-plan-email', [OrderController::cl
 Route::middleware('auth:sanctum')->get('/user/orders', [AccountController::class, 'getOrders']);
 Route::middleware('auth:sanctum')->post('/update-password', [AccountController::class, 'updatePassword']);
 // Route::middleware('auth:sanctum')->post('/products/add', [ProductsController::class, 'store']);
+Route::post('/validate-promocode', [PromocodeController::class, 'validatePromocode']);
 
 
 Route::post('/contact-us', [AccountController::class, 'storeContactRequest']);
