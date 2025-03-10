@@ -232,7 +232,7 @@
                 let plan = this.getAttribute("data-plan");
                 let plan_ar = this.getAttribute("data-plan-ar");
                 let products = JSON.parse(this.getAttribute("data-products"));
-                let token = localStorage.getItem('auth_token');
+                let token = localStorage.getItem('auth_token_pyra12234');
 
                 if (!token) {
                     localStorage.setItem("redirect_after_login", "{{ route('customer.packages') }}");
@@ -246,7 +246,7 @@
         });
 
         function sendPlanEmail(plan, products) {
-            let token = localStorage.getItem('auth_token');
+            let token = localStorage.getItem('auth_token_pyra12234');
 
             axios.get(@json(url('/api/user')), {
                     headers: {
@@ -281,7 +281,7 @@
         }
 
         function createOrder(plan, plan_ar, products) {
-            let token = localStorage.getItem('auth_token');
+            let token = localStorage.getItem('auth_token_pyra12234');
             axios.post(@json(url('/api/orders')), {
                     plan_name: plan,
                     plan_name_ar: plan_ar,

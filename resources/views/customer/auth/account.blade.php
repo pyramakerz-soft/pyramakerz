@@ -88,7 +88,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        let token = localStorage.getItem('auth_token');
+        let token = localStorage.getItem('auth_token_pyra12234');
 
         if (!token) {
             window.location.href = "/login"; // Redirect if not logged in

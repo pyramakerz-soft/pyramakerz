@@ -222,7 +222,7 @@
 <script src="app.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        let token = localStorage.getItem('auth_token');
+        let token = localStorage.getItem('auth_token_pyra12234');
 
         if (!token) {
             localStorage.setItem("redirect_after_login", "/customize");
@@ -292,7 +292,7 @@
                 return;
             }
 
-            let token = localStorage.getItem('auth_token');
+            let token = localStorage.getItem('auth_token_pyra12234');
 
             if (!token) {
                 localStorage.setItem("redirect_after_login", "{{ route('customer.customizePackage') }}");
@@ -304,7 +304,7 @@
         });
 
         function sendCustomPlanEmail(selectedProducts) {
-            let token = localStorage.getItem('auth_token');
+            let token = localStorage.getItem('auth_token_pyra12234');
 
             axios.get(@json(url('/api/user')), {
                 headers: {
@@ -337,7 +337,7 @@
         }
 
         function createOrder(selectedProducts) {
-            let token = localStorage.getItem('auth_token');
+            let token = localStorage.getItem('auth_token_pyra12234');
 
             axios.post(@json(url('/api/orders')), {
                     plan_name: "Custom",

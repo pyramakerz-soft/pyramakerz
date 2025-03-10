@@ -37,7 +37,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    let token = localStorage.getItem('auth_token');
+    let token = localStorage.getItem('auth_token_pyra12234');
 
     if (token) {
       // If logged in, show account icon
@@ -62,7 +62,7 @@
   });
 
   function logout() {
-    let token = localStorage.getItem('auth_token');
+    let token = localStorage.getItem('auth_token_pyra12234');
 
     axios.post(@json(url('/api/logout')), {}, {
         headers: {
@@ -70,7 +70,7 @@
         }
       })
       .then(response => {
-        localStorage.removeItem('auth_token');
+        localStorage.removeItem('auth_token_pyra12234');
         window.location.href = "/login";
       })
       .catch(error => {

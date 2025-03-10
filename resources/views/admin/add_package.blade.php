@@ -117,7 +117,7 @@
 
         formData.append("products", JSON.stringify(selectedProducts));
 
-        let token = localStorage.getItem("auth_token");
+        let token = localStorage.getItem("auth_token_pyra12234");
 
         axios.post(@json(url('/api/packages')), formData, {
                 headers: {

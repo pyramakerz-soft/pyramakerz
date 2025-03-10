@@ -446,9 +446,7 @@
 <script>
   // pop up
   document.addEventListener("DOMContentLoaded", function() {
-    setTimeout(function() {
-      document.getElementById("popup").style.display = "flex";
-    }, 3000); // Adjust the delay as needed (in milliseconds)
+    document.getElementById("popup").style.display = "flex";
   });
 
   function closePopup() {

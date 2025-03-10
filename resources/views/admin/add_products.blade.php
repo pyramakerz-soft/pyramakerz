@@ -99,7 +99,7 @@
         formData.append("price", document.getElementById("price").value);
         formData.append("image", document.getElementById("image").files[0]);
 
-        let token = localStorage.getItem("auth_token");
+        let token = localStorage.getItem("auth_token_pyra12234");
 
         axios.post(@json(url('/api/products')), formData, {
                 headers: {

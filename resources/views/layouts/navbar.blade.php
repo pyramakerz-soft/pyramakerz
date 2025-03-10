@@ -23,7 +23,7 @@
 
 
 
-        <li class="dropdown" id="admin-menu" style="display: none;"><a href=" /">Admin Menu <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+        <li class="dropdown" id="admin-menu" style="display: none;"><a href="{{ route("customer.index") }}">Admin Menu <i class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
             <li class="admin_choices"><a class="nav-link scrollto" href="{{ route('admin.addProduct') }}">Add Product</a></li>
             <li class="admin_choices"><a class="nav-link scrollto" href="{{ route('admin.addPackage') }}">Add Package</a></li>
@@ -35,7 +35,7 @@
     </nav><!-- .navbar -->
 
     <div class="buttons d-flex align-items-center">
-      <a class="btn-getstarted scrollto d-inline-block" style="width: auto; white-space: nowrap; text-align: center;" href="/#contact" data-aos="flip-up" data-aos-delay="400">{{ __('navbar.contact') }}</a>
+      <a class="btn-getstarted scrollto d-inline-block" style="width: auto; white-space: nowrap; text-align: center;" href="{{ route("customer.index")}}/#contact" data-aos="flip-up" data-aos-delay="400">{{ __('navbar.contact') }}</a>
 
       <!-- Language Switcher -->
       <div class="dropdown mx-3">
@@ -58,10 +58,10 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    let token = localStorage.getItem("auth_token");
+    let token = localStorage.getItem("auth_token_pyra12234");
 
     if (token) {
-      axios.get("/api/user", {
+      axios.get(@json(url('/api/user')), {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -82,7 +82,7 @@
 </script>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    let token = localStorage.getItem('auth_token');
+    let token = localStorage.getItem('auth_token_pyra12234');
 
     if (token) {
       // If logged in, show account icon
@@ -92,7 +92,7 @@
                           <i class="bi bi-person-circle" style="font-size: 24px; color: #ff7f00;"></i>
                       </a>
                       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
-                          <li><a class="dropdown-item" href="/account">{{ __('navbar.manage_account') }}</a></li>
+                          <li><a class="dropdown-item" href="{{ route('customer.account') }}">{{ __('navbar.manage_account') }}</a></li>
                           <li><hr class="dropdown-divider"></li>
                           <li><button class="dropdown-item text-danger" onclick="logout()">{{ __('navbar.logout') }}</button></li>
                       </ul>
@@ -101,13 +101,13 @@
     } else {
       // If not logged in, show Login button
       document.getElementById("authLinks").innerHTML = `
-                  <a class="btn-getstarted scrollto d-inline-block" href="/login" data-aos="flip-up" data-aos-delay="400">{{ __('navbar.login') }}</a>
+                  <a class="btn-getstarted scrollto d-inline-block" href="{{ route('customer.login') }}" data-aos="flip-up" data-aos-delay="400">{{ __('navbar.login') }}</a>
               `;
     }
   });
 
   function logout() {
-    let token = localStorage.getItem('auth_token');
+    let token = localStorage.getItem('auth_token_pyra12234');
 
     axios.post(@json(url('/api/logout')), {}, {
         headers: {
@@ -115,8 +115,8 @@
         }
       })
       .then(response => {
-        localStorage.removeItem('auth_token');
-        window.location.href = "/login";
+        localStorage.removeItem('auth_token_pyra12234');
+        window.location.href = "{{ route('customer.login') }}";
       })
       .catch(error => {
         alert("Logout failed!");

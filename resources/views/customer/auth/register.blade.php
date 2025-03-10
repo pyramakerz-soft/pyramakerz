@@ -168,7 +168,7 @@
                     password: document.getElementById('loginPassword').value
                 })
                 .then(response => {
-                    localStorage.setItem('auth_token', response.data.token);
+                    localStorage.setItem('auth_token_pyra12234', response.data.token);
                     document.getElementById('loginMessage').innerText = "Login successful!";
                 })
                 .catch(error => {
