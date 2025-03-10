@@ -15,6 +15,9 @@ return [
     'featured' => 'مميز',
     'choose_products' => 'اختر المنتجات',
     'total_price' => 'السعر الكلي',
+    'apply_promocode' => 'تطبيق الكود',
+    'promocode' => 'كود الخصم',
+
 
 
 

@@ -71,7 +71,7 @@
       })
       .then(response => {
         localStorage.removeItem('auth_token_pyra12234');
-        window.location.href = "/login";
+        window.location.href = @json(route('customer.login'));
       })
       .catch(error => {
         alert("Logout failed!");

@@ -453,7 +453,7 @@
 
                 if (!token) {
                     localStorage.setItem("redirect_after_login", "/packages");
-                    window.location.href = "/login";
+                    window.location.href = @json(route('customer.login'));
                 } else {
                     // If user is logged in, proceed with email and order creation
                     sendPlanEmail(plan, products);
@@ -509,7 +509,7 @@
                 })
                 .then(response => {
                     alert("Your order has been placed successfully!");
-                    window.location.href = "/packages";
+                    window.location.href = @json(route('customer.packages'));
                 })
                 .catch(error => {
                     console.error("Error creating order:", error.response);

@@ -15,7 +15,8 @@ return [
     'featured' => 'Featured',
     'choose_products' => 'Choose Products',
     'total_price' => 'Total Price',
-
+    'apply_promocode' => 'Apply Promocode',
+    'promocode' => 'Promocode',
 
 
 ];

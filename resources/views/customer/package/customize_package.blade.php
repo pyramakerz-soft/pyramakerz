@@ -324,7 +324,7 @@
                     }
                 }).then(() => {
                     alert("Your custom plan has been sent successfully!");
-                    window.location.href = "/packages";
+                    window.location.href = @json(route('customer.packages'));
                 }).catch(error => {
                     console.error("Error sending email:", error.response);
                     alert("Failed to send custom plan email.");
@@ -350,7 +350,7 @@
                 })
                 .then(response => {
                     alert("Your order has been placed successfully!");
-                    window.location.href = "/packages";
+                    window.location.href = @json(route('customer.packages'));
                 })
                 .catch(error => {
                     console.error("Error creating order:", error.response);

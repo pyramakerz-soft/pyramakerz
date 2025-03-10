@@ -91,7 +91,7 @@
         let token = localStorage.getItem('auth_token_pyra12234');
 
         if (!token) {
-            window.location.href = "/login"; // Redirect if not logged in
+            window.location.href = @json(route('customer.login'));
         }
 
         // Fetch User Details

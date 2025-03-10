@@ -160,7 +160,7 @@
                 })
                 .then(response => {
                     localStorage.setItem('otp_email', document.getElementById('email').value);
-                    window.location.href = "/verify-otp";
+                    window.location.href = @json(route('customer.verify-otp'));
                 })
                 .catch(error => {
                     document.getElementById('registerMessage').innerText = error.response.data.error || "Error registering!";
