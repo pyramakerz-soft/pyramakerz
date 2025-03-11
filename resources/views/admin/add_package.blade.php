@@ -59,7 +59,7 @@
                                         onclick="toggleQuantityInput(this)">
 
                                     <!-- Product Name -->
-                                    <label class="mx-2">{{ $product->name }}</label>
+                                    <span class="mx-2" style="color: black; font-size: 16px;">{{ $product->name }}</span>
 
                                     <!-- Quantity Input (Initially Hidden) -->
                                     <input type="number" class="form-control product-quantity d-none"
@@ -70,7 +70,7 @@
                         </div>
 
                         <div class="text-center mt-3">
-                            <button type="submit" class="btn btn-sucess" data-aos="flip-up"
+                            <button type="submit" class="btn btn-sucess" id="submitForm" data-aos="flip-up"
                                 data-aos-delay="200">{{ __('admin/add_package.add') }}</button>
                         </div>
                     </form>
@@ -104,7 +104,8 @@
 <script>
     document.getElementById("package-form").addEventListener("submit", function(e) {
         e.preventDefault();
-
+        const submitBtn = document.getElementById("submitForm");
+        submitBtn.disabled = true;
         let formData = new FormData();
         formData.append("en_name", document.getElementById("en_name").value);
         formData.append("ar_name", document.getElementById("ar_name").value);
@@ -137,10 +138,15 @@
             .then(response => {
                 alert("Package added successfully!");
                 document.getElementById("package-form").reset();
+                document.querySelectorAll(".product-checkbox").forEach((checkbox) => {
+                    toggleQuantityInput(checkbox);
+                });
+                submitBtn.disabled = false;
             })
             .catch(error => {
                 console.error("Error adding package:", error.response);
                 alert("Failed to add package.");
+                submitForm.disabled = false;
             });
     });
 </script>

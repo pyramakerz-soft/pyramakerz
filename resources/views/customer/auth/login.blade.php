@@ -160,7 +160,7 @@
                 })
                 .then(response => {
                     localStorage.setItem('otp_email', document.getElementById('email').value);
-                    window.location.href = @json(route('customer.verify-otp'));
+                    window.location.href = "{{ route('customer.verify-otp') }}";
                 })
                 .catch(error => {
                     document.getElementById('registerMessage').innerText = error.response.data.error || "Error registering!";
@@ -187,7 +187,7 @@
                 .then(response => {
                     localStorage.setItem('auth_token_pyra12234', response.data.token);
                     if (response.data.user.role === 'admin') {
-                        window.location.href = @json(route('admin.addProduct'));
+                        window.location.href = "{{ route('admin.addProduct') }}";
                         return;
                     }
                     let redirectPage = localStorage.getItem("redirect_after_login");
@@ -195,7 +195,7 @@
                         localStorage.removeItem("redirect_after_login");
                         window.location.href = redirectPage;
                     } else {
-                        window.location.href = "/";
+                        window.location.href = "{{ route('customer.index') }}";
                     }
                 })
                 .catch(error => {

@@ -16,15 +16,15 @@ class AccountController extends Controller
         $orders = Order::where('user_id', $request->user()->id)
             ->with('products')
             ->get();
-        // return response()->json($orders);
         return response()->json([
             'orders' => $orders->map(function ($order) {
                 return [
-                    'plan_name' => app()->getLocale() === 'ar' ? $order->plan_name_ar : $order->plan_name,
+                    'plan_name' => session('locale') === 'ar' ? $order->plan_name_ar : $order->plan_name,
+                    'price' => $order->total_price,
                     'products' => $order->products->map(function ($product) {
                         return [
                             'id' => $product->id,
-                            'name' => app()->getLocale() === 'ar' ? $product->ar_name : $product->name,
+                            'name' => session('locale') === 'ar' ? $product->ar_name : $product->name,
                             'price' => $product->price,
                             'quantity' => $product->pivot->quantity,
                         ];

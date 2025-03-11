@@ -50,7 +50,7 @@
                                 required>
                         </div>
                         <div class="text-center mt-3">
-                            <button type="submit" class="btn btn-sucess" data-aos="flip-up"
+                            <button type="submit" class="btn btn-sucess" id="submitForm" data-aos="flip-up"
                                 data-aos-delay="200">{{ __('admin/add_product.add') }}</button>
                         </div>
                     </form>
@@ -97,6 +97,8 @@
 <script>
     document.getElementById("product-form").addEventListener("submit", function(e) {
         e.preventDefault();
+        const submitBtn = document.getElementById("submitForm");
+        submitBtn.disabled = true;
 
         let formData = new FormData();
         formData.append("en_name", document.getElementById("en_name").value);
@@ -118,10 +120,12 @@
                 alert("Product added successfully!");
                 // console.log(response.data);
                 document.getElementById("product-form").reset();
+                submitBtn.disabled = false;
             })
             .catch(error => {
                 console.error("Error adding product:", error.response);
                 alert("Failed to add product.");
+                submitBtn.disabled = false;
             });
     });
 </script>

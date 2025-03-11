@@ -17,6 +17,8 @@ return [
     'total_price' => 'Total Price',
     'apply_promocode' => 'Apply Promocode',
     'promocode' => 'Promocode',
-
-
+    'enter_promocode' => 'Enter Promocode',
+    'enter_valid_promocode' => 'Enter a valid promocode',
+    'discount_applied' => 'Discount Applied',
+    'order_success' => 'Order placed successfully.',
 ];

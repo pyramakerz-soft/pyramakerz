@@ -37,7 +37,8 @@ class OrderController extends Controller
                 $promocode->increment('times_used'); // Track usage
             }
         }
-        $totalPrice = collect($request->products)->sum(fn($p) => $p['quantity'] * Product::find($p['id'])->price);
+        // $totalPrice = collect($request->products)->sum(fn($p) => $p['quantity'] * Product::find($p['id'])->price);
+        $totalPrice = $request->package_price;
 
         // Apply discount based on type
         if ($discountType === 'percentage') {
@@ -110,7 +111,9 @@ class OrderController extends Controller
             'user_name' => $request->user_name,
             'user_email' => $request->user_email,
             'selected_plan' => $request->selected_plan,
-            'products' => $productDetails
+            'plan_price' => $request->plan_price,
+            'products' => $productDetails,
+            'date' => now()->format('Y-m-d')
         ];
 
         Mail::send('emails.plan-selected', $data, function ($message) use ($userEmail) {
