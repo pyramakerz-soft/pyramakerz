@@ -51,7 +51,8 @@
                                     <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('account.plan') }}</th>
                                     <th class="col-4 text-center" style="background-color: var(--color-primary);">{{ __('account.products') }}</th>
                                     <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('account.quantity') }}</th>
-                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('account.total_price') }}</th>
+                                    <!-- <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('account.total_price') }}</th> -->
+                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('account.total_price_discount') }}</th>
                                     <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('account.date') }}</th>
                                 </tr>
                             </thead>
@@ -91,7 +92,7 @@
         let token = localStorage.getItem('auth_token_pyra12234');
 
         if (!token) {
-            window.location.href = @json(route('customer.login'));
+            window.location.href = "{{ route('customer.login') }}";
         }
 
         // Fetch User Details
@@ -170,7 +171,7 @@
         <td class="text-center fw-bold">${order.plan_name}</td>
         <td class="text-center">${productList}</td>
         <td class="text-center">${quantityList}</td>
-        <td class="text-center">${priceList}</td>
+        <td class="text-center">${order.price}</td>
         <td class="text-center">${new Date(order.created_at).toLocaleDateString()}</td>
     `;
                     ordersList.appendChild(row);

@@ -181,11 +181,9 @@
                                 <img src="{{ asset('assets/img/custom_plan.jpg') }}" alt="Custom Plan">
                             </div>
 
-                            <div class="course__summery__button">
-                                <button class="default__button" style="text-align: center !important;" id="submitCustomPlan"> {{ __('packages.request_package') }}</button>
-                            </div>
 
-                            <div class="course__summery__lists">
+
+                            <!-- <div class="course__summery__lists">
                                 <ul>
                                     <li>
                                         <div class="course__summery__item">
@@ -194,6 +192,36 @@
                                         </div>
                                     </li>
                                 </ul>
+                            </div> -->
+
+                            <div class="course__summery__lists">
+                                <input type="text" id="promocode" class="form-control mb-2" placeholder="{{ __('packages.enter_promocode') }}">
+                                <button id="apply-promocode" class="btn btn-secondary mb-3">{{ __('packages.apply_promocode') }}</button>
+
+                                <p id="discount-info" class="text-success" style="display: none;"></p>
+                                <!-- <p id="final-price" class="text-danger">{{ __('packages.total_price') }}: <span id="calculated-price">{{ $package->price ?? '0' }}</span> SAR</p> -->
+                                <div class="course__summery__lists">
+                                    <ul>
+                                        <li>
+                                            <div class="course__summery__item">
+                                                <span class="sb_label">{{ __('packages.price') }}: </span>
+                                                <span class="sb_content" id="final-price"><a href="#"> <span id="calculated-price" class="total-price2">{{ $package->price ?? '0' }}</span> SAR</a></span>
+                                            </div>
+                                            <p id="discount-info" class="text-success" style="display: none;"></p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                            <div class="course__summery__button">
+                                <button class="default__button" style="text-align: center !important;" id="submitCustomPlan"
+                                    data-package-price="0"> {{ __('packages.request_package') }}</button>
                             </div>
                         </div>
                     </div>
@@ -225,12 +253,13 @@
         let token = localStorage.getItem('auth_token_pyra12234');
 
         if (!token) {
-            localStorage.setItem("redirect_after_login", "/customize");
+            localStorage.setItem("redirect_after_login", "{{ route('customer.customizePackage') }}");
             window.location.href = "{{ route('customer.login') }}";
         }
         const checkboxes = document.querySelectorAll(".product-checkbox");
         const totalPriceElement = document.getElementById("total-price");
-        const totalPriceElement2 = document.getElementById("total-price2");
+        const totalPriceElement2 = document.querySelector(".total-price2");
+        console.log(totalPriceElement2);
 
         checkboxes.forEach((checkbox) => {
             checkbox.addEventListener("change", function() {
@@ -265,9 +294,53 @@
                     total += price * quantity;
                 }
             });
-            totalPriceElement.innerText = `${total.toFixed(2)} SAR`;
-            totalPriceElement2.innerText = `${total.toFixed(2)} SAR`;
+            totalPriceElement.innerText = `${total.toFixed(2)}`;
+            totalPriceElement2.innerText = `${total.toFixed(2)}`;
+            document.getElementById("submitCustomPlan").setAttribute("data-package-price", `${total.toFixed(2)}`);
+
         }
+        //////////////////////////////////////
+        let appliedPromocode = null;
+        let discountAmount = 0;
+        let discountType = "fixed";
+
+        document.getElementById("apply-promocode").addEventListener("click", function() {
+            document.getElementById("apply-promocode").disabled = true;
+            let promocode = document.getElementById("promocode").value.trim();
+            if (!promocode) {
+                alert("{{ __('packages.enter_valid_promocode') }}");
+                return;
+            }
+
+            axios.post(@json(url('/api/validate-promocode')), {
+                    code: promocode
+                })
+                .then(response => {
+                    discountAmount = response.data.discount_amount;
+                    discountType = response.data.discount_type;
+                    appliedPromocode = promocode;
+
+                    let originalPrice = parseFloat(document.getElementById("calculated-price").innerText);
+
+                    // Apply discount based on type
+                    let newPrice = (discountType === 'percentage') ?
+                        originalPrice - (originalPrice * discountAmount / 100) :
+                        originalPrice - discountAmount;
+
+                    newPrice = Math.max(newPrice, 0); // Ensure price doesn't go below zero
+
+                    document.getElementById("calculated-price").innerText = newPrice.toFixed(2);
+
+                    document.getElementById("discount-info").innerText = `{{ __('packages.discount_applied') }}: ${discountAmount} ${(discountType === 'percentage') ? '%' : 'SAR'}`;
+                    document.getElementById("discount-info").style.display = "block";
+                })
+                .catch(error => {
+                    document.getElementById("apply-promocode").disabled = false;
+                    alert("{{ __('packages.invalid_promocode') }}");
+                });
+        });
+
+        ///////////////////////////////////////
 
         document.getElementById("submitCustomPlan").addEventListener("click", function() {
             let selectedProducts = [];
@@ -298,12 +371,13 @@
                 localStorage.setItem("redirect_after_login", "{{ route('customer.customizePackage') }}");
                 window.location.href = "{{ route('customer.login') }}";
             } else {
-                createOrder(selectedProducts);
-                sendCustomPlanEmail(selectedProducts);
+                let plan_price = this.getAttribute("data-package-price");
+                createOrder(plan_price, selectedProducts, appliedPromocode);
+                sendCustomPlanEmail(plan_price, selectedProducts);
             }
         });
 
-        function sendCustomPlanEmail(selectedProducts) {
+        function sendCustomPlanEmail(plan_price, selectedProducts) {
             let token = localStorage.getItem('auth_token_pyra12234');
 
             axios.get(@json(url('/api/user')), {
@@ -317,14 +391,16 @@
                     user_name: user.name,
                     user_email: user.email,
                     selected_plan: "Custom Plan",
-                    plan_products: selectedProducts
+                    plan_products: selectedProducts,
+                    plan_price: plan_price
+
                 }, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 }).then(() => {
                     alert("Your custom plan has been sent successfully!");
-                    window.location.href = @json(route('customer.packages'));
+                    window.location.href = "{{ route('customer.packages') }}";
                 }).catch(error => {
                     console.error("Error sending email:", error.response);
                     alert("Failed to send custom plan email.");
@@ -336,25 +412,25 @@
             });
         }
 
-        function createOrder(selectedProducts) {
+        function createOrder(plan_price, selectedProducts, promocode) {
             let token = localStorage.getItem('auth_token_pyra12234');
-
             axios.post(@json(url('/api/orders')), {
                     plan_name: "Custom",
                     plan_name_ar: "مخصص",
-                    products: selectedProducts
+                    products: selectedProducts,
+                    package_price: plan_price,
+                    promocode: promocode
                 }, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 })
                 .then(response => {
-                    alert("Your order has been placed successfully!");
-                    window.location.href = @json(route('customer.packages'));
+                    alert("{{ __('packages.order_success') }}");
+                    window.location.href = "{{ route('customer.packages') }}";
                 })
                 .catch(error => {
-                    console.error("Error creating order:", error.response);
-                    alert("Failed to create order.");
+                    alert("{{ __('packages.order_failed') }}");
                 });
         }
 

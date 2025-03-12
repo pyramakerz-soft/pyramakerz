@@ -14,7 +14,8 @@ return [
     'plan' => 'Plan',
     'products' => 'Products',
     'quantity' => 'Quantity',
-    'total_price' => 'Total Price (SAR)',
+    'total_price' => 'Products Original Price (SAR)',
+    'total_price_discount' => 'Total Package Price After Discount (SAR)',
     'date' => 'Date',
     'loading_orders' => 'Loading orders...',
 ];

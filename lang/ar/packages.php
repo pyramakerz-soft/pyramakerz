@@ -17,8 +17,8 @@ return [
     'total_price' => 'السعر الكلي',
     'apply_promocode' => 'تطبيق الكود',
     'promocode' => 'كود الخصم',
-
-
-
-
+    'enter_promocode' => 'ادخل كود الخصم',
+    'enter_valid_promocode' => 'ادخل كود خصم صحيح',
+    'discount_applied' => 'تم تطبيق الخصم',
+    'order_success' => 'تم تقديم الطلب بنجاح.',
 ];

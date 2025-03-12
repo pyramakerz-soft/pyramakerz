@@ -124,7 +124,7 @@
                     document.getElementById('otpMessage').innerText = response.data.message;
                     localStorage.removeItem('otp_email'); // Remove stored email after verification
                     setTimeout(() => {
-                        window.location.href = @json(route('customer.login')); // Redirect to login
+                        window.location.href = "{{ route('customer.login') }}";
                     }, 1500);
                 })
                 .catch(error => {

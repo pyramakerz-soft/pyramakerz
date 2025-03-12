@@ -101,7 +101,7 @@
     } else {
       // If not logged in, show Login button
       document.getElementById("authLinks").innerHTML = `
-                  <a class="btn-getstarted scrollto d-inline-block" href="{{ route('customer.login') }}" data-aos="flip-up" data-aos-delay="400">{{ __('navbar.login') }}</a>
+                 <a class="btn-getstarted scrollto d-inline-block text-nowrap" href="{{ route('customer.login') }}" data-aos="flip-up" data-aos-delay="400">{{ __('navbar.login') }}</a>
               `;
     }
   });

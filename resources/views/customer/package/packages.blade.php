@@ -452,8 +452,8 @@
                 let token = localStorage.getItem('auth_token_pyra12234');
 
                 if (!token) {
-                    localStorage.setItem("redirect_after_login", "/packages");
-                    window.location.href = @json(route('customer.login'));
+                    localStorage.setItem("redirect_after_login", "{{ route('customer.packages') }}");
+                    window.location.href = "{{ route('customer.login') }}";
                 } else {
                     // If user is logged in, proceed with email and order creation
                     sendPlanEmail(plan, products);
@@ -509,7 +509,7 @@
                 })
                 .then(response => {
                     alert("Your order has been placed successfully!");
-                    window.location.href = @json(route('customer.packages'));
+                    window.location.href = "{{ route('customer.packages') }}";
                 })
                 .catch(error => {
                     console.error("Error creating order:", error.response);
