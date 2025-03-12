@@ -34,7 +34,11 @@ class PlanController extends Controller
         $products = json_decode($request->products, true);
 
         if (!$products || !is_array($products)) {
-            return response()->json(['error' => 'Invalid product selection'], 400);
+            if (app()->getLocale() === 'ar') {
+                return response()->json(['error' => 'اختيار المنتج غير صالح'], 400);
+            } else {
+                return response()->json(['error' => 'Invalid product selection'], 400);
+            }
         }
 
         if ($request->hasFile('image')) {
@@ -42,7 +46,11 @@ class PlanController extends Controller
             $imageName = time() . '.' . request()->image->getClientOriginalExtension();
             request()->image->move(public_path('package'), $imageName);
         } else {
-            return response()->json(['error' => 'Image upload failed'], 400);
+            if (app()->getLocale() === 'ar') {
+                return response()->json(['error' => 'فشل تحميل الصورة'], 400);
+            } else {
+                return response()->json(['error' => 'Image upload failed'], 400);
+            }
         }
 
         // Create the package
@@ -58,8 +66,11 @@ class PlanController extends Controller
         foreach ($products as $product) {
             $package->products()->attach($product['id'], ['quantity' => $product['quantity']]);
         }
-
-        return response()->json(['message' => 'Package added successfully!', 'package' => $package], 201);
+        if (app()->getLocale() === 'ar') {
+            return response()->json(['message' => 'تمت إضافة الباقة بنجاح!', 'package' => $package], 201);
+        } else {
+            return response()->json(['message' => 'Package added successfully!', 'package' => $package], 201);
+        }
     }
 
 

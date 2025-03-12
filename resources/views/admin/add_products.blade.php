@@ -46,7 +46,8 @@
                         </div>
                         <div class="form-group mt-3">
                             <label>{{ __('admin/add_product.upload_image') }}:</label>
-                            <input type="file" class="form-control" name="image" id="image" accept="image/*"
+                            <input type="file" class="form-control" name="image" id="image"
+                                accept="image/png, image/jpeg, image/jpg, image/gif, image/webp, image/bmp, image/tiff"
                                 required>
                         </div>
                         <div class="text-center mt-3">
@@ -117,14 +118,22 @@
                 }
             })
             .then(response => {
-                alert("Product added successfully!");
-                // console.log(response.data);
+                alert(response.data.message);
                 document.getElementById("product-form").reset();
                 submitBtn.disabled = false;
             })
             .catch(error => {
-                console.error("Error adding product:", error.response);
-                alert("Failed to add product.");
+                let message = "Failed to add product.";
+
+                // Handle validation errors
+                if (error.response && error.response.data.errors) {
+                    message = Object.values(error.response.data.errors).flat().join("\n");
+                }
+                // Handle general errors
+                else if (error.response && error.response.data.error) {
+                    message = error.response.data.error;
+                }
+                alert(message); // Show error message(s)
                 submitBtn.disabled = false;
             });
     });

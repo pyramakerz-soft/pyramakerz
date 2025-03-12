@@ -114,6 +114,9 @@
         document.getElementById("updatePasswordForm").addEventListener("submit", function(event) {
             event.preventDefault();
 
+            let passwordMessage = document.getElementById("password-message");
+            passwordMessage.innerHTML = ""; // Clear previous messages
+
             axios.post(@json(url('/api/update-password')), {
                     current_password: document.getElementById("current_password").value,
                     new_password: document.getElementById("new_password").value
@@ -123,12 +126,27 @@
                     }
                 })
                 .then(response => {
-                    document.getElementById("password-message").innerText = response.data.message;
+                    passwordMessage.innerText = response.data.message;
+                    passwordMessage.style.color = "green"; // Success message in green
                 })
                 .catch(error => {
-                    document.getElementById("password-message").innerText = error.response.data.error || "Ensure new password is minimum 6 characters";
+                    if (error.response && error.response.data.errors) {
+                        let errors = error.response.data.errors;
+                        let errorMessages = "";
+
+                        for (let field in errors) {
+                            errorMessages += errors[field].join("<br>") + "<br>"; // Join multiple errors per field
+                        }
+
+                        passwordMessage.innerHTML = errorMessages;
+                        passwordMessage.style.color = "red"; // Error messages in red
+                    } else {
+                        passwordMessage.innerText = error.response.data.error || "تأكد من أن كلمة المرور الجديدة تحتوي على 6 أحرف على الأقل";
+                        passwordMessage.style.color = "red";
+                    }
                 });
         });
+
 
         // Fetch Orders
         axios.get(@json(url('/api/user/orders')), {

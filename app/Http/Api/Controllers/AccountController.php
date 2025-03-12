@@ -46,7 +46,11 @@ class AccountController extends Controller
         $user = Auth::user();
 
         if (!Hash::check($request->current_password, $user->password)) {
-            return response()->json(['error' => 'Current password is incorrect'], 400);
+            if (app()->getLocale() === 'ar') {
+                return response()->json(['error' => 'كلمة المرور الحالية غير صحيحة'], 400);
+            } else {
+                return response()->json(['error' => 'Current password is incorrect'], 400);
+            }
         }
 
         $user->update(['password' => Hash::make($request->new_password)]);

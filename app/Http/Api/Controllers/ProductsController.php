@@ -37,7 +37,11 @@ class ProductsController extends Controller
             $imageName = time() . '.' . request()->image->getClientOriginalExtension();
             request()->image->move(public_path('products'), $imageName);
         } else {
-            return response()->json(['error' => 'Image upload failed'], 400);
+            if (app()->getLocale() === 'ar') {
+                return response()->json(['error' => 'فشل تحميل الصورة'], 400);
+            } else {
+                return response()->json(['error' => 'Image upload failed'], 400);
+            }
         }
         // dd($request->all);
         // Create Product
@@ -48,8 +52,11 @@ class ProductsController extends Controller
             'price' => $request->price,
             'image' => $imageName,
         ]);
-
-        return response()->json(['message' => 'Product added successfully', 'product' => $product], 201);
+        if (app()->getLocale() === 'ar') {
+            return response()->json(['message' => 'تمت إضافة المنتج بنجاح', 'product' => $product], 201);
+        } else {
+            return response()->json(['message' => 'Product added successfully', 'product' => $product], 201);
+        }
     }
 
     /**
