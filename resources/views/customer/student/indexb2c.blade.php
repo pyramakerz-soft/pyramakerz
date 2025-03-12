@@ -2,15 +2,15 @@
 @section('page_css')
     @include('layouts.main_css')
     <!-- Vendor CSS Files -->
-    <link href="{{ asset('assets/assetsb2c/vendor/aos/aos.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/assetsb2c/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/assetsb2c/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/assetsb2c/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/assetsb2c/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/assetsb2c/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="assets/assetsb2c/css/style.css" rel="stylesheet">
+    <link href="assets/css/style2.css" rel="stylesheet">
     <!-- Variables CSS Files. Uncomment your preferred color scheme -->
     <link href="assets/css/variables-orange.css" rel="stylesheet">
     <!-- Template Main CSS File -->
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 hero-img image" data-aos="zoom-out" data-aos-delay="200">
-                    <img src="assets/assetsb2c/img/ai3.png" class="img-fluid" alt="">
+                    <img src="assets/img/ai3.png" class="img-fluid" alt="">
                 </div>
             </div>
         </div>
@@ -61,10 +61,10 @@
 
                     <div class="row">
                         <div class="col-lg-5 align-items-stretch video-box" data-aos="zoom-in-up"
-                            style="background-image: url('assets/assetsb2c/img/map.jpg'); background-size: contain; border-radius:60px;"
+                            style="background-image: url('assets/img/map.jpg'); background-size: contain; border-radius:60px;"
                             data-aos="zoom-out" data-aos-delay="200">
-                            <a href="{{ asset('assets/img/courses_road_map_english.mp4') }}" class="venobox play-btn mb-4"
-                                data-vbtype="video" data-autoplay="true" target="blank"></a>
+                            <a href="https://srv1287-files.hstgr.io/14ac8d27bfcc0e17/files/public_html/img/Courses%20Road%20Map_English.mp4"
+                                class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true" target="blank"></a>
                         </div>
 
                         <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch"
@@ -100,7 +100,7 @@
 
                     <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="box image">
-                            <img src="assetsb2c/img/course1.png" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/course1.png') }}" class="img-fluid" alt="">
                             <h3>{{ __('students.mobile_dev') }}</h3>
                             <p>{{ __('students.mobile_paragraph') }}</p>
                         </div>
@@ -108,7 +108,7 @@
 
                     <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
                         <div class="box image">
-                            <img src="assets/assetsb2c/img/course2.png" class="img-fluid" alt="">
+                            <img src="assets/img/course2.png" class="img-fluid" alt="">
                             <h3>{{ __('students.game_dev') }}</h3>
                             <br>
                             <p>{{ __('students.game_paragraph') }}</p>
@@ -117,7 +117,7 @@
 
                     <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="600">
                         <div class="box image">
-                            <img src="assets/assetsb2c/img/course3.png" class="img-fluid" alt="">
+                            <img src="assets/img/course3.png" class="img-fluid" alt="">
                             <h3>{{ __('students.artificial_intelligence') }}</h3>
                             <br>
                             <p>{{ __('students.artificial_paragraph') }}</p>
@@ -130,7 +130,7 @@
 
                     <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="box image">
-                            <img src="assets/assetsb2c/img/course4.png" class="img-fluid" alt="">
+                            <img src="assets/img/course4.png" class="img-fluid" alt="">
                             <h3>{{ __('students.web_dev') }}</h3>
                             <br>
                             <p>{{ __('students.web_paragraph') }}</p>
@@ -139,7 +139,7 @@
 
                     <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
                         <div class="box image">
-                            <img src="assets/assetsb2c/img/course5.png" class="img-fluid" alt="">
+                            <img src="assets/img/course5.png" class="img-fluid" alt="">
                             <h3>{{ __('students.robotics') }}</h3>
                             <p>{{ __('students.robotics_paragraph') }}</p>
                         </div>
@@ -167,7 +167,7 @@
                 <div class="row">
 
                     <div class="col-lg-6 image">
-                        <img src="assets/assetsb2c/img/level1.png" class="img-fluid" alt="">
+                        <img src="assets/img/level1.png" class="img-fluid" alt="">
                     </div>
 
                     <div class="col-lg-6 mt-5 mt-lg-0 d-flex">
@@ -225,7 +225,7 @@
                     <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="service-box orange">
                             <div class="image">
-                                <img src="assets/assetsb2c/img/level1-1.png" style="height: 200px;">
+                                <img src="assets/img/level1-1.png" style="height: 200px;">
                             </div>
                             <h2>
                                 {{ __('students.scratch_jr') }}
@@ -242,7 +242,7 @@
                     <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="service-box orange">
                             <div class="image">
-                                <img src="assets/assetsb2c/img/level1-2.png" style="height: 200px;">
+                                <img src="assets/img/level1-2.png" style="height: 200px;">
                             </div>
                             <h2>
                                 {{ __('students.pictoblox') }}
@@ -281,7 +281,7 @@
                 <div class="row">
 
                     <div class="col-lg-6 image">
-                        <img src="assets/assetsb2c/img/level2.jpg" class="img-fluid" alt="">
+                        <img src="assets/img/level2.jpg" class="img-fluid" alt="">
                         <br>
 
 
@@ -382,7 +382,7 @@
                     <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="service-box orange">
                             <div class="image">
-                                <img src="assets/assetsb2c/img/game1.png" style="height: 200px;">
+                                <img src="assets/img/game1.png" style="height: 200px;">
                             </div>
                             <h2>
                                 {{ __('students.roblox') }}
@@ -398,7 +398,7 @@
                     <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="service-box orange">
                             <div class="image">
-                                <img src="assets/assetsb2c/img/game2.png" style="height: 200px; width:auto;">
+                                <img src="assets/img/game2.png" style="height: 200px; width:auto;">
                             </div>
                             <h2>
                                 {{ __('students.unity') }}
@@ -435,7 +435,7 @@
                     <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="service-box orange">
                             <div class="image">
-                                <img src="assets/assetsb2c/img/mobile1.png" style="height: 200px;">
+                                <img src="assets/img/mobile1.png" style="height: 200px;">
                             </div>
 
                             <h2>
@@ -452,7 +452,7 @@
                     <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="service-box orange">
                             <div class="image">
-                                <img src="assets/assetsb2c/img/mobile2.png" style="height: 200px; width:auto;">
+                                <img src="assets/img/mobile2.png" style="height: 200px; width:auto;">
                             </div>
                             <h2>
                                 {{ __('students.flutter') }}
@@ -494,7 +494,7 @@
                     <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="service-box orange">
                             <div class="image">
-                                <img src="assets/assetsb2c/img/level1-1.png" style="height: 200px;">
+                                <img src="assets/img/level1-1.png" style="height: 200px;">
                             </div>
                             <h2>
                                 PICTOBLOX AI
@@ -513,7 +513,7 @@
                     <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="service-box orange">
                             <div class="image">
-                                <img src="assets/assetsb2c/img/ai2.png" style="height: 200px; width:auto;">
+                                <img src="assets/img/ai2.png" style="height: 200px; width:auto;">
                             </div>
                             <h2>
                                 Python & ML
@@ -553,7 +553,7 @@
                     <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="service-box orange">
 
-                            <img src="assets/assetsb2c/img/robot1.png" style="height: 200px;">
+                            <img src="assets/img/robot1.png" style="height: 200px;">
                             <h2>
                                 TinkerCad & Real Projects
 
@@ -571,7 +571,7 @@
                     <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="service-box orange">
                             <div class="image">
-                                <img src="assets/assetsb2c/img/robot2.png" style="height: 200px; width:auto;">
+                                <img src="assets/img/robot2.png" style="height: 200px; width:auto;">
                             </div>
                             <h2>
                                 3D and Laser Cutting
@@ -614,7 +614,7 @@
                         <div class="service-box orange">
 
                             <div class="image">
-                                <img src="assets/assetsb2c/img/web1.png" style="height: 200px; ">
+                                <img src="assets/img/web1.png" style="height: 200px; ">
                             </div>
 
                             <h2>
@@ -634,7 +634,7 @@
                     <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="service-box orange">
                             <div class="image">
-                                <img src="assets/assetsb2c/img/web2.png" style="height: 200px; width:auto;">
+                                <img src="assets/img/web2.png" style="height: 200px; width:auto;">
                             </div>
                             <h2>
                                 HTML, CSS, Java script
@@ -747,27 +747,27 @@
 
 
     <!-- <div class="wh-api">
-                    <div class="wh-fixed whatsapp-pulse">
-                        <a href="https://api.whatsapp.com/send?phone=+201220016331&text=Welcome to Pyramakerz" target="blank">
-                            <button class="wh-ap-btn"></button>
-                        </a>
-                    </div>
-                </div> -->
+                <div class="wh-fixed whatsapp-pulse">
+                    <a href="https://api.whatsapp.com/send?phone=+201220016331&text=Welcome to Pyramakerz" target="blank">
+                        <button class="wh-ap-btn"></button>
+                    </a>
+                </div>
+            </div> -->
 
     <!-- <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
-                    class="bi bi-arrow-up-short"></i></a> -->
+                class="bi bi-arrow-up-short"></i></a> -->
 
     <div id="preloader"></div>
 @endsection
 
 
 @section('page_js')
-    <script src="assets/assetsb2c/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="assets/assetsb2c/vendor/aos/aos.js"></script>
-    <script src="assets/assetsb2c/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/assetsb2c/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/assetsb2c/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/assetsb2c/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/vendor/swiper/swiper-bundle.min.js"></script>
     <!--<script src="assetsb2c/vendor/php-email-form/validate.js"></script>-->
 
     <!-- Template Main JS File -->
