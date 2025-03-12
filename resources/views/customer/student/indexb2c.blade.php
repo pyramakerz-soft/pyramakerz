@@ -61,7 +61,7 @@
 
                     <div class="row">
                         <div class="col-lg-5 align-items-stretch video-box" data-aos="zoom-in-up"
-                            style="background-image: url('assets/img/map.jpg'); background-size: contain; border-radius:60px;"
+                            style="background-image: url('assets/img/mapp.jpg'); background-size: contain; border-radius:60px;"
                             data-aos="zoom-out" data-aos-delay="200">
                             <a href="https://srv1287-files.hstgr.io/14ac8d27bfcc0e17/files/public_html/img/Courses%20Road%20Map_English.mp4"
                                 class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true" target="blank"></a>
