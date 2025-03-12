@@ -10,11 +10,11 @@
     <link href="{{ asset('assets/vendor/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="assets/css/style2.css" rel="stylesheet">
+    <link href="{{ asset('assets/css/style2.css') }}" rel="stylesheet">
     <!-- Variables CSS Files. Uncomment your preferred color scheme -->
-    <link href="assets/css/variables-orange.css" rel="stylesheet">
+    <link href="{{ asset('assets/css/variables-orange.css') }}" rel="stylesheet">
     <!-- Template Main CSS File -->
-    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 @endsection
 
@@ -747,29 +747,29 @@
 
 
     <!-- <div class="wh-api">
-                <div class="wh-fixed whatsapp-pulse">
-                    <a href="https://api.whatsapp.com/send?phone=+201220016331&text=Welcome to Pyramakerz" target="blank">
-                        <button class="wh-ap-btn"></button>
-                    </a>
-                </div>
-            </div> -->
+                                <div class="wh-fixed whatsapp-pulse">
+                                    <a href="https://api.whatsapp.com/send?phone=+201220016331&text=Welcome to Pyramakerz" target="blank">
+                                        <button class="wh-ap-btn"></button>
+                                    </a>
+                                </div>
+                            </div> -->
 
     <!-- <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
-                class="bi bi-arrow-up-short"></i></a> -->
+                                class="bi bi-arrow-up-short"></i></a> -->
 
     <div id="preloader"></div>
 @endsection
 
 
 @section('page_js')
-    <script src="assets/vendor/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="assets/vendor/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="{{ asset('assets/vendor/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+    <script src="{{ asset('assets/vendor/vendor/aos/aos.js') }}"></script>
+    <script src="{{ asset('assets/vendor/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/vendor/swiper/swiper-bundle.min.js') }}"></script>
     <!--<script src="assetsb2c/vendor/php-email-form/validate.js"></script>-->
 
     <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 @endsection
