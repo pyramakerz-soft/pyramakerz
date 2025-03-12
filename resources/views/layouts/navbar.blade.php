@@ -36,11 +36,12 @@
 
     <div class="buttons d-flex align-items-center">
       <a class="btn-getstarted scrollto d-inline-block" style="width: auto; white-space: nowrap; text-align: center;" href="{{ route("customer.index")}}/#contact" data-aos="flip-up" data-aos-delay="400">{{ __('navbar.contact') }}</a>
-
+      <!-- Auth Section -->
+      <div id="authLinks"></div>
       <!-- Language Switcher -->
       <div class="dropdown mx-3">
         <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">
-          🌍 {{ strtoupper(app()->getLocale()) }}
+          {{ strtoupper(app()->getLocale()) }}
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
           <li><a class="dropdown-item" href="{{ route('change.lang', 'en') }}">English</a></li>
@@ -48,8 +49,6 @@
         </ul>
       </div>
 
-      <!-- Auth Section -->
-      <div id="authLinks"></div>
     </div>
 
   </div>
@@ -89,7 +88,7 @@
       document.getElementById("authLinks").innerHTML = `
                   <div class="dropdown">
                       <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-person-circle" style="font-size: 24px; color: #ff7f00;"></i>
+                          <i class="bi bi-person-circle" style="font-size: 24px; color: #ff7f00; margin-right: 7px;"></i>
                       </a>
                       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
                           <li><a class="dropdown-item" href="{{ route('customer.account') }}">{{ __('navbar.manage_account') }}</a></li>

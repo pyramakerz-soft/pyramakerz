@@ -186,7 +186,9 @@
                                         <li>
                                             <div class="course__summery__item">
                                                 <span class="sb_label">{{ __('packages.price') }}: </span>
-                                                <span class="sb_content" id="final-price"><a href="#"><span id="calculated-price">{{ $package->price ?? '0' }}</span> SAR</a></span>
+                                                <span class="sb_content" id="final-price">
+                                                    <span id="calculated-price">{{ $package->price ?? '0' }}</span> SAR
+                                                </span>
                                             </div>
                                             <p id="discount-info" class="text-success" style="display: none;"></p>
                                         </li>

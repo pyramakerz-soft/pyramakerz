@@ -101,4 +101,30 @@ class AuthController extends Controller
         $request->user()->tokens()->delete();
         return response()->json(['message' => 'Logged out'], 200);
     }
+    public function resendOTP(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+        if ($user->email_verified_at != null) {
+            return response()->json(['error' => 'Email already verified'], 400);
+        }
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        if ($user->otp && Carbon::now()->lessThan($user->otp_expires_at)) {
+            $time = Carbon::now()->diffInSeconds($user->otp_expires_at);
+            return response()->json(['error' => "Please wait $time seconds"], 400);
+        }
+
+        $user->generateOTP();
+
+        Mail::to($user->email)->send(new OTPMail($user->otp));
+
+        return response()->json(['message' => 'OTP sent to email.'], 200);
+    }
 }

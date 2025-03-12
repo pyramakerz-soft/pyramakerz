@@ -120,7 +120,6 @@
                     otp
                 })
                 .then(response => {
-                    console.log(response);
                     document.getElementById('otpMessage').innerText = response.data.message;
                     localStorage.removeItem('otp_email'); // Remove stored email after verification
                     setTimeout(() => {
@@ -139,10 +138,16 @@
                     email
                 })
                 .then(response => {
-                    alert("OTP has been resent to your email!");
+                    document.getElementById('otpMessage').innerText = "OTP has been resent to your email!";
+                    document.getElementById('otpMessage').style.color = "green";
                 })
                 .catch(error => {
-                    alert("Failed to resend OTP.");
+                    let errorMessage = "Failed to resend OTP.";
+                    if (error.response && error.response.data && error.response.data.error) {
+                        errorMessage = error.response.data.error;
+                    }
+                    document.getElementById('otpMessage').innerText = errorMessage;
+                    document.getElementById('otpMessage').style.color = "red";
                 });
         }
     </script>

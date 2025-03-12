@@ -23,6 +23,7 @@ use App\Http\Api\Controllers\ProductsController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/verify-otp', [AuthController::class, 'verifyOTP']);
+Route::post('/resend-otp', [AuthController::class, 'resendOTP']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 

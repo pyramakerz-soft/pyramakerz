@@ -6,7 +6,7 @@
 
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-info">
-                        <img src="./assets/img/logo-orange.png">
+                        <img src="{{ asset('assets/img/logo-orange.png') }}" alt="Pyramakerz" class="img-fluid">
                         <p>
                             {{ __('footer.company_description') }}
                         </p>

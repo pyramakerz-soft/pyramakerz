@@ -136,7 +136,7 @@
                 }
             })
             .then(response => {
-                alert("Package added successfully!");
+                alert(response.data.message);
                 document.getElementById("package-form").reset();
                 document.querySelectorAll(".product-checkbox").forEach((checkbox) => {
                     toggleQuantityInput(checkbox);
@@ -144,8 +144,18 @@
                 submitBtn.disabled = false;
             })
             .catch(error => {
-                console.error("Error adding package:", error.response);
-                alert("Failed to add package.");
+                let message = "Failed to add package.";
+
+                // Handle validation errors
+                if (error.response && error.response.data.errors) {
+                    message = Object.values(error.response.data.errors).flat().join("\n");
+                }
+                // Handle general errors
+                else if (error.response && error.response.data.error) {
+                    message = error.response.data.error;
+                }
+
+                alert(message);
                 submitForm.disabled = false;
             });
     });

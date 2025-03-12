@@ -36,7 +36,7 @@ class User extends Authenticatable
     public function generateOTP()
     {
         $this->otp = rand(100000, 999999);
-        $this->otp_expires_at = Carbon::now()->addMinutes(10);
+        $this->otp_expires_at = Carbon::now()->addMinutes(3);
         $this->save();
     }
 }
