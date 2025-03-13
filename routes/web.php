@@ -39,7 +39,11 @@ Route::get('/packages', [CustomerController::class, 'packages'])->name('customer
 Route::get('/customize', [CustomerController::class, 'customizePackage'])->name('customer.customizePackage');
 
 Route::get('/admin/add_product', [AdminController::class, 'addProduct'])->name('admin.addProduct');
-Route::get('/admin/add_package', [AdminController::class, 'addPackage'])->name('admin.addPackage');
+
+Route::get('/admin/packages/view', [AdminController::class, 'viewPackages'])->name('admin.viewPackages');
+Route::get('/admin/packages/add_package', [AdminController::class, 'addPackage'])->name('admin.addPackage');
+
+Route::get('/admin/add_promo', [AdminController::class, 'addPromo'])->name('admin.addPromo');
 /////
 // Route::get('/view-products', [ProductsController::class, 'index'])->name('products.index');
 Route::get('/packages/{package}', [PlanController::class, 'show'])->name('customer.package_info');

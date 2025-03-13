@@ -1,5 +1,10 @@
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top" data-scrollto-offset="0">
+  <style>
+    .navbar>ul>li {
+      white-space: normal !important;
+    }
+  </style>
   <div class="container-fluid d-flex align-items-center justify-content-between">
 
     <a href="{{ route('customer.index') }}" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
@@ -23,10 +28,11 @@
 
 
 
-        <li class="dropdown" id="admin-menu" style="display: none;"><a href="{{ route("customer.index") }}">Admin Menu <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+        <li class="dropdown" id="admin-menu" style="display: none;"><a href="{{ route("customer.index") }}">{{ __('navbar.admin_menu') }} <i class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
-            <li class="admin_choices"><a class="nav-link scrollto" href="{{ route('admin.addProduct') }}">Add Product</a></li>
-            <li class="admin_choices"><a class="nav-link scrollto" href="{{ route('admin.addPackage') }}">Add Package</a></li>
+            <li class="admin_choices"><a class="nav-link scrollto" href="{{ route('admin.addProduct') }}">{{__('navbar.add_product')}}</a></li>
+            <li class="admin_choices"><a class="nav-link scrollto" href="{{ route('admin.viewPackages') }}">{{__('navbar.packages')}}</a></li>
+            <li class="admin_choices"><a class="nav-link scrollto" href="{{ route('admin.addPromo') }}">{{__('navbar.add_promo')}}</a></li>
           </ul>
         </li>
 

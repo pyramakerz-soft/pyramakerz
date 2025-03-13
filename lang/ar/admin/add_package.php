@@ -7,4 +7,7 @@ return [
     "upload_image" => "رفع صورة",
     "add" => "اضافة باقة",
     "select_product" => "اختيار منتج",
+    "image" => "صورة الباقة",
+    "actions" => "الإجراءات",
+    "delete" => "حذف الباقة",
 ];

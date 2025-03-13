@@ -19,40 +19,36 @@
 
                 </div>
                 <div class="col-lg-7" data-aos="flip-right" data-aos-delay="400">
-                    <form id="product-form" method="post" enctype="multipart/form-data">
+                    <form id="promo-form" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                <label>{{ __('admin/add_product.name_en') }}:</label>
-                                <input type="text" name="en_name" class="form-control" id="en_name"
-                                    placeholder="{{ __('admin/add_product.name_en') }}" required>
-                            </div>
-                            <div class="col-md-6 form-group mt-3 mt-md-0">
-                                <label>{{ __('admin/add_product.name_ar') }}:</label>
-                                <input type="text" class="form-control" name="ar_name" id="ar_name"
-                                    placeholder="{{ __('admin/add_product.name_ar') }}" required>
+                                <label>{{ __('admin/add_promo.code') }}:</label>
+                                <input type="text" name="code" class="form-control" id="code"
+                                    placeholder="{{ __('admin/add_promo.code') }}" required>
                             </div>
                         </div>
                         <div class="form-group mt-3">
-                            <label>{{ __('admin/add_product.desc') }}:</label>
-                            <input type="text" class="form-control" name="description" id="description"
-                                placeholder="{{ __('admin/add_product.desc') }}" required>
+                            <label>{{ __('admin/add_promo.discount_type') }}:</label>
+                            <select name="discount_type" class="form-control" id="discount_type" required>
+                                <option value="fixed">Fixed Amount</option>
+                                <option value="percentage">Percentage</option>
+                            </select>
                         </div>
                         <div class="form-group mt-3">
-                            <label>{{ __('admin/add_product.price') }}:</label>
-                            <input type="number" class="form-control" name="price" id="price"
-                                placeholder="{{ __('admin/add_product.price') }}" required step="0.01"
+                            <label>{{ __('admin/add_promo.discount_amount') }}:</label>
+                            <input type="number" class="form-control" name="discount_amount" id="discount_amount"
+                                placeholder="{{ __('admin/add_promo.discount_amount') }}" required step="1"
                                 min="0">
                         </div>
                         <div class="form-group mt-3">
-                            <label>{{ __('admin/add_product.upload_image') }}:</label>
-                            <input type="file" class="form-control" name="image" id="image"
-                                accept="image/png, image/jpeg, image/jpg, image/gif, image/webp, image/bmp, image/tiff"
-                                required>
+                            <label>{{ __('admin/add_promo.valid_until') }}:</label>
+                            <input type="date" class="form-control" name="valid_until" id="valid_until" required>
                         </div>
+
                         <div class="text-center mt-3">
                             <button type="submit" class="btn btn-sucess" id="submitForm" data-aos="flip-up"
-                                data-aos-delay="200">{{ __('admin/add_product.add') }}</button>
+                                data-aos-delay="200">{{ __('admin/add_promo.add') }}</button>
                         </div>
                     </form>
                 </div>
@@ -94,7 +90,7 @@
                 .then(response => {
                     let user = response.data;
                     if (user.role === "admin") {
-                        document.getElementById('admin-content').style.display = 'block';
+                        document.getElementById('itemstable').style.display = 'block';
                     } else {
                         window.location.href = "{{ route('customer.index') }}"
                     }
@@ -119,22 +115,21 @@
 </script>
 
 <script>
-    document.getElementById("product-form").addEventListener("submit", function(e) {
+    document.getElementById("promo-form").addEventListener("submit", function(e) {
         e.preventDefault();
         const submitBtn = document.getElementById("submitForm");
         submitBtn.disabled = true;
 
         let formData = new FormData();
-        formData.append("en_name", document.getElementById("en_name").value);
-        formData.append("ar_name", document.getElementById("ar_name").value);
-        formData.append("description", document.getElementById("description").value);
-        formData.append("price", document.getElementById("price").value);
-        formData.append("image", document.getElementById("image").files[0]);
+        formData.append("code", document.getElementById("code").value);
+        formData.append("discount_type", document.getElementById("discount_type").value);
+        formData.append("discount_amount", document.getElementById("discount_amount").value);
+        formData.append("valid_until", document.getElementById("valid_until").value);
 
 
         let token = localStorage.getItem("auth_token_pyra12234");
 
-        axios.post(@json(url('/api/products')), formData, {
+        axios.post(@json(url('/api/promocodes')), formData, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "multipart/form-data"
@@ -142,11 +137,11 @@
             })
             .then(response => {
                 alert(response.data.message);
-                document.getElementById("product-form").reset();
+                document.getElementById("promo-form").reset();
                 submitBtn.disabled = false;
             })
             .catch(error => {
-                let message = "Failed to add product.";
+                let message = "Failed to add Promocode.";
 
                 // Handle validation errors
                 if (error.response && error.response.data.errors) {

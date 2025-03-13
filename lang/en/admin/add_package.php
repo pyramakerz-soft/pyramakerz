@@ -7,4 +7,7 @@ return [
     "upload_image" => "Upload Image",
     "add" => "Add Package",
     "select_product" => "Select Products",
+    "image" => "Package Image",
+    "actions" => "Actions",
+    "delete" => "Delete Package",
 ];

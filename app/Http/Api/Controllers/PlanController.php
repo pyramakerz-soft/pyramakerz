@@ -93,8 +93,16 @@ class PlanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        $package = Package::find($request->package_id);
+
+        if (!$package) {
+            return response()->json(['message' => 'Package not found'], 404);
+        }
+
+        $package->delete();
+
+        return response()->json(['message' => 'Package deleted successfully']);
     }
 }

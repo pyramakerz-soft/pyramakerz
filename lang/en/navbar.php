@@ -13,4 +13,8 @@ return [
     'manage_account' => 'Manage Account',
     'login' => 'Login',
     'logout' => 'Logout',
+    'admin_menu' => 'Admin Menu',
+    'add_package' => 'Add Package',
+    'add_product' => 'Add Product',
+    'add_promo' => 'Add Promocode',
 ];

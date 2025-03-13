@@ -13,4 +13,9 @@ return [
     'manage_account' => 'إدارة الحساب',
     'login' => 'تسجيل الدخول',
     'logout' => 'تسجيل الخروج',
+    'admin_menu' => 'قائمة الإدارة',
+    'add_package' => 'إضافة باقة',
+    'add_product' => 'إضافة منتج',
+    'add_promo' => 'أضف الرمز الترويجي',
+
 ];
