@@ -8,7 +8,7 @@
         <div class="container">
 
             <div class="section-header" data-aos="zoom-in-up" data-aos-delay="200">
-                <h2>{{ __('admin/add_product.add') }} </h2>
+                <h2>{{ __('admin/add_promo.add') }} </h2>
             </div>
         </div>
 

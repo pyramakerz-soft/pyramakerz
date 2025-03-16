@@ -10,4 +10,7 @@ return [
     "image" => "Package Image",
     "actions" => "Actions",
     "delete" => "Delete Package",
+    "title" => "Added Packages",
+    "deletealert" => "Are you sure you want to delete this package?"
+
 ];

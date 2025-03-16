@@ -30,9 +30,9 @@
 
         <li class="dropdown" id="admin-menu" style="display: none;"><a href="{{ route("customer.index") }}">{{ __('navbar.admin_menu') }} <i class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
-            <li class="admin_choices"><a class="nav-link scrollto" href="{{ route('admin.addProduct') }}">{{__('navbar.add_product')}}</a></li>
+            <li class="admin_choices"><a class="nav-link scrollto" href="{{ route('admin.viewProducts') }}">{{__('navbar.products')}}</a></li>
             <li class="admin_choices"><a class="nav-link scrollto" href="{{ route('admin.viewPackages') }}">{{__('navbar.packages')}}</a></li>
-            <li class="admin_choices"><a class="nav-link scrollto" href="{{ route('admin.addPromo') }}">{{__('navbar.add_promo')}}</a></li>
+            <li class="admin_choices"><a class="nav-link scrollto" href="{{ route('admin.viewPromos') }}">{{__('navbar.promos')}}</a></li>
           </ul>
         </li>
 

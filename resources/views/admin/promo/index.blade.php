@@ -9,7 +9,7 @@
 
         <div class="container mt-3">
             <div class="section-header text-center" data-aos="zoom-in-up">
-                <h2 class="fw-bold text-uppercase fs-1">{{ __('admin/add_package.title') }}</h2>
+                <h2 class="fw-bold text-uppercase fs-1">{{ __('admin/add_promo.title') }}</h2>
             </div>
             <!-- User Orders Section -->
             <div class="card" data-aos="fade-up" style="border: none !important;">
@@ -19,36 +19,36 @@
                         <table class="table table-bordered table-striped align-middle">
                             <thead class="table-dark">
                                 <tr>
-                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_package.name_en') }}</th>
-                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_package.name_ar') }}</th>
-                                    <th class="col-3 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_package.desc') }}</th>
-                                    <th class="col-1 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_package.price') }}</th>
-                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_package.image') }}</th>
-                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_package.actions') }}</th>
+                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_promo.code') }}</th>
+                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_promo.discount_type') }}</th>
+                                    <th class="col-3 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_promo.discount_amount') }}</th>
+                                    <th class="col-1 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_promo.times_used') }}</th>
+                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_promo.valid_until') }}</th>
+                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_product.actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody id="orderslist">
-                                @forelse ($packages as $package)
+                                @forelse ($promos as $promo)
                                 <tr>
-                                    <td class="col-2 text-center">{{ $package->name }}</td>
-                                    <td class="col-2 text-center">{{ $package->ar_name }}</td>
-                                    <td class="col-2 text-center">{{ $package->description }}</td>
-                                    <td class="col-2 text-center">{{ $package->price }} SAR</td>
-                                    <td class="col-2 text-center"><img src="{{ asset("package/$package->image") }}" class="img-fluid" alt=""></td>
+                                    <td class="col-2 text-center">{{ $promo->code }}</td>
+                                    <td class="col-2 text-center">{{ $promo->discount_type }}</td>
+                                    <td class="col-2 text-center">{{ $promo->discount_amount }}</td>
+                                    <td class="col-2 text-center">{{ $promo->times_used }}</td>
+                                    <td class="col-2 text-center">{{ $promo->valid_until }}</td>
                                     <td class="col-2 text-center">
-                                        <button class="dropdown-item text-danger" onclick="deletePackage({{ $package->id }})">
-                                            {{ __('admin/add_package.delete') }}
+                                        <button class="dropdown-item text-danger" onclick="deletePromo({{ $promo->id }})">
+                                            {{ __('admin/add_promo.delete') }}
                                         </button>
                                     </td>
                                 </tr>
                                 @empty
-                                <p>No packages available.</p>
+                                <p>No Promos available.</p>
                                 @endforelse
                             </tbody>
                         </table>
                         <div class="text-center mt-3">
-                            <a href="{{ route('admin.addPackage') }}" class="btn btn-sucess" id="submitForm" data-aos="flip-up"
-                                data-aos-delay="200">{{ __('admin/add_package.add') }}</a>
+                            <a href="{{ route('admin.addPromo') }}" class="btn btn-sucess" id="submitForm" data-aos="flip-up"
+                                data-aos-delay="200">{{ __('admin/add_promo.add') }}</a>
                         </div>
                     </div>
                 </div>
@@ -101,14 +101,14 @@
 </script>
 
 <script>
-    function deletePackage(productId) {
-        if (!confirm("{{ __('admin/add_package.deletealert') }}")) {
+    function deletePromo(promoId) {
+        if (!confirm("{{ __('admin/add_promo.deletealert') }}")) {
             return;
         }
 
         let token = localStorage.getItem("auth_token_pyra12234");
 
-        axios.delete(@json(url('api/packages/delete')) + `?package_id=${productId}`, {
+        axios.delete(@json(url('api/promocodes/delete')) + `?promo_id=${promoId}`, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
@@ -119,8 +119,8 @@
                 location.reload(); // Reload the page to reflect changes
             })
             .catch(error => {
-                console.error("Error deleting Package:", error.response);
-                alert("Failed to delete Package.");
+                console.error("Error deleting Promo:", error.response);
+                alert("Failed to delete Promo.");
             });
     }
 </script>

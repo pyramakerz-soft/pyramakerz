@@ -17,7 +17,7 @@ class PromocodeController extends Controller
 
         if (!$promocode) {
 
-            if (app()->getLocale() === 'ar') {
+            if (session('locale') === 'ar') {
                 return response()->json(['error' => 'رمز ترويجي غير صالح'], 400);
             } else {
                 return response()->json(['error' => 'Invalid promocode'], 400);
@@ -47,21 +47,27 @@ class PromocodeController extends Controller
             'valid_until' => $request->valid_until,
             'is_active' => 1,
         ]);
-        if (app()->getLocale() === 'ar') {
+        if (session('locale') === 'ar') {
             return response()->json(['message' => 'تمت إضافة الرمز الترويجي بنجاح'], 201);
         } else {
             return response()->json(['message' => 'Promocode added successfully'], 201);
         }
     }
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $promocode = Promocode::findOrFail($id);
-        $promocode->delete();
+        $promo = Promocode::find($request->promo_id);
 
-        if (app()->getLocale() === 'ar') {
-            return response()->json(['message' => 'تمت مسح الرمز الترويجي بنجاح'], 200);
-        } else {
-            return response()->json(['message' => 'Promocode deleted successfully'], 200);
+        if (!$promo) {
+            if (session('locale') === 'ar') {
+                return response()->json(['message' => 'لم يتم العثور على الرمز الترويجي'], 404);
+            }
+            return response()->json(['message' => 'Promocode not found'], 404);
         }
+
+        $promo->delete();
+        if (session('locale') === 'ar') {
+            return response()->json(['message' => 'تم حذف الرمز الترويجي بنجاح']);
+        }
+        return response()->json(['message' => 'Promocode deleted successfully']);
     }
 }

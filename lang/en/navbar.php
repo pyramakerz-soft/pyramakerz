@@ -17,4 +17,7 @@ return [
     'add_package' => 'Add Package',
     'add_product' => 'Add Product',
     'add_promo' => 'Add Promocode',
+    'products' => 'Products',
+    'promos' => 'Promo Codes',
+
 ];

@@ -46,7 +46,8 @@ class AccountController extends Controller
         $user = Auth::user();
 
         if (!Hash::check($request->current_password, $user->password)) {
-            if (app()->getLocale() === 'ar') {
+            if (session('locale') === 'ar') {
+
                 return response()->json(['error' => 'كلمة المرور الحالية غير صحيحة'], 400);
             } else {
                 return response()->json(['error' => 'Current password is incorrect'], 400);
@@ -54,7 +55,7 @@ class AccountController extends Controller
         }
 
         $user->update(['password' => Hash::make($request->new_password)]);
-        if (app()->getLocale() === 'ar') {
+        if (session('locale') === 'ar') {
             return response()->json(['message' => 'تم تحديث كلمة المرور بنجاح']);
         } else {
             return response()->json(['message' => 'Password updated successfully']);
@@ -69,8 +70,12 @@ class AccountController extends Controller
             'message' => 'required|string',
         ]);
 
-        ContactUs::create($request->all());
+        ContactUs::create($request->only('name', 'email', 'subject', 'message'));
 
-        return response()->json(['message' => 'Thank you for contacting us! We will get back to you soon.'], 201);
+        if (session('locale') === 'ar') {
+            return response()->json(['message' => 'تم إرسال رسالتك بنجاح'], 201);
+        } else {
+            return response()->json(['message' => 'Your message has been sent'], 201);
+        }
     }
 }

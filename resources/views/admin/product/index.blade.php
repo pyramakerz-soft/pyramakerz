@@ -9,7 +9,7 @@
 
         <div class="container mt-3">
             <div class="section-header text-center" data-aos="zoom-in-up">
-                <h2 class="fw-bold text-uppercase fs-1">{{ __('admin/add_package.title') }}</h2>
+                <h2 class="fw-bold text-uppercase fs-1">{{ __('admin/add_product.title') }}</h2>
             </div>
             <!-- User Orders Section -->
             <div class="card" data-aos="fade-up" style="border: none !important;">
@@ -19,36 +19,36 @@
                         <table class="table table-bordered table-striped align-middle">
                             <thead class="table-dark">
                                 <tr>
-                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_package.name_en') }}</th>
-                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_package.name_ar') }}</th>
-                                    <th class="col-3 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_package.desc') }}</th>
-                                    <th class="col-1 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_package.price') }}</th>
-                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_package.image') }}</th>
-                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_package.actions') }}</th>
+                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_product.name_en') }}</th>
+                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_product.name_ar') }}</th>
+                                    <th class="col-3 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_product.desc') }}</th>
+                                    <th class="col-1 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_product.price') }}</th>
+                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_product.image') }}</th>
+                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_product.actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody id="orderslist">
-                                @forelse ($packages as $package)
+                                @forelse ($products as $product)
                                 <tr>
-                                    <td class="col-2 text-center">{{ $package->name }}</td>
-                                    <td class="col-2 text-center">{{ $package->ar_name }}</td>
-                                    <td class="col-2 text-center">{{ $package->description }}</td>
-                                    <td class="col-2 text-center">{{ $package->price }} SAR</td>
-                                    <td class="col-2 text-center"><img src="{{ asset("package/$package->image") }}" class="img-fluid" alt=""></td>
+                                    <td class="col-2 text-center">{{ $product->name }}</td>
+                                    <td class="col-2 text-center">{{ $product->ar_name }}</td>
+                                    <td class="col-2 text-center">{{ $product->description }}</td>
+                                    <td class="col-2 text-center">{{ $product->price }} SAR</td>
+                                    <td class="col-2 text-center"><img src="{{ asset("products/$product->image") }}" class="img-fluid" alt=""></td>
                                     <td class="col-2 text-center">
-                                        <button class="dropdown-item text-danger" onclick="deletePackage({{ $package->id }})">
-                                            {{ __('admin/add_package.delete') }}
+                                        <button class="dropdown-item text-danger" onclick="deleteProduct({{ $product->id }})">
+                                            {{ __('admin/add_product.delete') }}
                                         </button>
                                     </td>
                                 </tr>
                                 @empty
-                                <p>No packages available.</p>
+                                <p>No Products available.</p>
                                 @endforelse
                             </tbody>
                         </table>
                         <div class="text-center mt-3">
-                            <a href="{{ route('admin.addPackage') }}" class="btn btn-sucess" id="submitForm" data-aos="flip-up"
-                                data-aos-delay="200">{{ __('admin/add_package.add') }}</a>
+                            <a href="{{ route('admin.addProduct') }}" class="btn btn-sucess" id="submitForm" data-aos="flip-up"
+                                data-aos-delay="200">{{ __('admin/add_product.add') }}</a>
                         </div>
                     </div>
                 </div>
@@ -101,14 +101,14 @@
 </script>
 
 <script>
-    function deletePackage(productId) {
-        if (!confirm("{{ __('admin/add_package.deletealert') }}")) {
+    function deleteProduct(productId) {
+        if (!confirm("{{ __('admin/add_product.deletealert') }}")) {
             return;
         }
 
         let token = localStorage.getItem("auth_token_pyra12234");
 
-        axios.delete(@json(url('api/packages/delete')) + `?package_id=${productId}`, {
+        axios.delete(@json(url('api/products/delete')) + `?product_id=${productId}`, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
@@ -119,8 +119,8 @@
                 location.reload(); // Reload the page to reflect changes
             })
             .catch(error => {
-                console.error("Error deleting Package:", error.response);
-                alert("Failed to delete Package.");
+                console.error("Error deleting Product:", error.response);
+                alert("Failed to delete Product.");
             });
     }
 </script>

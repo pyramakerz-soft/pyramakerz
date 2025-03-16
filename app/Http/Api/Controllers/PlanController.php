@@ -34,7 +34,7 @@ class PlanController extends Controller
         $products = json_decode($request->products, true);
 
         if (!$products || !is_array($products)) {
-            if (app()->getLocale() === 'ar') {
+            if (session('locale') === 'ar') {
                 return response()->json(['error' => 'اختيار المنتج غير صالح'], 400);
             } else {
                 return response()->json(['error' => 'Invalid product selection'], 400);
@@ -46,7 +46,7 @@ class PlanController extends Controller
             $imageName = time() . '.' . request()->image->getClientOriginalExtension();
             request()->image->move(public_path('package'), $imageName);
         } else {
-            if (app()->getLocale() === 'ar') {
+            if (session('locale') === 'ar') {
                 return response()->json(['error' => 'فشل تحميل الصورة'], 400);
             } else {
                 return response()->json(['error' => 'Image upload failed'], 400);
@@ -66,7 +66,7 @@ class PlanController extends Controller
         foreach ($products as $product) {
             $package->products()->attach($product['id'], ['quantity' => $product['quantity']]);
         }
-        if (app()->getLocale() === 'ar') {
+        if (session('locale') === 'ar') {
             return response()->json(['message' => 'تمت إضافة الباقة بنجاح!', 'package' => $package], 201);
         } else {
             return response()->json(['message' => 'Package added successfully!', 'package' => $package], 201);
@@ -98,11 +98,16 @@ class PlanController extends Controller
         $package = Package::find($request->package_id);
 
         if (!$package) {
+            if (session('locale') === 'ar') {
+                return response()->json(['message' => 'لم يتم العثور على الباقة'], 404);
+            }
             return response()->json(['message' => 'Package not found'], 404);
         }
 
         $package->delete();
-
+        if (session('locale') === 'ar') {
+            return response()->json(['message' => 'تم حذف الباقة بنجاح']);
+        }
         return response()->json(['message' => 'Package deleted successfully']);
     }
 }
