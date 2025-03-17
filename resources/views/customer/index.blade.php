@@ -460,7 +460,7 @@
 
     // Auto-fill email if user is logged in
     if (token) {
-      axios.get("/api/user", {
+      axios.get(@json(url('/api/user')), {
         headers: {
           "Authorization": `Bearer ${token}`
         }
@@ -485,7 +485,7 @@
       document.querySelector(".error-message").style.display = "none";
       document.querySelector(".sent-message").style.display = "none";
 
-      axios.post("/api/contact", formData, {
+      axios.post(@json(url('/api/contact')), formData, {
         headers: {
           "Authorization": token ? `Bearer ${token}` : "",
           "Content-Type": "application/json"
