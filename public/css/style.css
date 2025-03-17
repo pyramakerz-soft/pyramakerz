@@ -11079,6 +11079,45 @@ Breadcrumb Area
     margin: 0;
 }
 
+.breadcrumb__inner ul li a {
+    position: relative;
+    padding-right: 26px;
+    /* Default for LTR */
+    padding-left: 0;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: var(--blackColor2);
+}
+
+/* Arrow icon positioning for LTR (English) */
+.breadcrumb__inner ul li a:after {
+    position: absolute;
+    content: "\eaa0";
+    /* Arrow icon */
+    font-family: "icofont";
+    top: 0px;
+    right: 3px;
+}
+
+/* Adjust for Arabic (RTL) */
+[dir="rtl"] .breadcrumb__inner ul li a {
+    padding-left: 26px;
+    padding-right: 0;
+}
+
+[dir="rtl"] .breadcrumb__inner ul {
+    text-align: right;
+}
+
+[dir="rtl"] .breadcrumb__inner ul li a:after {
+    right: auto;
+    left: 1px;
+    /* Move icon to the left */
+    transform: scaleX(-1);
+    display: inline-block;
+}
+
 @media (min-width: 992px) and (max-width: 1365px) {
     .breadcrumb__content__wraper .breadcrumb__title h2 {
         font-size: 40px;

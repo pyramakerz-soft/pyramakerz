@@ -12,54 +12,40 @@
 @endsection
 @section('content')
 
-
 <main class="main_wrapper overflow-hidden">
     <div class="breadcrumbarea breadcrumbarea--2">
         <div class="container">
             <div class="row mt-5">
                 <div class="col-xl-8">
 
-                    @if (app()->getLocale() === 'ar')
-                    <div class="breadcrumb__content__wraper" style="margin-top: 100px; text-align: right;" data-aos="fade-up">
-                        <div class="breadcrumb__inner text-right">
-                            <ul>
-                                <li>{{ app()->getLocale() === 'ar' ? $package->ar_name : $package->name }}</li>
-                                <li><a href="{{ route('customer.packages') }}">{{ __('packages.packages') }}</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    @else
-                    <d class="breadcrumb__content__wraper" style="margin-top: 100px;" data-aos="fade-up">
+                    <div class="breadcrumb__content__wraper" style="margin-top: 100px;" data-aos="fade-up">
                         <div class="breadcrumb__inner text-start">
                             <ul>
                                 <li><a href="{{ route('customer.packages') }}">{{ __('packages.packages') }}</a></li>
                                 <li>{{ app()->getLocale() === 'ar' ? $package->ar_name : $package->name }}</li>
                             </ul>
                         </div>
-                </div>
-                @endif
+                    </div>
 
-
-
-                <div class="course__details__top--2">
-                    <div class="course__button__wraper" data-aos="fade-up">
-                        <div class="course__button">
-                            <a href="#">{{ __('packages.featured') }}</a>
-                            {{-- <a class="course__2" href="#">{{ $product->skill_level ?? 'N/A' }}</a> --}}
+                    <div class="course__details__top--2">
+                        <div class="course__button__wraper" data-aos="fade-up">
+                            <div class="course__button">
+                                <a href="#">{{ __('packages.featured') }}</a>
+                                {{-- <a class="course__2" href="#">{{ $product->skill_level ?? 'N/A' }}</a> --}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="product__details__heading" data-aos="fade-up">
-                        <h3>{{ app()->getLocale() === 'ar' ? $package->ar_name : $package->name }}</h3>
-                    </div>
-                    <div class="product__details__price" data-aos="fade-up">
-                        <ul>
-                            <li>
-                                <div class="product__details__date">
-                                    <!-- <i class="icofont-book-alt"></i> -->
-                                    {{-- {{ $product->totalLessonsCount() }} Lessons --}}
-                                </div>
-                            </li>
-                            <!-- <li>
+                        <div class="product__details__heading" data-aos="fade-up">
+                            <h3>{{ app()->getLocale() === 'ar' ? $package->ar_name : $package->name }}</h3>
+                        </div>
+                        <div class="product__details__price" data-aos="fade-up">
+                            <ul>
+                                <li>
+                                    <div class="product__details__date">
+                                        <!-- <i class="icofont-book-alt"></i> -->
+                                        {{-- {{ $product->totalLessonsCount() }} Lessons --}}
+                                    </div>
+                                </li>
+                                <!-- <li>
                                     <div class="product__star">
                                         <i class="icofont-star"></i>
                                         <i class="icofont-star"></i>
@@ -69,14 +55,14 @@
                                         <span>(44 Reviews)</span>
                                     </div>
                                 </li> -->
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- <div class="shape__icon__2">
+        <!-- <div class="shape__icon__2">
             <img loading="lazy" class="shape__icon__img shape__icon__img__1"
                 src="{{ asset('img/herobanner/herobanner__1.png') }}" alt="photo">
             <img loading="lazy" class="shape__icon__img shape__icon__img__2"

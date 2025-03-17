@@ -32,13 +32,8 @@
                         </div>
                         <div class="breadcrumb__inner">
                             <ul>
-                                @if (app()->getLocale() === 'ar')
-                                <li>{{ __('packages.packages') }}</li>
-                                <li><a href="{{ route('customer.index') }}">{{ __('packages.home') }}</a></li>
-                                @else
                                 <li><a href="{{ route('customer.index') }}">{{ __('packages.home') }}</a></li>
                                 <li>{{ __('packages.packages') }}</li>
-                                @endif
                             </ul>
                         </div>
                     </div>
