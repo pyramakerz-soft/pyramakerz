@@ -3,7 +3,7 @@
 @include('layouts.main_css')
 @endsection
 @section('content')
-<main id="main" class="mt-5">
+<main id="main admin-content" class="mt-5">
     <section id="contact" class="contact">
         <div class="container">
 
@@ -81,7 +81,30 @@
 @section('page_js')
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let token = localStorage.getItem("auth_token_pyra12234");
 
+        if (token) {
+            axios.get(@json(url('/api/user')), {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                .then(response => {
+                    let user = response.data;
+                    if (user.role === "admin") {
+                        document.getElementById('admin-content').style.display = 'block';
+                    } else {
+                        window.location.href = "{{ route('customer.index') }}"
+                    }
+                })
+                .catch(error => {
+                    console.error("Failed to fetch user:", error);
+                });
+        }
+    });
+</script>
 <script>
     // pop up
     document.addEventListener("DOMContentLoaded", function() {

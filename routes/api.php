@@ -32,7 +32,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->post('/products', [ProductsController::class, 'store']);
+Route::middleware('auth:sanctum')->delete('/products/delete', [ProductsController::class, 'destroy']);
+
 Route::middleware('auth:sanctum')->post('/packages', [PlanController::class, 'store']);
+Route::middleware('auth:sanctum')->delete('/packages/delete', [PlanController::class, 'destroy']);
+
+Route::middleware('auth:sanctum')->post('/promocodes', [PromocodeController::class, 'store']);
+Route::middleware('auth:sanctum')->delete('/promocodes/delete', [PromocodeController::class, 'destroy']);
+
 Route::middleware('auth:sanctum')->post('/orders', [OrderController::class, 'store']);
 
 
@@ -46,4 +53,4 @@ Route::middleware('auth:sanctum')->post('/update-password', [AccountController::
 Route::post('/validate-promocode', [PromocodeController::class, 'validatePromocode']);
 
 
-Route::post('/contact-us', [AccountController::class, 'storeContactRequest']);
+Route::post('/contact', [AccountController::class, 'storeContactRequest']);

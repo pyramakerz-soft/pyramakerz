@@ -96,7 +96,7 @@
 
             <form id="verifyOTPForm">
                 @csrf
-                <input type="number" id="otp" class="form-control" placeholder="Enter OTP" required>
+                <input type="text" id="otp" class="form-control" placeholder="Enter OTP" required>
                 <button type="submit" class="btn btn-auth">Verify</button>
             </form>
             <p id="otpMessage" class="text-success mt-2"></p>
