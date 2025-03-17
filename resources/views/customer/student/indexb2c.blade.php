@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 hero-img image" data-aos="zoom-out" data-aos-delay="200">
-                    <img src="assets/img/ai3.png" class="img-fluid" alt="">
+                    <img src="{{ asset('assets/img/ai3.png') }}" class="img-fluid" alt="">
                 </div>
             </div>
         </div>
@@ -108,7 +108,7 @@
 
                     <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
                         <div class="box image">
-                            <img src="assets/img/course2.png" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/course2.png') }}" class="img-fluid" alt="">
                             <h3>{{ __('students.game_dev') }}</h3>
                             <br>
                             <p>{{ __('students.game_paragraph') }}</p>
@@ -117,7 +117,7 @@
 
                     <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="600">
                         <div class="box image">
-                            <img src="assets/img/course3.png" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/course3.png') }}" class="img-fluid" alt="">
                             <h3>{{ __('students.artificial_intelligence') }}</h3>
                             <br>
                             <p>{{ __('students.artificial_paragraph') }}</p>
@@ -130,7 +130,7 @@
 
                     <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="box image">
-                            <img src="assets/img/course4.png" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/course4.png') }}" class="img-fluid" alt="">
                             <h3>{{ __('students.web_dev') }}</h3>
                             <br>
                             <p>{{ __('students.web_paragraph') }}</p>
@@ -139,7 +139,7 @@
 
                     <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
                         <div class="box image">
-                            <img src="assets/img/course5.png" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/course5.png') }}" class="img-fluid" alt="">
                             <h3>{{ __('students.robotics') }}</h3>
                             <p>{{ __('students.robotics_paragraph') }}</p>
                         </div>
@@ -167,7 +167,7 @@
                 <div class="row">
 
                     <div class="col-lg-6 image">
-                        <img src="assets/img/level1.png" class="img-fluid" alt="">
+                        <img src="{{ asset('assets/img/level1.png') }}" class="img-fluid" alt="">
                     </div>
 
                     <div class="col-lg-6 mt-5 mt-lg-0 d-flex">
@@ -225,7 +225,7 @@
                     <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="service-box orange">
                             <div class="image">
-                                <img src="assets/img/level1-1.png" style="height: 200px;">
+                                <img src="{{ asset('assets/img/level1-1.png') }}" style="height: 200px;">
                             </div>
                             <h2>
                                 {{ __('students.scratch_jr') }}
@@ -242,7 +242,7 @@
                     <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="service-box orange">
                             <div class="image">
-                                <img src="assets/img/level1-2.png" style="height: 200px;">
+                                <img src="{{ asset('assets/img/level1-2.png') }}" style="height: 200px;">
                             </div>
                             <h2>
                                 {{ __('students.pictoblox') }}
@@ -494,7 +494,7 @@
                     <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="service-box orange">
                             <div class="image">
-                                <img src="assets/img/level1-1.png" style="height: 200px;">
+                                <img src="{{ asset('assets/img/level1-1.png') }}" style="height: 200px;">
                             </div>
                             <h2>
                                 PICTOBLOX AI
@@ -747,15 +747,15 @@
 
 
     <!-- <div class="wh-api">
-                                <div class="wh-fixed whatsapp-pulse">
-                                    <a href="https://api.whatsapp.com/send?phone=+201220016331&text=Welcome to Pyramakerz" target="blank">
-                                        <button class="wh-ap-btn"></button>
-                                    </a>
-                                </div>
-                            </div> -->
+                                                        <div class="wh-fixed whatsapp-pulse">
+                                                            <a href="https://api.whatsapp.com/send?phone=+201220016331&text=Welcome to Pyramakerz" target="blank">
+                                                                <button class="wh-ap-btn"></button>
+                                                            </a>
+                                                        </div>
+                                                    </div> -->
 
     <!-- <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
-                                class="bi bi-arrow-up-short"></i></a> -->
+                                                        class="bi bi-arrow-up-short"></i></a> -->
 
     <div id="preloader"></div>
 @endsection
