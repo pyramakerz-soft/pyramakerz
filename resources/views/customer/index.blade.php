@@ -494,7 +494,7 @@
         document.querySelector(".sent-message").style.display = "block";
         document.getElementById("contactForm").reset();
         if (token) {
-          axios.get("/api/user", {
+          axios.get(@json(url('/api/user')), {
             headers: {
               "Authorization": `Bearer ${token}`
             }
