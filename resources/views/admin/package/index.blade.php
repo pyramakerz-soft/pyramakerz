@@ -115,12 +115,12 @@
                 }
             })
             .then(response => {
-                alert(response.data.message);
+                alertSuccess(response.data.message);
                 location.reload(); // Reload the page to reflect changes
             })
             .catch(error => {
                 console.error("Error deleting Package:", error.response);
-                alert("Failed to delete Package.");
+                alertError("Failed to delete Package.");
             });
     }
 </script>

@@ -118,6 +118,12 @@ return [
         'attribute-name' => [
             'rule-name' => 'رسالة مخصصة',
         ],
+        'valid_until' => [
+            'after' => 'يجب أن يكون :attribute تاريخًا بعد اليوم.',
+        ],
+        'code' => [
+            'unique' => 'هذا الكود مستخدم بالفعل.', // Customize only for 'code' field
+        ],
     ],
 
     /*
@@ -129,5 +135,8 @@ return [
     'attributes' => [
         'new_password' => 'كلمة المرور الجديدة',
         'current_password' => 'كلمة المرور الحالية',
+        'valid_until' => 'صالح حتى:',
+        'today' => 'اليوم'
+
     ],
 ];

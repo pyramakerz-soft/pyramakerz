@@ -115,12 +115,12 @@
                 }
             })
             .then(response => {
-                alert(response.data.message);
+                alertSuccess(response.data.message);
                 location.reload(); // Reload the page to reflect changes
             })
             .catch(error => {
                 console.error("Error deleting Product:", error.response);
-                alert("Failed to delete Product.");
+                alertError("Failed to delete Product.");
             });
     }
 </script>

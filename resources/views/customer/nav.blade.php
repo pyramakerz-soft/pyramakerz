@@ -74,7 +74,7 @@
         window.location.href = "{{ route('customer.login') }}";
       })
       .catch(error => {
-        alert("Logout failed!");
+        alertError("Logout failed!");
       });
   }
 </script>

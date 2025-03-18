@@ -21,4 +21,5 @@ return [
     'enter_valid_promocode' => 'ادخل كود خصم صحيح',
     'discount_applied' => 'تم تطبيق الخصم',
     'order_success' => 'تم تقديم الطلب بنجاح.',
+    'invalid_promocode' => 'الرمز الترويجي غير صالح',
 ];

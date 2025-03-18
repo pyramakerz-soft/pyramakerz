@@ -259,7 +259,6 @@
         const checkboxes = document.querySelectorAll(".product-checkbox");
         const totalPriceElement = document.getElementById("total-price");
         const totalPriceElement2 = document.querySelector(".total-price2");
-        console.log(totalPriceElement2);
 
         checkboxes.forEach((checkbox) => {
             checkbox.addEventListener("change", function() {
@@ -294,11 +293,33 @@
                     total += price * quantity;
                 }
             });
-            totalPriceElement.innerText = `${total.toFixed(2)}`;
-            totalPriceElement2.innerText = `${total.toFixed(2)}`;
-            document.getElementById("submitCustomPlan").setAttribute("data-package-price", `${total.toFixed(2)}`);
 
+            let discountedPrice = total;
+
+            // Apply discount if a promo code has been entered
+            if (appliedPromocode) {
+                if (discountType === 'percentage') {
+                    discountedPrice = total - (total * discountAmount / 100);
+                } else {
+                    discountedPrice = total - discountAmount;
+                }
+                discountedPrice = Math.max(discountedPrice, 0); // Ensure price doesn't go negative
+            }
+
+            totalPriceElement.innerText = `${total.toFixed(2)} SAR`;
+            totalPriceElement2.innerText = `${discountedPrice.toFixed(2)} SAR`;
+
+            // Show the original price crossed out if a discount is applied
+            if (appliedPromocode) {
+                document.getElementById("calculated-price").innerHTML = discountedPrice.toFixed(2);
+            } else {
+                document.getElementById("calculated-price").innerText = total.toFixed(2);
+            }
+
+            // Store the updated discounted price in the submit button
+            document.getElementById("submitCustomPlan").setAttribute("data-package-price", `${discountedPrice.toFixed(2)}`);
         }
+
         //////////////////////////////////////
         let appliedPromocode = null;
         let discountAmount = 0;
@@ -308,7 +329,8 @@
             document.getElementById("apply-promocode").disabled = true;
             let promocode = document.getElementById("promocode").value.trim();
             if (!promocode) {
-                alert("{{ __('packages.enter_valid_promocode') }}");
+                alertError("{{ __('packages.enter_valid_promocode') }}");
+                document.getElementById("apply-promocode").disabled = false;
                 return;
             }
 
@@ -320,23 +342,15 @@
                     discountType = response.data.discount_type;
                     appliedPromocode = promocode;
 
-                    let originalPrice = parseFloat(document.getElementById("calculated-price").innerText);
-
-                    // Apply discount based on type
-                    let newPrice = (discountType === 'percentage') ?
-                        originalPrice - (originalPrice * discountAmount / 100) :
-                        originalPrice - discountAmount;
-
-                    newPrice = Math.max(newPrice, 0); // Ensure price doesn't go below zero
-
-                    document.getElementById("calculated-price").innerText = newPrice.toFixed(2);
+                    // Update total price with discount applied
+                    updateTotalPrice();
 
                     document.getElementById("discount-info").innerText = `{{ __('packages.discount_applied') }}: ${discountAmount} ${(discountType === 'percentage') ? '%' : 'SAR'}`;
                     document.getElementById("discount-info").style.display = "block";
                 })
                 .catch(error => {
                     document.getElementById("apply-promocode").disabled = false;
-                    alert("{{ __('packages.invalid_promocode') }}");
+                    alertError("{{ __('packages.invalid_promocode') }}");
                 });
         });
 
@@ -361,7 +375,7 @@
             });
 
             if (selectedProducts.length === 0) {
-                alert("Please select at least one product for your custom plan.");
+                alertError("Please select at least one product for your custom plan.");
                 return;
             }
 
@@ -399,16 +413,16 @@
                         Authorization: `Bearer ${token}`
                     }
                 }).then(() => {
-                    alert("Your custom plan has been sent successfully!");
+                    alertSuccess("Your custom plan has been sent successfully!");
                     window.location.href = "{{ route('customer.packages') }}";
                 }).catch(error => {
                     console.error("Error sending email:", error.response);
-                    alert("Failed to send custom plan email.");
+                    alertError("Failed to send custom plan email.");
                 });
 
             }).catch(error => {
                 console.error("Error fetching user details:", error.response);
-                alert("Failed to retrieve user details.");
+                alertError("Failed to retrieve user details.");
             });
         }
 
@@ -426,11 +440,11 @@
                     }
                 })
                 .then(response => {
-                    alert("{{ __('packages.order_success') }}");
+                    alertSuccess("{{ __('packages.order_success') }}");
                     window.location.href = "{{ route('customer.packages') }}";
                 })
                 .catch(error => {
-                    alert("{{ __('packages.order_failed') }}");
+                    alertError("{{ __('packages.order_failed') }}");
                 });
         }
 

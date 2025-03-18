@@ -115,12 +115,12 @@
                 }
             })
             .then(response => {
-                alert(response.data.message);
+                alertSuccess(response.data.message);
                 location.reload(); // Reload the page to reflect changes
             })
             .catch(error => {
                 console.error("Error deleting Promo:", error.response);
-                alert("Failed to delete Promo.");
+                alertError("Failed to delete Promo.");
             });
     }
 </script>

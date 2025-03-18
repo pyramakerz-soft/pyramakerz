@@ -217,7 +217,8 @@
             document.getElementById("apply-promocode").disabled = true;
             let promocode = document.getElementById("promocode").value.trim();
             if (!promocode) {
-                alert("{{ __('packages.enter_valid_promocode') }}");
+                alertError("{{ __('packages.enter_valid_promocode') }}");
+                document.getElementById("apply-promocode").disabled = false;
                 return;
             }
 
@@ -245,7 +246,7 @@
                 })
                 .catch(error => {
                     document.getElementById("apply-promocode").disabled = false;
-                    alert("{{ __('packages.invalid_promocode') }}");
+                    alertError("{{ __('packages.invalid_promocode') }}");
                 });
         });
 
@@ -294,12 +295,12 @@
                         })
                         .catch(error => {
                             console.error("Error sending email:", error.response);
-                            alert("Failed to send email.");
+                            alertError("Failed to send email.");
                         });
                 })
                 .catch(error => {
                     console.error("Error fetching user details:", error.response);
-                    alert("Failed to retrieve user details.");
+                    alertError("Failed to retrieve user details.");
                 });
         }
 
@@ -317,11 +318,11 @@
                     }
                 })
                 .then(response => {
-                    alert("{{ __('packages.order_success') }}");
+                    alertSuccess("{{ __('packages.order_success') }}");
                     window.location.href = "{{ route('customer.packages') }}";
                 })
                 .catch(error => {
-                    alert("{{ __('packages.order_failed') }}");
+                    alertError("{{ __('packages.order_failed') }}");
                 });
         }
     });

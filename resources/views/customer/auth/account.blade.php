@@ -107,7 +107,7 @@
             })
             .catch(error => {
                 console.error("Error fetching user:", error.response);
-                alert("Failed to fetch user details.");
+                alertError("Failed to fetch user details.");
             });
 
         // Update Password
@@ -198,7 +198,7 @@
             })
             .catch(error => {
                 console.error("Error fetching orders:", error.response);
-                alert("Failed to fetch orders.");
+                alertError("Failed to fetch orders.");
             });
     });
 </script>

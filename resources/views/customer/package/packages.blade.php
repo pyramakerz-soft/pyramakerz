@@ -483,12 +483,12 @@
                         })
                         .catch(error => {
                             console.error("Error sending email:", error.response);
-                            alert("Failed to send email.");
+                            alertError("Failed to send email.");
                         });
                 })
                 .catch(error => {
                     console.error("Error fetching user details:", error.response);
-                    alert("Failed to retrieve user details.");
+                    alertError("Failed to retrieve user details.");
                 });
         }
 
@@ -503,12 +503,12 @@
                     }
                 })
                 .then(response => {
-                    alert("Your order has been placed successfully!");
+                    alertSuccess("Your order has been placed successfully!");
                     window.location.href = "{{ route('customer.packages') }}";
                 })
                 .catch(error => {
                     console.error("Error creating order:", error.response);
-                    alert("Failed to create order.");
+                    alertError("Failed to create order.");
                 });
         }
     });

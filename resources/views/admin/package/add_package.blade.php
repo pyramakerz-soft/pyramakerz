@@ -160,7 +160,7 @@
                 }
             })
             .then(response => {
-                alert(response.data.message);
+                alertSuccess(response.data.message);
                 document.getElementById("package-form").reset();
                 document.querySelectorAll(".product-checkbox").forEach((checkbox) => {
                     toggleQuantityInput(checkbox);
@@ -179,7 +179,7 @@
                     message = error.response.data.error;
                 }
 
-                alert(message);
+                alertError(message);
                 submitForm.disabled = false;
             });
     });

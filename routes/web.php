@@ -21,9 +21,12 @@ use Illuminate\Support\Facades\Redirect;
 |
 */
 
-// Route::get('/', function () {
-//     return view('customer.index');
-// });
+Route::get('/langTest', function () {
+    dd(App::getLocale());
+});
+
+
+
 Route::get('/', [CustomerController::class, 'index'])->name('customer.index');
 Route::get('/blog', [CustomerController::class, 'blogs'])->name('customer.blogs');
 // Route::resource('products', ProductsController::class);
@@ -56,6 +59,8 @@ Route::get('/login', [CustomerController::class, 'login'])->name('customer.login
 Route::get('/register', [CustomerController::class, 'register'])->name('customer.register');
 Route::get('/verify-otp', [CustomerController::class, 'verifyOTP'])->name('customer.verify-otp');
 Route::get('/account', [CustomerController::class, 'account'])->name('customer.account');
+
+
 // Route::post('/resend-otp', [AuthController::class, 'resendOTP']);
 
 // Langauge Change Route
@@ -64,6 +69,5 @@ Route::get('lang/{locale}', function ($locale) {
         abort(400);
     }
     Session::put('locale', $locale);
-    App::setLocale($locale);
-    return Redirect::back();
+    return redirect()->back();
 })->name('change.lang');

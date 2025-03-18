@@ -141,7 +141,7 @@
                 }
             })
             .then(response => {
-                alert(response.data.message);
+                alertSuccess(response.data.message);
                 document.getElementById("product-form").reset();
                 submitBtn.disabled = false;
             })
@@ -156,7 +156,7 @@
                 else if (error.response && error.response.data.error) {
                     message = error.response.data.error;
                 }
-                alert(message); // Show error message(s)
+                alertError(message); // Show error message(s)
                 submitBtn.disabled = false;
             });
     });

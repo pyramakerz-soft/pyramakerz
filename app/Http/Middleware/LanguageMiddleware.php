@@ -11,12 +11,8 @@ class LanguageMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        if (Session::has('locale')) {
-            App::setLocale(Session::get('locale'));
-            // App::setLocale('en');
-        } else {
-            App::setLocale('ar');
-        }
+        $locale = Session::get('locale', 'ar');
+        App::setLocale($locale);
 
         return $next($request);
     }

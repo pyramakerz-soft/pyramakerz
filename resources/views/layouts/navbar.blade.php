@@ -124,7 +124,17 @@
         window.location.href = "{{ route('customer.login') }}";
       })
       .catch(error => {
-        alert("Logout failed!");
+        // alertError("Logout failed! Clearing session...");
+        clearAuthData();
+        window.location.href = "{{ route('customer.index') }}";
       });
+  }
+
+  function clearAuthData() {
+    localStorage.removeItem('auth_token_pyra12234');
+    sessionStorage.clear();
+    document.cookie.split(";").forEach(cookie => {
+      document.cookie = cookie.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date(0).toUTCString() + ";path=/");
+    });
   }
 </script>
