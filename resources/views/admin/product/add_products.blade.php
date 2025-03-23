@@ -39,6 +39,11 @@
                                 placeholder="{{ __('admin/add_product.desc') }}" required>
                         </div>
                         <div class="form-group mt-3">
+                            <label>{{ __('admin/add_product.desc_ar') }}:</label>
+                            <input type="text" class="form-control" name="ar_description" id="ar_description"
+                                placeholder="{{ __('admin/add_product.desc_ar') }}" required>
+                        </div>
+                        <div class="form-group mt-3">
                             <label>{{ __('admin/add_product.price') }}:</label>
                             <input type="number" class="form-control" name="price" id="price"
                                 placeholder="{{ __('admin/add_product.price') }}" required step="0.01"
@@ -128,6 +133,7 @@
         formData.append("en_name", document.getElementById("en_name").value);
         formData.append("ar_name", document.getElementById("ar_name").value);
         formData.append("description", document.getElementById("description").value);
+        formData.append("ar_description", document.getElementById("ar_description").value);
         formData.append("price", document.getElementById("price").value);
         formData.append("image", document.getElementById("image").files[0]);
 

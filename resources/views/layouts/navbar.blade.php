@@ -33,6 +33,7 @@
             <li class="admin_choices"><a class="nav-link scrollto" href="{{ route('admin.viewProducts') }}">{{__('navbar.products')}}</a></li>
             <li class="admin_choices"><a class="nav-link scrollto" href="{{ route('admin.viewPackages') }}">{{__('navbar.packages')}}</a></li>
             <li class="admin_choices"><a class="nav-link scrollto" href="{{ route('admin.viewPromos') }}">{{__('navbar.promos')}}</a></li>
+            <li class="admin_choices"><a class="nav-link scrollto" href="{{ route('admin.viewOrders') }}">{{__('navbar.orders')}}</a></li>
           </ul>
         </li>
 

@@ -17,6 +17,16 @@
                     <h4 class="fs-2 mb-3">{{ __('account.profile_info') }}</h4>
                     <p><strong>{{ __('account.name') }}:</strong> <span id="user-name"></span></p>
                     <p><strong>{{ __('account.email') }}:</strong> <span id="user-email"></span></p>
+                    <div class="mb-3">
+                        <label class="fw-bold">{{ __('account.school_name') }}:</label>
+                        <input type="text" id="user-school" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="fw-bold">{{ __('account.location') }}:</label>
+                        <input type="text" id="user-location" class="form-control">
+                    </div>
+                    <button id="updateProfileBtn" class="btn btn-primary">{{ __('account.update_profile') }}</button>
+                    <p id="profile-message" class="text-success mt-2"></p>
                 </div>
             </div>
 
@@ -54,6 +64,7 @@
                                     <!-- <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('account.total_price') }}</th> -->
                                     <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('account.total_price_discount') }}</th>
                                     <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('account.date') }}</th>
+                                    <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('account.status') }}</th>
                                 </tr>
                             </thead>
                             <tbody id="orderslist">
@@ -104,12 +115,36 @@
             .then(response => {
                 document.getElementById("user-name").innerText = response.data.name;
                 document.getElementById("user-email").innerText = response.data.email;
+                document.getElementById("user-school").value = response.data.school_name || "";
+                document.getElementById("user-location").value = response.data.user_location || "";
             })
             .catch(error => {
                 console.error("Error fetching user:", error.response);
                 alertError("Failed to fetch user details.");
             });
 
+        // Update Profile (School Name and Location)
+        document.getElementById("updateProfileBtn").addEventListener("click", function() {
+            let profileMessage = document.getElementById("profile-message");
+            profileMessage.innerHTML = "";
+
+            axios.post(@json(url('/api/update-profile')), {
+                    school_name: document.getElementById("user-school").value,
+                    user_location: document.getElementById("user-location").value
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                .then(response => {
+                    profileMessage.innerText = response.data.message;
+                    profileMessage.style.color = "green"; // Success message in green
+                })
+                .catch(error => {
+                    profileMessage.innerText = error.response?.data?.error || "Failed to update profile.";
+                    profileMessage.style.color = "red";
+                });
+        });
         // Update Password
         document.getElementById("updatePasswordForm").addEventListener("submit", function(event) {
             event.preventDefault();
@@ -191,6 +226,7 @@
         <td class="text-center">${quantityList}</td>
         <td class="text-center">${order.price}</td>
         <td class="text-center">${new Date(order.created_at).toLocaleDateString()}</td>
+        <td class="text-center">${order.status}</td>
     `;
                     ordersList.appendChild(row);
                 });

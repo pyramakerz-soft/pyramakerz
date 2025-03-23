@@ -12,7 +12,7 @@ return [
     "competitions" => "Competitions",
     "alef_bot" => "Alef Bot",
     "location" => "Location:",
-    "cairo" => "Cairo: 17 Al-Saada Street, Behind Raneen, Zahraa Al-Maadi, First Floor, Cairo Governorate",
+    "cairo" => "Cairo: 16 Saada St., Zahraa Elmaadi, Cairo , Egypt.",
     "alexandria" => "Alexandria: Elwezarah, 509 Abou Quer St, 3rd floor",
     "email" => "Email:",
     "call" => "Call:",

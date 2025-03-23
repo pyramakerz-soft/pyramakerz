@@ -27,6 +27,7 @@ class ProductsController extends Controller
             'en_name' => 'required|string|max:255',
             'ar_name' => 'required|string|max:255',
             'description' => 'required|string',
+            'ar_description' => 'required|string',
             'price' => 'required|numeric',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -49,6 +50,7 @@ class ProductsController extends Controller
             'name' => $request->en_name,
             'ar_name' => $request->ar_name,
             'description' => $request->description,
+            'ar_description' => $request->ar_description,
             'price' => $request->price,
             'image' => $imageName,
         ]);

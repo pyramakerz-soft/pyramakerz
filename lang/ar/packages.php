@@ -20,6 +20,6 @@ return [
     'enter_promocode' => 'ادخل كود الخصم',
     'enter_valid_promocode' => 'ادخل كود خصم صحيح',
     'discount_applied' => 'تم تطبيق الخصم',
-    'order_success' => 'تم تقديم الطلب بنجاح.',
+    'order_success' => 'تم استلام طلبك. ستتلقى رسالة بريد إلكتروني بتفاصيل الطلب قريباً',
     'invalid_promocode' => 'الرمز الترويجي غير صالح',
 ];

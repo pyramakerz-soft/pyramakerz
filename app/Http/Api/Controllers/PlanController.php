@@ -26,6 +26,7 @@ class PlanController extends Controller
             'en_name' => 'required|string|max:255',
             'ar_name' => 'required|string|max:255',
             'description' => 'required|string',
+            'ar_description' => 'required|string',
             'price' => 'required|numeric|min:0',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'products' => 'required|string' // JSON string
@@ -58,6 +59,7 @@ class PlanController extends Controller
             'name' => $request->en_name,
             'ar_name' => $request->ar_name,
             'description' => $request->description,
+            'ar_description' => $request->ar_description,
             'price' => $request->price,
             'image' => $imageName,
         ]);

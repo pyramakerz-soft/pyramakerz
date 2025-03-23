@@ -104,12 +104,15 @@
                     @csrf
                     <input type="text" id="name" class="form-control" placeholder="Name" required>
                     <input type="email" id="email" class="form-control" placeholder="Email" required>
+                    <input type="text" id="school_name" class="form-control" placeholder="School Name" required>
+                    <input type="text" id="user_location" class="form-control" placeholder="Location" required>
                     <input type="password" id="password" class="form-control" placeholder="Password" required>
                     <button type="submit" class="btn btn-auth">Register</button>
                 </form>
                 <p id="registerMessage" class="text-success mt-2"></p>
                 <p class="toggle-form" onclick="toggleForms()">Already have an account? Login here</p>
             </div>
+
 
             <!-- Login Form -->
             <div id="loginForm">
@@ -156,6 +159,8 @@
             axios.post(@json(url('/api/register')), {
                     name: document.getElementById('name').value,
                     email: document.getElementById('email').value,
+                    school_name: document.getElementById('school_name').value,
+                    user_location: document.getElementById('user_location').value,
                     password: document.getElementById('password').value
                 })
                 .then(response => {

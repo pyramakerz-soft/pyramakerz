@@ -19,5 +19,6 @@ return [
     'add_promo' => 'Add Promocode',
     'products' => 'Products',
     'promos' => 'Promo Codes',
+    'orders' => 'Orders',
 
 ];

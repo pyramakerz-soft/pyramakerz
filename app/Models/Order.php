@@ -9,15 +9,16 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'plan_name',
-        'plan_name_ar',
-        'features',
-        'total_price',
-        'discount_applied',
-        'discount_type'
-    ];
+    protected $guarded = [];
+    // protected $fillable = [
+    //     'user_id',
+    //     'plan_name',
+    //     'plan_name_ar',
+    //     'features',
+    //     'total_price',
+    //     'discount_applied',
+    //     'discount_type'
+    // ];
 
     protected $casts = [
         'features' => 'array', // Automatically converts JSON to an array when fetched

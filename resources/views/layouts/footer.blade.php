@@ -1,3 +1,12 @@
+@if (app()->getLocale() === 'ar'){
+<style>
+    .footer .footer-content h4::after {
+        right: 0;
+    }
+</style>
+}
+
+@endif
 <footer id="footer" class="footer">
 
     <div class="footer-content">
@@ -27,10 +36,10 @@
                 <div class="col-lg-2 col-md-6 footer-links">
                     <h4> {{ __('footer.explore') }}</h4>
                     <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="/"> {{ __('footer.home') }}</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="/#about"> {{ __('footer.about_us') }}</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="/#blog"> {{ __('footer.blogs') }}</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="/#contact"> {{ __('footer.careers') }}</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.index') }}/"> {{ __('footer.home') }}</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.index') }}/#about"> {{ __('footer.about_us') }}</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.index') }}/#blog"> {{ __('footer.blogs') }}</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.index') }}/#contact"> {{ __('footer.careers') }}</a></li>
 
                     </ul>
                 </div>
@@ -38,10 +47,10 @@
                 <div class="col-lg-2 col-md-6 footer-links">
                     <h4> {{ __('footer.our_solutions') }}</h4>
                     <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="/schools"> {{ __('footer.school_portal') }}</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="/students"> {{ __('footer.student_portal') }}</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="/competitions"> {{ __('footer.competitions') }}</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="/alef-bot"> {{ __('footer.alef_bot') }}</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.schools') }}"> {{ __('footer.school_portal') }}</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.students') }}"> {{ __('footer.student_portal') }}</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.competitions') }}"> {{ __('footer.competitions') }}</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.alefBot') }}"> {{ __('footer.alef_bot') }}</a></li>
 
                     </ul>
                 </div>
@@ -64,7 +73,7 @@
                         <div class="info-item d-flex">
                             <i class="bi bi-envelope flex-shrink-0"></i>
                             <div>
-                                <h4> {{ __('footer.email') }}</h4>
+                                <h4 class="mt-2"> {{ __('footer.email') }}</h4>
                                 <p><a href="mailto:info@pyramakerz.com" target="_blank">info@pyramakerz.com</a></p>
                             </div>
                         </div><!-- End Info Item -->
@@ -72,9 +81,10 @@
                         <div class="info-item d-flex">
                             <i class="bi bi-phone flex-shrink-0"></i>
                             <div>
-                                <h4> {{ __('footer.call') }}</h4>
-                                <p><a href="tel:00201220016331" target="_blank">+201220016331</a></p>
-                                <p><a href="tel:002 03 5825247" target="_blank">+2 03 5825247</a></p>
+                                <h4 class="mt-2"> {{ __('footer.call') }}</h4>
+                                <p dir="ltr" style="text-align: left;"><a href="tel:00201220016331" target="_blank">+201220016331</a></p>
+                                <p dir="ltr" style="text-align: left;"><a href="tel:002035825247" target="_blank">+2 03 5825247</a></p>
+
                             </div>
                         </div><!-- End Info Item -->
 

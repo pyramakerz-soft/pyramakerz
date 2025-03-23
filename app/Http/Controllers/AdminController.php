@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Package;
 use App\Models\Products;
 use App\Models\Promocode;
@@ -9,8 +10,6 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-
-
     public function viewPackages()
     {
         $packages = Package::all();
@@ -25,6 +24,17 @@ class AdminController extends Controller
     {
         $promos = Promocode::all();
         return view('admin.promo.index', compact('promos'));
+    }
+    public function viewOrders()
+    {
+        $orders = Order::all();
+        return view('admin.order.index', compact('orders'));
+    }
+
+    public function manageOrder($id)
+    {
+        $order = Order::find($id);
+        return view('admin.order.view', compact('order'));
     }
     public function addProduct()
     {

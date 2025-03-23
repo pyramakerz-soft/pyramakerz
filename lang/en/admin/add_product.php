@@ -2,7 +2,8 @@
 return [
     "name_en" => "English Name",
     "name_ar" => "Arabic Name",
-    "desc" => "Description",
+    "desc" => "English Description",
+    "desc_ar" => "Arabic Description",
     "price" => "Price",
     "upload_image" => "Upload Image",
     "add" => "Add Product",

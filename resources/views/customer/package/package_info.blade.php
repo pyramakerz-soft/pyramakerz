@@ -115,7 +115,12 @@
                                             <div id="product{{ $product->id }}" class="accordion-collapse collapse"
                                                 data-bs-parent="#accordionExample">
                                                 <div class="accordion-body">
+                                                    @if (app()->getLocale()==='ar')
+                                                    <p><strong>{{ __('packages.description') }}: </strong> {{ $product->ar_description ?? 'No description available.' }}</p>
+                                                    @else
                                                     <p><strong>{{ __('packages.description') }}: </strong> {{ $product->description ?? 'No description available.' }}</p>
+                                                    @endif
+
                                                     <p><strong>{{ __('packages.price') }}:</strong>{{ number_format($product->price, 2) }} SAR</p>
                                                     <p><strong>{{ __('packages.quantity') }}:</strong> {{ $product->pivot->quantity }}</p>
 
@@ -141,7 +146,11 @@
                                         <h5>{{ __('packages.package_description') }}</h5>
                                     </div>
                                     <div class="experence__description">
-                                        <p>{{ $package->description ?? 'No description available for this package' }}
+                                        @if (app()->getLocale()==='ar')
+                                        <p>{{ $package->ar_description ?? 'No description available for this package' }}
+                                            @else
+                                        <p>{{ $package->ar_description ?? 'No description available for this package' }}
+                                            @endif
                                         </p>
                                     </div>
                                 </div>
@@ -318,8 +327,16 @@
                     }
                 })
                 .then(response => {
-                    alertSuccess("{{ __('packages.order_success') }}");
-                    window.location.href = "{{ route('customer.packages') }}";
+                    Swal.fire({
+                        title: "Success!",
+                        text: "{{ __('packages.order_success') }}",
+                        icon: "success",
+                        confirmButtonText: "OK"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "{{ route('customer.packages') }}";
+                        }
+                    });
                 })
                 .catch(error => {
                     alertError("{{ __('packages.order_failed') }}");

@@ -19,4 +19,9 @@ return [
 
     'date' => 'التاريخ',
     'loading_orders' => 'جارٍ تحميل الطلبات...',
+    'status' => 'حالة الطلب',
+    'school_name' => 'اسم المدرسة',
+    'location' => 'الموقع',
+    'update_profile' => 'تحديث الملف الشخصي',
+
 ];

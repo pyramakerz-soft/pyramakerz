@@ -20,14 +20,17 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
+            'school_name' => 'required|string|max:255',
+            'user_location' => 'required|string|max:255',
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'customer
-            ',
+            'school_name' => $request->school_name,
+            'user_location' => $request->user_location,
+            'role' => 'customer',
         ]);
 
         // Generate OTP
@@ -38,6 +41,7 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'OTP sent to email.'], 200);
     }
+
 
     // Verify OTP
     public function verifyOTP(Request $request)

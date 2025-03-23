@@ -49,6 +49,9 @@ Route::get('/admin/packages/add_package', [AdminController::class, 'addPackage']
 
 Route::get('/admin/promos/view', [AdminController::class, 'viewPromos'])->name('admin.viewPromos');
 Route::get('/admin/promos/add_promo', [AdminController::class, 'addPromo'])->name('admin.addPromo');
+
+Route::get('/admin/orders/view', [AdminController::class, 'viewOrders'])->name('admin.viewOrders');
+Route::get('/admin/orders/view/{id}', [AdminController::class, 'manageOrder'])->name('admin.manageOrder');
 /////
 // Route::get('/view-products', [ProductsController::class, 'index'])->name('products.index');
 Route::get('/packages/{package}', [PlanController::class, 'show'])->name('customer.package_info');

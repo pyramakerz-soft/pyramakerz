@@ -88,11 +88,13 @@ class OrderController extends Controller
             'plan_products' => 'required|array'
         ]);
 
-        // $adminEmail = "ahmed.elragal02@gmail.com";
+        $adminEmail = "ahmed.elragal02@gmail.com";
+        $adminEmail2 = "ahmed.elragal02@gmail.com";
+        $adminEmail3 = "ahmed.elragal02@gmail.com";
 
-        $adminEmail = "chairman@pyramakerz.com";
-        $adminEmail2 = "ahmed.elmohamady@pyramakerz.com";
-        $adminEmail3 = "magieginidy@pyramakerz.com";
+        // $adminEmail = "chairman@pyramakerz.com";
+        // $adminEmail2 = "ahmed.elmohamady@pyramakerz.com";
+        // $adminEmail3 = "magieginidy@pyramakerz.com";
         $userEmail = $request->user_email;
 
         // Fetch full product details using IDs
@@ -134,5 +136,20 @@ class OrderController extends Controller
         });
 
         return response()->json(['message' => 'Email sent successfully.'], 200);
+    }
+    public function updateStatus(Request $request, Order $order)
+    {
+        $request->validate([
+            'status' => 'required|string',
+            'ar_status' => 'required|string',
+        ]);
+        // dd($request->all());
+        $order = Order::find($request->orderId);
+        $order->update([
+            'status' => $request->status,
+            'ar_status' => $request->ar_status,
+        ]);
+
+        return response()->json(['message' => 'Order status updated successfully.', 'order' => $order], 200);
     }
 }

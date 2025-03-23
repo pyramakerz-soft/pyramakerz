@@ -18,4 +18,8 @@ return [
     'total_price_discount' => 'Total Package Price After Discount (SAR)',
     'date' => 'Date',
     'loading_orders' => 'Loading orders...',
+    'status' => 'Order Status',
+    'school_name' => 'School Name',
+    'location' => 'Location',
+    'update_profile' => 'Update Profile',
 ];

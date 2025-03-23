@@ -21,6 +21,7 @@ class AccountController extends Controller
                 return [
                     'plan_name' => session('locale') === 'ar' ? $order->plan_name_ar : $order->plan_name,
                     'price' => $order->total_price,
+                    'status' => session('locale') === 'ar' ? $order->ar_status : $order->status,
                     'products' => $order->products->map(function ($product) {
                         return [
                             'id' => $product->id,
@@ -76,6 +77,33 @@ class AccountController extends Controller
             return response()->json(['message' => 'تم إرسال رسالتك بنجاح'], 201);
         } else {
             return response()->json(['message' => 'Your message has been sent'], 201);
+        }
+    }
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'school_name' => 'nullable|string|max:255',
+            'user_location' => 'nullable|string|max:255',
+        ]);
+
+        // Get authenticated user
+        $user = Auth::user();
+
+        // Update user details
+        $user->update([
+            'school_name' => $request->school_name,
+            'user_location' => $request->user_location,
+        ]);
+        if (session('locale') === 'ar') {
+            return response()->json([
+                'message' => 'تم تحديث الملف الشخصي بنجاح!',
+                'user' => $user
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Profile updated successfully!',
+                'user' => $user
+            ], 200);
         }
     }
 }

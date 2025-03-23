@@ -20,6 +20,6 @@ return [
     'enter_promocode' => 'Enter Promocode',
     'enter_valid_promocode' => 'Enter a valid promocode',
     'discount_applied' => 'Discount Applied',
-    'order_success' => 'Order placed successfully.',
+    'order_success' => 'Your request has been received. You will receive an email with order details shortly.',
     'invalid_promocode' => 'Invalid Promocode',
 ];

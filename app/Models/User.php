@@ -11,16 +11,16 @@ use Illuminate\Support\Carbon;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'otp',
-        'otp_expires_at',
-        'email_verified_at',
-        'role',
-    ];
+    protected $guarded = [];
+    // protected $fillable = [
+    //     'name',
+    //     'email',
+    //     'password',
+    //     'otp',
+    //     'otp_expires_at',
+    //     'email_verified_at',
+    //     'role',
+    // ];
 
 
     protected $hidden = [

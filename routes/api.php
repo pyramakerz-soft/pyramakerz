@@ -48,7 +48,10 @@ Route::middleware('auth:sanctum')->post('/send-plan-email', [OrderController::cl
 
 
 Route::middleware('auth:sanctum')->get('/user/orders', [AccountController::class, 'getOrders']);
+Route::middleware('auth:sanctum')->post('/admin/updateOrderStatus', [OrderController::class, 'updateStatus']);
+
 Route::middleware('auth:sanctum')->post('/update-password', [AccountController::class, 'updatePassword']);
+Route::middleware('auth:sanctum')->post('/update-profile', [AccountController::class, 'updateProfile']);
 // Route::middleware('auth:sanctum')->post('/products/add', [ProductsController::class, 'store']);
 Route::post('/validate-promocode', [PromocodeController::class, 'validatePromocode']);
 
