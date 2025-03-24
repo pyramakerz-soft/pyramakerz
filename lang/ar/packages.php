@@ -22,4 +22,6 @@ return [
     'discount_applied' => 'تم تطبيق الخصم',
     'order_success' => 'تم استلام طلبك. ستتلقى رسالة بريد إلكتروني بتفاصيل الطلب قريباً',
     'invalid_promocode' => 'الرمز الترويجي غير صالح',
+    'package_details' => 'تفاصيل',
+    'custom_package' => 'تخصيص الباقة الخاصة بك',
 ];

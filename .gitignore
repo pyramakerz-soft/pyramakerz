@@ -24,6 +24,8 @@ Homestead.json
 
 /public/build
 public/products
+public/assets/img
+public/img
 public/package
 /storage/pail
 .env.backup

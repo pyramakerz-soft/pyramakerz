@@ -22,4 +22,6 @@ return [
     'discount_applied' => 'Discount Applied',
     'order_success' => 'Your request has been received. You will receive an email with order details shortly.',
     'invalid_promocode' => 'Invalid Promocode',
+    'package_details' => 'Details',
+    'custom_package' => 'Customize Package',
 ];

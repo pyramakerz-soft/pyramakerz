@@ -39,35 +39,10 @@
                 @endif
 
                 <div class="course__details__top--2">
-                    <div class="course__button__wraper" data-aos="fade-up">
-                        <div class="course__button">
-                            <a href="#">{{ __('packages.featured') }}</a>
-                            {{-- <a class="course__2" href="#">{{ $product->skill_level ?? 'N/A' }}</a> --}}
-                        </div>
-                    </div>
                     <div class="product__details__heading" data-aos="fade-up">
-                        <h3>{{ app()->getLocale() === 'ar' ? 'مخصص' : 'Custom' }}</h3>
+                        <h3 style="font-size: 34px;">{{ app()->getLocale() === 'ar' ? 'مخصص' : 'Custom' }}</h3>
                     </div>
-                    <div class="product__details__price" data-aos="fade-up">
-                        <ul>
-                            <li>
-                                <div class="product__details__date">
-                                    <i class="icofont-book-alt"></i>
-                                    {{-- {{ $product->totalLessonsCount() }} Lessons --}}
-                                </div>
-                            </li>
-                            <li>
-                                <!-- <div class="product__star">
-                                        <i class="icofont-star"></i>
-                                        <i class="icofont-star"></i>
-                                        <i class="icofont-star"></i>
-                                        <i class="icofont-star"></i>
-                                        <i class="icofont-star"></i>
-                                        <span>(44 Reviews)</span>
-                                    </div> -->
-                            </li>
-                        </ul>
-                    </div>
+
                 </div>
             </div>
         </div>

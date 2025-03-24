@@ -1,10 +1,10 @@
-@if (app()->getLocale() === 'ar'){
+@if (app()->getLocale() === 'ar')
 <style>
     .footer .footer-content h4::after {
         right: 0;
     }
 </style>
-}
+
 
 @endif
 <footer id="footer" class="footer">

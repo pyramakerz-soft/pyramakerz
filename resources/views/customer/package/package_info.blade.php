@@ -12,7 +12,33 @@
 @endsection
 @section('content')
 
-<main class="main_wrapper overflow-hidden">
+@php
+$originalTotal = 0;
+foreach ($package->products as $product) {
+$originalTotal += $product->price * $product->pivot->quantity;
+}
+$packagePrice = $package->price;
+if ($originalTotal > 0 && $packagePrice < $originalTotal) {
+    $amountSaved=$originalTotal - $packagePrice;
+    $percentageSaved=($amountSaved / $originalTotal) * 100;
+    } else {
+    $amountSaved=0;
+    $percentageSaved=0;
+    }
+
+    // Optional: Format for display
+    $amountSavedFormatted=number_format($amountSaved, 2);
+    $percentageSavedFormatted=number_format($percentageSaved, 0) ;
+    $saved=number_format(($originalTotal - $packagePrice), 0);
+    @endphp
+    @php
+    function convertToArabicNumerals($number) {
+    $western=['0','1','2','3','4','5','6','7','8','9'];
+    $arabic=['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+    return str_replace($western, $arabic, $number);
+    }
+    @endphp
+    <main class="main_wrapper overflow-hidden">
     <div class="breadcrumbarea breadcrumbarea--2">
         <div class="container">
             <div class="row mt-5">
@@ -28,14 +54,20 @@
                     </div>
 
                     <div class="course__details__top--2">
+
+                        <div class="product__details__heading" data-aos="fade-up">
+                            <h3 style="font-size: 34px;">{{ app()->getLocale() === 'ar' ? $package->ar_name : $package->name }}</h3>
+                        </div>
                         <div class="course__button__wraper" data-aos="fade-up">
                             <div class="course__button">
-                                <a href="#">{{ __('packages.featured') }}</a>
+                                @if (app()->getLocale() === 'ar')
+                                <p class="package_info">لقد وفرت {{ convertToArabicNumerals($saved) . ' ر.س'}}</p>
+                                @else
+                                <p class="package_info">You Save {{ $saved }} SAR</p>
+                                @endif
+
                                 {{-- <a class="course__2" href="#">{{ $product->skill_level ?? 'N/A' }}</a> --}}
                             </div>
-                        </div>
-                        <div class="product__details__heading" data-aos="fade-up">
-                            <h3>{{ app()->getLocale() === 'ar' ? $package->ar_name : $package->name }}</h3>
                         </div>
                         <div class="product__details__price" data-aos="fade-up">
                             <ul>
@@ -209,141 +241,141 @@
     </div>
 
 
-</main>
+    </main>
 
 
-@section('page_js')
+    @section('page_js')
 
 
-<script src="app.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        let appliedPromocode = null;
-        let discountAmount = 0;
-        let discountType = "fixed";
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let appliedPromocode = null;
+            let discountAmount = 0;
+            let discountType = "fixed";
 
-        document.getElementById("apply-promocode").addEventListener("click", function() {
-            document.getElementById("apply-promocode").disabled = true;
-            let promocode = document.getElementById("promocode").value.trim();
-            if (!promocode) {
-                alertError("{{ __('packages.enter_valid_promocode') }}");
-                document.getElementById("apply-promocode").disabled = false;
-                return;
-            }
-
-            axios.post(@json(url('/api/validate-promocode')), {
-                    code: promocode
-                })
-                .then(response => {
-                    discountAmount = response.data.discount_amount;
-                    discountType = response.data.discount_type;
-                    appliedPromocode = promocode;
-
-                    let originalPrice = parseFloat(document.getElementById("calculated-price").innerText);
-
-                    // Apply discount based on type
-                    let newPrice = (discountType === 'percentage') ?
-                        originalPrice - (originalPrice * discountAmount / 100) :
-                        originalPrice - discountAmount;
-
-                    newPrice = Math.max(newPrice, 0); // Ensure price doesn't go below zero
-
-                    document.getElementById("calculated-price").innerText = newPrice.toFixed(2);
-
-                    document.getElementById("discount-info").innerText = `{{ __('packages.discount_applied') }}: ${discountAmount} ${(discountType === 'percentage') ? '%' : 'SAR'}`;
-                    document.getElementById("discount-info").style.display = "block";
-                })
-                .catch(error => {
+            document.getElementById("apply-promocode").addEventListener("click", function() {
+                document.getElementById("apply-promocode").disabled = true;
+                let promocode = document.getElementById("promocode").value.trim();
+                if (!promocode) {
+                    alertError("{{ __('packages.enter_valid_promocode') }}");
                     document.getElementById("apply-promocode").disabled = false;
-                    alertError("{{ __('packages.invalid_promocode') }}");
-                });
-        });
+                    return;
+                }
 
-        document.querySelectorAll(".choose-plan").forEach(button => {
-            button.addEventListener("click", function() {
-                let plan = this.getAttribute("data-plan");
-                let plan_ar = this.getAttribute("data-plan-ar");
-                let plan_price = this.getAttribute("data-package-price");
-                let products = JSON.parse(this.getAttribute("data-products"));
+                axios.post(@json(url('/api/validate-promocode')), {
+                        code: promocode
+                    })
+                    .then(response => {
+                        discountAmount = response.data.discount_amount;
+                        discountType = response.data.discount_type;
+                        appliedPromocode = promocode;
+
+                        let originalPrice = parseFloat(document.getElementById("calculated-price").innerText);
+
+                        // Apply discount based on type
+                        let newPrice = (discountType === 'percentage') ?
+                            originalPrice - (originalPrice * discountAmount / 100) :
+                            originalPrice - discountAmount;
+
+                        newPrice = Math.max(newPrice, 0); // Ensure price doesn't go below zero
+
+                        document.getElementById("calculated-price").innerText = newPrice.toFixed(2);
+
+                        document.getElementById("discount-info").innerText = `{{ __('packages.discount_applied') }}: ${discountAmount} ${(discountType === 'percentage') ? '%' : 'SAR'}`;
+                        document.getElementById("discount-info").style.display = "block";
+                    })
+                    .catch(error => {
+                        document.getElementById("apply-promocode").disabled = false;
+                        alertError("{{ __('packages.invalid_promocode') }}");
+                    });
+            });
+
+            document.querySelectorAll(".choose-plan").forEach(button => {
+                button.addEventListener("click", function() {
+                    let plan = this.getAttribute("data-plan");
+                    let plan_ar = this.getAttribute("data-plan-ar");
+                    let plan_price = this.getAttribute("data-package-price");
+                    let products = JSON.parse(this.getAttribute("data-products"));
+                    let token = localStorage.getItem('auth_token_pyra12234');
+
+                    if (!token) {
+                        localStorage.setItem("redirect_after_login", "{{ route('customer.packages') }}");
+                        window.location.href = "{{ route('customer.login') }}";
+                    } else {
+                        sendPlanEmail(plan_price, plan, products);
+                        createOrder(plan, plan_ar, plan_price, products, appliedPromocode);
+                    }
+                });
+            });
+
+            function sendPlanEmail(plan_price, plan, products) {
                 let token = localStorage.getItem('auth_token_pyra12234');
 
-                if (!token) {
-                    localStorage.setItem("redirect_after_login", "{{ route('customer.packages') }}");
-                    window.location.href = "{{ route('customer.login') }}";
-                } else {
-                    sendPlanEmail(plan_price, plan, products);
-                    createOrder(plan, plan_ar, plan_price, products, appliedPromocode);
-                }
-            });
-        });
-
-        function sendPlanEmail(plan_price, plan, products) {
-            let token = localStorage.getItem('auth_token_pyra12234');
-
-            axios.get(@json(url('/api/user')), {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                })
-                .then(response => {
-                    let user = response.data; // Get logged-in user details
-                    console.log(user);
-                    axios.post(@json(url('/api/send-plan-email')), {
-                            user_name: user.name,
-                            user_email: user.email,
-                            selected_plan: plan,
-                            plan_products: products, // Sending products array
-                            plan_price: plan_price
-                        }, {
-                            headers: {
-                                Authorization: `Bearer ${token}`
-                            }
-                        })
-                        .then(response => {
-                            console.log("Email sent successfully.");
-                        })
-                        .catch(error => {
-                            console.error("Error sending email:", error.response);
-                            alertError("Failed to send email.");
-                        });
-                })
-                .catch(error => {
-                    console.error("Error fetching user details:", error.response);
-                    alertError("Failed to retrieve user details.");
-                });
-        }
-
-        function createOrder(plan, plan_ar, plan_price, products, promocode) {
-            let token = localStorage.getItem('auth_token_pyra12234');
-            axios.post(@json(url('/api/orders')), {
-                    plan_name: plan,
-                    plan_name_ar: plan_ar,
-                    package_price: plan_price,
-                    products: products,
-                    promocode: promocode
-                }, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                })
-                .then(response => {
-                    Swal.fire({
-                        title: "Success!",
-                        text: "{{ __('packages.order_success') }}",
-                        icon: "success",
-                        confirmButtonText: "OK"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = "{{ route('customer.packages') }}";
+                axios.get(@json(url('/api/user')), {
+                        headers: {
+                            Authorization: `Bearer ${token}`
                         }
+                    })
+                    .then(response => {
+                        let user = response.data; // Get logged-in user details
+                        console.log(user);
+                        axios.post(@json(url('/api/send-plan-email')), {
+                                user_name: user.name,
+                                user_email: user.email,
+                                selected_plan: plan,
+                                plan_products: products, // Sending products array
+                                plan_price: plan_price
+                            }, {
+                                headers: {
+                                    Authorization: `Bearer ${token}`
+                                }
+                            })
+                            .then(response => {
+                                console.log("Email sent successfully.");
+                            })
+                            .catch(error => {
+                                console.error("Error sending email:", error.response);
+                                alertError("Failed to send email.");
+                            });
+                    })
+                    .catch(error => {
+                        console.error("Error fetching user details:", error.response);
+                        alertError("Failed to retrieve user details.");
                     });
-                })
-                .catch(error => {
-                    alertError("{{ __('packages.order_failed') }}");
-                });
-        }
-    });
-</script>
+            }
 
-@endsection
-@endsection
+            function createOrder(plan, plan_ar, plan_price, products, promocode) {
+                let token = localStorage.getItem('auth_token_pyra12234');
+                axios.post(@json(url('/api/orders')), {
+                        plan_name: plan,
+                        plan_name_ar: plan_ar,
+                        package_price: plan_price,
+                        products: products,
+                        promocode: promocode
+                    }, {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    })
+                    .then(response => {
+                        Swal.fire({
+                            title: "Success!",
+                            text: "{{ __('packages.order_success') }}",
+                            icon: "success",
+                            confirmButtonText: "OK"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "{{ route('customer.packages') }}";
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        alertError("{{ __('packages.order_failed') }}");
+                    });
+            }
+        });
+    </script>
+
+    @endsection
+    @endsection

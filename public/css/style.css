@@ -15277,3 +15277,12 @@ Dark Mode
 .status-very-late {
     background: #dc3545 !important;
 }
+
+p.package_info {
+    background-color: #ff7918;
+    color: white;
+    padding: 7px 12px;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: 500
+}

@@ -1,5 +1,14 @@
 @extends('layouts.layout')
 @section('page_css')
+@include('layouts.main_css')
+<!-- Vendor CSS Files -->
+<link href="{{ asset('assets/vendor/vendor/aos/aos.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/vendor/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/vendor/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/vendor/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/vendor/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/vendor/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/aos.min.css') }}">
@@ -7,8 +16,15 @@
 <link rel="stylesheet" href="{{ asset('css/icofont.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
 <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}">
-<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<!-- Template Main CSS File -->
+<link href="{{ asset('assets/css/style2.css') }}" rel="stylesheet">
+<!-- Variables CSS Files. Uncomment your preferred color scheme -->
+<link href="{{ asset('assets/css/variables-orange.css') }}" rel="stylesheet">
+<!-- Template Main CSS File -->
+<link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 @endsection
 @section('content')
 <main id="main" style="margin-top: 110px">
@@ -27,393 +43,107 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="breadcrumb__content__wraper" data-aos="fade-up">
-                        <div class="breadcrumb__title">
-                            <h2 class="heading" style="text-align: center !important;">{{ __('packages.packages') }}</h2>
-                        </div>
+                        <header class="section-header" style="display: flex; justify-content: space-between;">
+                            <h2> {{ __('packages.packages') }}</h2>
+                            <a href="{{ route('customer.customizePackage') }}" class="btn btn-primary" style="font-size: 20px;">{{ __('packages.custom_package') }} </a>
+                        </header>
                         <div class="breadcrumb__inner">
+                            @if (app()->getLocale() === 'ar')
                             <ul>
                                 <li><a href="{{ route('customer.index') }}">{{ __('packages.home') }}</a></li>
                                 <li>{{ __('packages.packages') }}</li>
                             </ul>
+                            @else
+                            <ul style="padding: 0; text-align: left;">
+                                <li><a href="{{ route('customer.index') }}">{{ __('packages.home') }}</a></li>
+                                <li>{{ __('packages.packages') }}</li>
+                            </ul>
+                            @endif
+
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
         </div>
-
-        <!-- <div class="shape__icon__2">
-            <img loading="lazy" class=" shape__icon__img shape__icon__img__1" src="img/herobanner/herobanner__1.png"
-                alt="photo">
-            <img loading="lazy" class=" shape__icon__img shape__icon__img__2" src="img/herobanner/herobanner__2.png"
-                alt="photo">
-            <img loading="lazy" class=" shape__icon__img shape__icon__img__3" src="img/herobanner/herobanner__3.png"
-                alt="photo">
-            <img loading="lazy" class=" shape__icon__img shape__icon__img__4" src="img/herobanner/herobanner__5.png"
-                alt="photo">
-        </div> -->
 
     </div>
     <!-- breadcrumbarea__section__end-->
+    @php
+    function convertToArabicNumerals($number) {
+    $western = ['0','1','2','3','4','5','6','7','8','9'];
+    $arabic = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+    return str_replace($western, $arabic, $number);
+    }
+    @endphp
+    <!-- ======= Pricing Section ======= -->
+    <section id="pricing" class="pricing">
 
-    <!-- course__section__start   -->
-    <div class="coursearea ">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="course__text__wraper" data-aos="fade-up">
-                        <!-- <div class="course__text">
-                            <p>Showing 1–12 of 54 Results</p>
-                        </div> -->
-                        <!-- <div class="course__icon">
-                            <ul class="nav property__team__tap" id="myTab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <a href="#" class="single__tab__link active" data-bs-toggle="tab"
-                                        data-bs-target="#projects__one"><i class="icofont-layout"></i>
-                                    </a>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <a href="#" class="single__tab__link" data-bs-toggle="tab"
-                                        data-bs-target="#projects__two"><i class="icofont-listine-dots"></i>
-                                    </a>
-                                </li>
+        <div class="container" data-aos="fade-up">
+            <div class="row gy-4" data-aos="fade-left">
+                @foreach ($plans as $package)
+                @php
+                $originalTotal = 0;
 
-                                <li class="short__by__new">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Short by New</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
-                                </li>
+                foreach ($package->products as $product) {
+                $originalTotal += $product->price * $product->pivot->quantity;
+                }
 
+                $packagePrice = $package->price;
 
+                // Ensure no division by zero
+                if ($originalTotal > 0 && $packagePrice < $originalTotal) {
+                    $amountSaved=$originalTotal - $packagePrice;
+                    $percentageSaved=($amountSaved / $originalTotal) * 100;
+                    } else {
+                    $amountSaved=0;
+                    $percentageSaved=0;
+                    }
 
-                            </ul>
-                        </div> -->
-                    </div>
-
-                </div>
-                <!-- <div class="col-xl-3 col-lg-3 col-md-4 col-12">
-                    <div class="course__sidebar__wraper" data-aos="fade-up">
-                        <div class="course__heading">
-                            <h5>Search here</h5>
-                        </div>
-                        <div class="course__input">
-                            <input type="text" placeholder="Search product">
-                            <div class="search__button">
-                                <button><i class="icofont-search-1"></i></button>
+                    // Optional: Format for display
+                    $amountSavedFormatted=number_format($amountSaved, 2);
+                    $percentageSavedFormatted=number_format($percentageSaved, 0) ;
+                    @endphp
+                    <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                    <a href="{{ route('customer.package_info', ['package' => $package->id]) }}" class="text-decoration-none text-dark">
+                        <div class="box position-relative h-100">
+                            @if (app()->getLocale()==='ar')
+                            <span class="featured">وفر {{ convertToArabicNumerals($percentageSavedFormatted) .'٪' }}</span>
+                            @else
+                            <span class="featured">Save {{ $percentageSavedFormatted }}%</span>
+                            @endif
+                            <h3 style="color: #ff901c;">
+                                {{ app()->getLocale() === 'ar' ? $package->ar_name : $package->name }}
+                            </h3>
+                            <div class="img-container">
+                                <img src="{{ asset('package/' . $package->image) }}" alt="{{ $package->name }}" class="img-fluid">
                             </div>
-                        </div>
-                    </div>
-                    <div class="course__sidebar__wraper" data-aos="fade-up">
-                        <div class="categori__wraper">
-                            <div class="course__heading">
-                                <h5>Products</h5>
+                            <div class="price">
+                                <sup>SAR</sup>{{ $package->price }}
+                                <!-- <span> ($55.10)</span> -->
                             </div>
-                            <div class="course__categories__list">
-                                <ul>
-                                    {{-- @foreach ($products as $product)
-                                <li>
-                                    <a href="{{ route('courses.index', ['category' => $category->id]) }}">
-                                    {{ $product->name }}
-                                    <span>{{ $category->courses->count() }}</span>
-                                    </a>
-                                    </li>
-                                    @endforeach --}}
-
-
-
-                                </ul>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                    {{-- <div class="course__sidebar__wraper" data-aos="fade-up">
-                        <div class="course__heading">
-                            <h5>Skill Level</h5>
-                        </div>
-                        <div class="course__skill__list">
+                            <br><br>
                             <ul>
-
-                                <li>
-                                    <a href="#">
-                                        All
-                                    </a>
+                                @foreach ($package->products->take(3) as $product )
+                                <li style="display: flex;justify-content: center;">
+                                    <i class="bi bi-check2"></i> {{app()->getLocale() === 'ar' ? $product->ar_name : $product->name}}
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        Beginner
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        Intermediate
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Advance
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                    </div> --}}
-                    {{-- <div class="course__sidebar__wraper" data-aos="fade-up">
-                        <div class="course__heading">
-                            <h5>Tag</h5>
-                        </div>
-                        <div class="course__tag__list">
-                            <ul>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="course__check__box active "></div>
-                                        <span class="active">Mechanic</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="course__check__box  "></div>
-                                        <span>English</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="course__check__box  "></div>
-                                        <span>Computer Science</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="course__check__box  "></div>
-                                        <span>Data & Tech</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="course__check__box  "></div>
-                                        <span>Ux Desgin</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div> --}}
-
-
-
-                </div> -->
-
-                <div class="col-xl-12 col-lg-9 col-md-8 col-12">
-
-                    <div class="tab-content tab__content__wrapper with__sidebar__content" id="myTabContent">
-
-
-                        <div class="tab-pane fade  active show" id="projects__one" role="tabpanel"
-                            aria-labelledby="projects__one">
-
-                            <div class="row">
-                                @if (!empty($plans))
-                                @foreach ($plans as $package)
-                                <div class="col-xl-3 col-lg-6 col-md-12 col-sm-6 col-12" data-aos="fade-up">
-                                    <div class="gridarea__wraper gridarea__wraper__2">
-                                        <div class="gridarea__img">
-                                            <img loading="lazy"
-                                                src="{{ asset('package/' . $package->image) }}" alt="{{ $package->name }}">
-                                            <div class="gridarea__small__button">
-                                                <div class="grid__badge orange__color">
-                                                    {{ app()->getLocale() === 'ar' ? $package->ar_name : $package->name }}
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="gridarea__content">
-                                            <div class="gridarea__list">
-                                                <ul>
-                                                    <li>
-                                                        <i class="icofont-book-alt"></i>
-                                                        {{-- {{ $course->totalLessonsCount() ?? 0 }} Lessons --}}
-                                                        {{ $package->products->count() ?? 0 }} {{ __('packages.product') }}
-                                                    </li>
-                                                    <li>
-                                                        <i class="icofont-clock-time"></i>
-                                                        {{-- {{ $course->duration ?? 'N/A' }} --}}
-                                                        {{ $package->price }} SAR
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="gridarea__heading">
-                                                <h3>
-                                                    <a href="{{ route('customer.package_info', ['package' => $package->id]) }}">
-                                                        {{ app()->getLocale() === 'ar' ? $package->ar_name : $package->name }}
-                                                    </a>
-                                                </h3>
-                                            </div>
-                                            <!-- <div class="gridarea__bottom">
-                                                <div class="gridarea__star">
-                                                    <i class="icofont-star"></i>
-                                                    <i class="icofont-star"></i>
-                                                    <i class="icofont-star"></i>
-                                                    <i class="icofont-star"></i>
-                                                    {{-- <span>({{ $course->rating ?? 0 }})</span> --}}
-                                                </div>
-                                            </div> -->
-                                        </div>
-                                    </div>
-                                </div>
+                                <hr>
                                 @endforeach
-                                @endif
-                                <!-- Custom Plan -->
-                                <div class="col-xl-3 col-lg-6 col-md-12 col-sm-6 col-12" data-aos="fade-up">
-                                    <div class="gridarea__wraper gridarea__wraper__2">
-                                        <div class="gridarea__img">
-                                            @if (isset($package))
-                                            <img loading="lazy"
-                                                src="{{ asset('package/' . $package->image) }}" alt="{{ $package->name }}">
-                                            @endif
-                                            <div class="gridarea__small__button">
-                                                <div class="grid__badge orange__color">
-                                                    {{ app()->getLocale() === 'ar' ? 'مخصص' : 'Custom' }}
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="gridarea__content">
-                                            <div class="gridarea__list">
-                                                <ul>
-                                                    <li>
-                                                        <i class="icofont-book-alt"></i>
-                                                        {{-- {{ $course->totalLessonsCount() ?? 0 }} Lessons --}}
-                                                        {{ __('packages.variable') }}
-                                                    </li>
-                                                    <li>
-                                                        <i class="icofont-clock-time"></i>
-                                                        {{-- {{ $course->duration ?? 'N/A' }} --}}
-                                                        {{ __('packages.variable_price') }}
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="gridarea__heading">
-                                                <h3>
-                                                    <a
-                                                        href="{{ route('customer.customizePackage') }}"> {{ app()->getLocale() === 'ar' ? 'مخصص' : 'Custom' }}</a>
-                                                </h3>
-                                            </div>
-                                            <!-- <div class="gridarea__bottom">
-                                                <div class="gridarea__star">
-                                                    <i class="icofont-star"></i>
-                                                    <i class="icofont-star"></i>
-                                                    <i class="icofont-star"></i>
-                                                    <i class="icofont-star"></i>
-                                                    {{-- <span>({{ $course->rating ?? 0 }})</span> --}}
-                                                </div>
-                                            </div> -->
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="main__pagination__wrapper" data-aos="fade-up">
-                                {{-- {{ $courses->links('pagination::bootstrap-5') }} --}}
+                            </ul>
+                            <div class="buy-container">
+                                <a href="{{ route('customer.package_info', ['package' => $package->id]) }}" class="btn-buy">
+                                    {{ __('packages.package_details') }}
+                                </a>
                             </div>
                         </div>
-
-
-                        <div class="tab-pane fade" id="projects__two" role="tabpanel"
-                            aria-labelledby="projects__two">
-                            @foreach ($plans as $package)
-                            <div class="gridarea__wraper gridarea__wraper__2 gridarea__course__list"
-                                data-aos="fade-up">
-                                <div class="gridarea__img">
-                                    <a href="course-details.html">
-                                        <img loading="lazy"
-                                            src="{{ asset('package/' . $package->image) }}" alt="{{ $package->name }}">
-                                    </a>
-                                    <div class="gridarea__small__button">
-                                        <div class="grid__badge orange__color">
-                                            {{-- {{ $course->course_path ?? 'General' }}
-                                        </div> --}}
-                                    </div>
-
-
-                                </div>
-                                <div class="gridarea__content">
-                                    <div class="gridarea__list">
-                                        <ul>
-                                            <li>
-                                                <i class="icofont-book-alt"></i>
-                                                {{-- {{ $course->totalLessonsCount() ?? 0 }} Lesson --}}
-                                            </li>
-                                            <li>
-                                                <i class="icofont-clock-time"></i>
-                                                {{-- {{ $course->duration ?? 'N/A' }} --}}
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="gridarea__heading">
-                                        <h3><a href="course-details.html">Become a product Manager learn the
-                                                skills & job.
-                                            </a></h3>
-                                    </div>
-
-                                    <div class="gridarea__bottom">
-                                        <div class="gridarea__bottom__left">
-
-
-                                            <div class="gridarea__star">
-                                                <i class="icofont-star"></i>
-                                                <i class="icofont-star"></i>
-                                                <i class="icofont-star"></i>
-                                                <i class="icofont-star"></i>
-                                                {{-- <span>({{ $course->rating ?? 0 }})</span> --}}
-                                            </div>
-                                        </div>
-
-                                        <div class="gridarea__details">
-                                            <a href="{{ route('customer.package_info', ['package' => $package->id]) }}">See Details
-                                                <i class="icofont-arrow-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-
-                            <div class="main__pagination__wrapper" data-aos="fade-up">
-                                {{-- {{ $courses->links('pagination::bootstrap-5') }} --}}
-                            </div>
-
-
-                        </div>
-
-                    </div>
-
-
-                    {{-- <div class="main__pagination__wrapper" data-aos="fade-up">
-                        <ul class="main__page__pagination">
-                            <li><a class="disable" href="#"><i class="icofont-double-left"></i></a></li>
-                            <li><a class="active" href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#"><i class="icofont-double-right"></i></a></li>
-                        </ul>
-                    </div> --}}
-
-                </div>
-
-
+                    </a>
             </div>
+
+            @endforeach
         </div>
-    </div>
-    <!-- course__section__end   -->
+        </div>
+
+    </section><!-- End Pricing Section -->
 
 
 </main>
@@ -436,6 +166,16 @@
 <!-- Vendor JS Files -->
 @section('page_js')
 <script src="app.js"></script>
+<script src="{{ asset('assets/vendor/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+<script src="{{ asset('assets/vendor/vendor/aos/aos.js') }}"></script>
+<!-- <script src="{{ asset('assets/vendor/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script> -->
+<script src="{{ asset('assets/vendor/vendor/glightbox/js/glightbox.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/vendor/swiper/swiper-bundle.min.js') }}"></script>
+<!--<script src="assetsb2c/vendor/php-email-form/validate.js"></script>-->
+
+<!-- Template Main JS File -->
+<script src="{{ asset('assets/js/main.js') }}"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const buttons = document.querySelectorAll(".choose-plan");
@@ -513,4 +253,5 @@
         }
     });
 </script>
+
 @endsection
