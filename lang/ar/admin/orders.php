@@ -14,9 +14,9 @@ return [
     'title' => 'الطلبات',
     'components' => 'مكونات الطلب',
     'info' => 'معلومات الطلب',
-    'processing' => 'قيد المعالجة',
+    'processing' => 'قيد التجهيز',
     'under_review' => 'قيد المراجعة',
-    'completed' => 'مكتمل',
+    'completed' => 'مؤكد',
     'cancelled' => 'ملغي',
     'update_status' => 'تحديث الحالة'
 

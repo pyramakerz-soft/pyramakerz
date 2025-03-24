@@ -15,7 +15,7 @@ return [
     'info' => 'Order Information',
     'processing' => 'Under Processing',
     'under_review' => 'Under Review',
-    'competed' => 'Completed',
+    'completed' => 'Confirmed',
     'cancelled' => 'Cancelled',
     'update_status' => 'Update Status'
 
