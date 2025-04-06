@@ -3,7 +3,7 @@
 @include('layouts.main_css')
 @endsection
 @section('content')
-<main id="main admin-content" class="mt-5">
+<main id="main admin-content" class="mt-5" style="padding-top: 70px;">
     <section id="contact" class="contact">
         <div class="container">
 

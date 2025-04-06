@@ -213,7 +213,7 @@ if ($originalTotal > 0 && $packagePrice < $originalTotal) {
                                         <li>
                                             <div class="course__summery__item">
                                                 <span class="sb_label">{{ __('packages.price') }}: </span>
-                                                <span class="sb_content" id="final-price">
+                                                <span class="sb_content" id="final-price" style="background-color: white;">
                                                     <span id="calculated-price">{{ $package->price ?? '0' }}</span> SAR
                                                 </span>
                                             </div>

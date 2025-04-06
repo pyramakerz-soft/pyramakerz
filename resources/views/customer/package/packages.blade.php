@@ -76,7 +76,7 @@
     }
     @endphp
     <!-- ======= Pricing Section ======= -->
-    <section id="pricing" class="pricing">
+    <section id="pricing" class="pricing mb-5">
 
         <div class="container" data-aos="fade-up">
             <div class="row gy-4" data-aos="fade-left">

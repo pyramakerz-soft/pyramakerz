@@ -13,7 +13,7 @@ return [
     | لا تتردد في تعديل هذه الرسائل هنا.
     |
     */
-
+    'mimes' => 'يجب أن يكون :attribute ملفًا من نوع: :values.',
     'accepted' => 'يجب قبول :attribute.',
     'accepted_if' => 'يجب قبول :attribute عندما يكون :other هو :value.',
     'active_url' => 'يجب أن يكون :attribute رابطًا صالحًا.',
@@ -124,6 +124,10 @@ return [
         'code' => [
             'unique' => 'هذا الكود مستخدم بالفعل.', // Customize only for 'code' field
         ],
+        'image' => [
+            'image' => 'يجب أن يكون الملف صورة (jpeg، png، jpg، gif).',
+            'mimes' => 'يجب أن تكون الصورة من نوع: :values فقط.',
+        ],
     ],
 
     /*
@@ -136,7 +140,7 @@ return [
         'new_password' => 'كلمة المرور الجديدة',
         'current_password' => 'كلمة المرور الحالية',
         'valid_until' => 'صالح حتى:',
-        'today' => 'اليوم'
-
+        'today' => 'اليوم',
+        'image' => 'الصورة',
     ],
 ];

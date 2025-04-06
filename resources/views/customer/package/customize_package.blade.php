@@ -18,37 +18,26 @@
         <div class="container">
             <div class="row mt-5">
                 <div class="col-xl-8">
-                    @if (app()->getLocale() === 'ar')
-                    <div class="breadcrumb__content__wraper" style="margin-top: 100px; text-align: right;" data-aos="fade-up">
-                        <div class="breadcrumb__inner text-right">
-                            <ul>
-                                <li>مخصص</li>
-                                <li><a href="{{ route('customer.packages') }}">{{ __('packages.packages') }}</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    @else
-                    <d class="breadcrumb__content__wraper" style="margin-top: 100px;" data-aos="fade-up">
+                    <div class="breadcrumb__content__wraper" style="margin-top: 100px;" data-aos="fade-up">
                         <div class="breadcrumb__inner text-start">
                             <ul>
                                 <li><a href="{{ route('customer.packages') }}">{{ __('packages.packages') }}</a></li>
-                                <li>Custom</li>
+                                <li>{{ app()->getLocale() === 'ar' ? 'مخصص' : 'Custom' }}</li>
                             </ul>
                         </div>
-                </div>
-                @endif
-
-                <div class="course__details__top--2">
-                    <div class="product__details__heading" data-aos="fade-up">
-                        <h3 style="font-size: 34px;">{{ app()->getLocale() === 'ar' ? 'مخصص' : 'Custom' }}</h3>
                     </div>
 
+                    <div class="course__details__top--2">
+                        <div class="product__details__heading" data-aos="fade-up">
+                            <h3 style="font-size: 34px;">{{ app()->getLocale() === 'ar' ? 'مخصص' : 'Custom' }}</h3>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- <div class="shape__icon__2">
+        <!-- <div class="shape__icon__2">
             <img loading="lazy" class="shape__icon__img shape__icon__img__1"
                 src="{{ asset('img/herobanner/herobanner__1.png') }}" alt="photo">
             <img loading="lazy" class="shape__icon__img shape__icon__img__2"
@@ -155,7 +144,8 @@
                     <div class="course__details__sidebar--2">
                         <div class="event__sidebar__wraper" data-aos="fade-up">
                             <div class="blogarae__img__2 course__details__img__2" data-aos="fade-up">
-                                <img src="{{ asset('assets/img/custom_plan.jpg') }}" alt="Custom Plan">
+                                <!-- <img src="{{ asset('assets/img/custom_plan.jpg') }}" alt="Custom Plan"> -->
+                                <p style="text-align: center !important; font-size: 24px;">{{ app()->getLocale() === 'ar' ? 'باقة مخصصة' : 'Custom Package' }}</p>
                             </div>
 
 
@@ -182,19 +172,13 @@
                                         <li>
                                             <div class="course__summery__item">
                                                 <span class="sb_label">{{ __('packages.price') }}: </span>
-                                                <span class="sb_content" id="final-price"><span id="calculated-price" class="total-price2">{{ $package->price ?? '0' }}</span> SAR</span>
+                                                <span class="sb_content" style="background-color: white;" id="final-price"><span id="calculated-price" class="total-price2">{{ $package->price ?? '0' }}</span> SAR</span>
                                             </div>
                                             <p id="discount-info" class="text-success" style="display: none;"></p>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-
-
-
-
-
-
 
                             <div class="course__summery__button">
                                 <button class="default__button" style="text-align: center !important;" id="submitCustomPlan"

@@ -40,10 +40,12 @@
 
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     @include('layouts.navbar')
 
-    @yield('content')
+    <main class="flex-grow-1">
+        @yield('content')
+    </main>
 
     @include('layouts.footer')
     @include('layouts.scripts')

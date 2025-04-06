@@ -50,7 +50,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">
           {{ strtoupper(app()->getLocale()) }}
         </a>
-        <ul class="dropdown-menu dropdown-menu-end">
+        <ul class="dropdown-menu dropdown-menu-end" id="langDropdownMenu">
           <li><a class="dropdown-item" href="{{ route('change.lang', 'en') }}">English</a></li>
           <li><a class="dropdown-item" href="{{ route('change.lang', 'ar') }}">العربية</a></li>
         </ul>
@@ -60,7 +60,20 @@
 
   </div>
 </header><!-- End Header -->
+<script>
+  const langDropdown = document.getElementById('langDropdown');
+  const langDropdownMenu = document.getElementById('langDropdownMenu');
 
+  // When dropdown is shown
+  langDropdown.addEventListener('show.bs.dropdown', function() {
+    langDropdownMenu.classList.add('d-flex', 'flex-column');
+  });
+
+  // When dropdown is hidden
+  langDropdown.addEventListener('hide.bs.dropdown', function() {
+    langDropdownMenu.classList.remove('d-flex', 'flex-column');
+  });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function() {

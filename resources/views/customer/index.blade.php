@@ -120,7 +120,13 @@
     <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
   </a>
 
-  <ol class="carousel-indicators"></ol>
+  <ol class="carousel-indicators">
+    <li data-bs-target="#hero" data-bs-slide-to="0" class="active" aria-current="true"></li>
+    <li data-bs-target="#hero" data-bs-slide-to="1"></li>
+    <li data-bs-target="#hero" data-bs-slide-to="2"></li>
+    <li data-bs-target="#hero" data-bs-slide-to="3"></li>
+    <li data-bs-target="#hero" data-bs-slide-to="4"></li>
+  </ol>
 
 </section><!-- End Hero Section -->
 
@@ -191,6 +197,7 @@
                 <div class="col-xl-8 col-md-8">
                   <h4>{{ __('school_portal') }}</h4>
                   <p>{{ __('school_portal_description') }}</p>
+                  <br>
                   <a href="{{ route('customer.schools') }}" class="btn-get-started scrollto ">{{ __('see_more') }}</a>
 
                 </div>
@@ -210,6 +217,9 @@
                 <div class="col-xl-8 col-md-8">
                   <h4>{{ __('student_portal') }}</h4>
                   <p>{{ __('student_portal_description') }}</p>
+                  @if (app()->getLocale() === 'en')
+                  <br>
+                  @endif
                   <br>
                   <a href="{{ route('customer.students') }}" class="btn-get-started scrollto ">{{ __('see_more') }}</a>
                 </div>
@@ -232,6 +242,9 @@
                   <h4>{{ __('alef_bot') }}</h4>
                   <p>{{ __('alef_bot_description') }}</p>
                   <br>
+                  @if (app()->getLocale() === 'en')
+                  <br>
+                  @endif
                   <a href="{{ route('customer.alefBot') }}" class="btn-get-started scrollto ">{{ __('see_more') }}</a>
 
                 </div>
@@ -251,6 +264,7 @@
                 <div class="col-xl-8 col-md-8">
                   <h4>{{ __('competitions') }}</h4>
                   <p>{{ __('competitions_description') }}</p>
+                  <br>
                   <a href="{{ route('customer.competitions') }}" class="btn-get-started scrollto ">{{ __('see_more') }}</a>
 
                 </div>
@@ -317,7 +331,7 @@
     <div class="container" data-aos="fade-up">
 
       <div class="section-header" data-aos="zoom-in-up">
-        <h2>{{ __('blog') }}</h2>
+        <h2 class="mb-4">{{ __('blog') }}</h2>
       </div>
 
       <div class="row posts-list">
@@ -331,6 +345,9 @@
             </h3>
             <p>{{ __('embracing_future_text') }}</p>
             <br>
+            @if (app()->getLocale() === 'en')
+            <br>
+            @endif
             <a href="{{ route('customer.blogs1') }}" class="readmore stretched-link"><span>{{ __('read_more') }}</span><i class="bi bi-arrow-right"></i></a>
           </div>
         </div>

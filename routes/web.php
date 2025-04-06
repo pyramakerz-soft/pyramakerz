@@ -67,10 +67,9 @@ Route::get('/account', [CustomerController::class, 'account'])->name('customer.a
 // Route::post('/resend-otp', [AuthController::class, 'resendOTP']);
 
 // Langauge Change Route
-Route::get('lang/{locale}', function ($locale) {
-    if (!in_array($locale, ['en', 'ar'])) {
-        abort(400);
+Route::get('/lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'ar'])) {
+        session(['locale' => $locale]);
     }
-    Session::put('locale', $locale);
     return redirect()->back();
 })->name('change.lang');

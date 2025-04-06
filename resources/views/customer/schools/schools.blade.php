@@ -36,13 +36,12 @@
               <div class="icon">
                 <i class="bi bi-1-circle-fill"></i>
               </div>
-              <a href="" class="stretched-link">
+              <div href="" class="stretched-link">
                 <h3>{{ __('schools.integrated_steam') }}</h3>
                 <p>
                   {{ __('schools.integrated_steam_text') }}
                 </p>
-              </a>
-
+              </div>
             </div>
           </div>
         </div><!-- End Service Item -->
@@ -56,10 +55,10 @@
               <div class="icon">
                 <i class="bi bi-2-circle-fill"></i>
               </div>
-              <a href="" class="stretched-link">
+              <div class="stretched-link">
                 <h3>{{ __('schools.curriculum_design') }}</h3>
                 <p>{{ __('schools.curriculum_design_text') }}</p>
-              </a>
+              </div>
             </div>
           </div>
         </div><!-- End Service Item -->
@@ -73,11 +72,12 @@
               <div class="icon">
                 <i class="bi bi-3-circle-fill"></i>
               </div>
-              <a href="" class="stretched-link">
+              <div class="stretched-link">
                 <h3>{{ __('schools.educator_empowerment') }}</h3>
                 <p>{{ __('schools.educator_empowerment_text') }}</p>
-              </a>
+              </div>
             </div>
+
           </div>
         </div><!-- End Service Item -->
 
