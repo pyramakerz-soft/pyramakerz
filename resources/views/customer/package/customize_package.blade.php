@@ -9,6 +9,61 @@
 <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<style>
+    .hidden-important {
+        display: none !important;
+    }
+
+    .quantity-input {
+        background-color: white;
+        color: #FF7519;
+        font-size: 16px;
+        border: 1px solid #ced4da;
+        -moz-appearance: textfield;
+        -webkit-appearance: none;
+        appearance: textfield;
+        width: 36px;
+        text-align: center !important;
+        padding: 0;
+        height: 32px;
+        line-height: 32px;
+        vertical-align: middle;
+    }
+
+
+
+    .quantity-input::-webkit-outer-spin-button,
+    .quantity-input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    .quantity-input:focus {
+        outline: none !important;
+        box-shadow: none !important;
+        border-color: #ced4da;
+    }
+
+    .btn-sm {
+        min-width: 32px;
+        min-height: 32px;
+        border: none;
+        background-color: #EEEEEE;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        color: black;
+        font-weight: bold;
+        border-radius: 0;
+    }
+
+
+    .form-check-input:checked {
+        background-color: #FF7519;
+        border-color: #FF7519;
+    }
+</style>
 @endsection
 @section('content')
 
@@ -78,27 +133,67 @@
                                     <div class="accordion content__cirriculum__wrap" id="accordionExample">
                                         @foreach($products as $product)
                                         <div class="accordion-item roundd">
-                                            <h2 class="accordion-header" style="display: flex; justify-content: space-between;">
+                                            <h2 class="accordion-header" style="display: flex; justify-content: space-between; align-items: center;">
                                                 <input class="form-check-input product-checkbox me-2" type="checkbox"
+                                                    style="margin: 0 20px 0 20px"
                                                     value="{{ $product->id }}"
                                                     data-name="{{ $product->name }}"
                                                     data-price="{{ $product->price }}"
                                                     id="product-{{ $product->id }}">
 
-                                                <div class="d-flex align-items-center">
-                                                    <label style="font-size: 16px; display: none;" id="quantity-label{{ $product->id }}">{{ __('packages.quantity') }}:</label>
-                                                    <input type="number" class="form-control quantity-input ms-2"
-                                                        id="quantity-{{ $product->id }}" value="1" min="1"
-                                                        style="width: 60px; display: none;">
-                                                </div>
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#product{{ $product->id }}"
-                                                    aria-expanded="false"
-                                                    aria-controls="product{{ $product->id }}">
-                                                    <strong>{{ app()->getLocale() === 'ar' ? $product->ar_name : $product->name }} - {{ number_format($product->price, 2) }} SAR</strong>
-                                                </button>
 
+
+                                                @if (app()->getLocale() === 'ar')
+                                                <div style="width: 100%;">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        style="position: relative;left:0 !important;float:left;"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#product{{ $product->id }}"
+                                                        aria-expanded="false"
+                                                        aria-controls="product{{ $product->id }}">
+                                                        <strong>{{ app()->getLocale() === 'ar' ? $product->ar_name : $product->name }} - {{ number_format($product->price, 2) }} SAR</strong>
+                                                    </button>
+
+                                                    <div class="d-flex align-items-center" id="quantityDiv-{{ $product->id }}" style="flex: 1; justify-content: end; position: relative; right: 93%; z-index: 9999; top: 12.5px; display: none !important;">
+                                                        <!-- Minus Button -->
+                                                        <button type="button" class="btn btn-outline-secondary btn-sm minus-btn" data-id="{{ $product->id }}">−</button>
+
+                                                        <input type="number"
+                                                            class="form-control text-center mx-2 quantity-input"
+                                                            id="quantity-{{ $product->id }}"
+                                                            value="1"
+                                                            min="1"
+                                                            style="appearance: textfield; text-align: center !important; -moz-appearance: textfield; -webkit-appearance: none; border:none;height: 32px; margin: 0 !important; border-radius: 0;">
+                                                        <!-- Plus Button -->
+                                                        <button type="button" class="btn btn-outline-secondary btn-sm plus-btn" data-id="{{ $product->id }}">+</button>
+                                                    </div>
+                                                </div>
+                                                @else
+                                                <div style="width: 100%;">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        style="position: relative;left:0 !important;float:left;"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#product{{ $product->id }}"
+                                                        aria-expanded="false"
+                                                        aria-controls="product{{ $product->id }}">
+                                                        <strong>{{ app()->getLocale() === 'ar' ? $product->ar_name : $product->name }} - {{ number_format($product->price, 2) }} SAR</strong>
+                                                    </button>
+
+                                                    <div class="d-flex align-items-center" id="quantityDiv-{{ $product->id }}" style="flex: 1; justify-content: end; position: relative; right: 7%; z-index: 9999; top: 12.5px; display: none !important;">
+                                                        <!-- Minus Button -->
+                                                        <button type="button" class="btn btn-outline-secondary btn-sm minus-btn" data-id="{{ $product->id }}">−</button>
+
+                                                        <input type="number"
+                                                            class="form-control text-center mx-2 quantity-input"
+                                                            id="quantity-{{ $product->id }}"
+                                                            value="1"
+                                                            min="1"
+                                                            style="appearance: textfield; text-align: center !important; -moz-appearance: textfield; -webkit-appearance: none; border:none;height: 32px; margin: 0 !important; border-radius: 0;">
+                                                        <!-- Plus Button -->
+                                                        <button type="button" class="btn btn-outline-secondary btn-sm plus-btn" data-id="{{ $product->id }}">+</button>
+                                                    </div>
+                                                </div>
+                                                @endif
                                             </h2>
                                             <div id="product{{ $product->id }}" class="accordion-collapse collapse"
                                                 data-bs-parent="#accordionExample">
@@ -108,8 +203,6 @@
                                                     @else
                                                     <p><strong>{{ __('packages.description') }}: </strong> {{ $product->description ?? 'No description available.' }}</p>
                                                     @endif
-                                                    <!-- Quantity Input (Hidden initially) -->
-
 
                                                     @if ($product->image)
                                                     <div class="text-center mt-3">
@@ -209,8 +302,21 @@
 @endsection
 @section('page_js')
 <script src="app.js"></script>
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('.quantity-input').forEach(input => {
+            // Store the previous valid value
+            let previousValue = input.value;
+
+            input.addEventListener('input', function() {
+                if (this.value === '') {
+                    this.value = previousValue; // revert to last value
+                } else {
+                    previousValue = this.value;
+                }
+            });
+        });
         let token = localStorage.getItem('auth_token_pyra12234');
 
         if (!token) {
@@ -224,20 +330,49 @@
         checkboxes.forEach((checkbox) => {
             checkbox.addEventListener("change", function() {
                 let quantityInput = document.getElementById(`quantity-${this.value}`);
-                let quantityLabel = document.getElementById(`quantity-label${this.value}`);
+                let quantityDiv = document.getElementById(`quantityDiv-${this.value}`);
+                // let quantityLabel = document.getElementById(`quantity-label${this.value}`);
 
                 if (this.checked) {
                     quantityInput.style.display = "inline-block";
-                    quantityLabel.style.display = "inline-block";
+                    quantityDiv.style.display = "block";
+                    quantityDiv.classList.remove('hidden-important');
+
+                    // quantityLabel.style.display = "inline-block";
                 } else {
                     quantityInput.style.display = "none";
-                    quantityLabel.style.display = "none";
+                    // quantityLabel.style.display = "none";
                     quantityInput.value = "1";
+                    quantityDiv.classList.add('hidden-important');
+
                 }
 
                 updateTotalPrice();
             });
         });
+
+        // Plus button
+        document.querySelectorAll('.plus-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.dataset.id;
+                const input = document.getElementById('quantity-' + id);
+                input.value = parseInt(input.value) + 1;
+                updateTotalPrice();
+            });
+        });
+
+        // Minus button
+        document.querySelectorAll('.minus-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.dataset.id;
+                const input = document.getElementById('quantity-' + id);
+                if (parseInt(input.value) > 1) {
+                    input.value = parseInt(input.value) - 1;
+                    updateTotalPrice();
+                }
+            });
+        });
+
 
         document.querySelectorAll(".quantity-input").forEach((input) => {
             input.addEventListener("input", function() {
@@ -416,8 +551,7 @@
                     alertError("{{ __('packages.order_failed') }}");
                 });
         }
-
-
     });
 </script>
+
 @endsection

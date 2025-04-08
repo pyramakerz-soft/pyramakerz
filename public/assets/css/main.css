@@ -338,6 +338,7 @@ section {
   .navbar a:hover:before,
   .navbar li:hover>a:before,
   .navbar .active:before {
+
     visibility: visible;
     transform: scaleX(0.7);
   }
@@ -359,7 +360,7 @@ section {
   .navbar .dropdown .active,
   .navbar .dropdown .active:focus,
   .navbar .dropdown:hover>a {
-    color: var(--color-secondary);
+    color: white;
     background: var(--color-primary);
     border: 2px solid var(--color-primary);
   }
@@ -376,9 +377,9 @@ section {
     visibility: hidden;
     /* background: var(--color-white); */
     transition: 0.3s;
-
     color: var(--color-white);
     background: var(--color-primary);
+    border-radius: 0px 15px 15px 15px;
   }
 
   .navbar .dropdown ul li {
@@ -390,7 +391,8 @@ section {
     font-size: 15px;
     text-transform: none;
     font-weight: 400;
-    color: var(--color-secondary);
+    color: white;
+
   }
 
   .navbar .dropdown ul a i {
@@ -2157,7 +2159,7 @@ section {
 }
 
 .recent-blog-posts .post-box .post-title {
-  font-size: 24px;
+  font-size: 20px;
   color: var(--color-black);
   font-weight: 700;
   margin: -60px 0 0 0;
@@ -2167,9 +2169,10 @@ section {
 }
 
 .recent-blog-posts .post-box p {
-  color: (--color-secondary);
+  color: var(--color-secondary);
   padding-left: 15px;
   padding-right: 15px;
+  font-size: 16px;
 }
 
 .recent-blog-posts .post-box .readmore {
@@ -2551,6 +2554,12 @@ section {
 .blog .blog-details {
   box-shadow: 0 4px 16px rgba(var(--color-black-rgb), 0.1);
   padding: 30px;
+}
+
+.blog .blog-details p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-secondary);
 }
 
 .blog .blog-details .post-img {
@@ -3698,7 +3707,7 @@ span.text {
 }
 
 .btn {
-  display: inline-block;
+  /* display: inline-block;
   padding: 10px 20px;
   margin: 10px;
   text-decoration: none;
@@ -3707,7 +3716,18 @@ span.text {
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease; */
+  font-size: 16px;
+  color: var(--color-white);
+  font-family: var(--font-secondary);
+  margin-right: 5%;
+  background: var(--color-primary);
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn.remind-btn {
@@ -3722,8 +3742,10 @@ span.text {
 
 .btn:hover {
   /* background-color: #0056b3; Darker shade on hover */
-  border-radius: 5px;
-  transform: scale(1.1);
+  /* border-radius: 5px;
+  transform: scale(1.1); */
+  color: var(--color-white);
+  background: rgba(var(--color-primary-rgb), 0.85);
 }
 
 .popup-content p {
@@ -3935,4 +3957,11 @@ span {
 .pricing-block:nth-child(3) .icon-box i,
 .pricing-block:nth-child(3) .price {
   color: var(--color-primary);
+}
+
+[dir="rtl"] .accordion-button::after {
+  margin-left: 0;
+  /* remove default spacing on left */
+  margin-right: auto;
+  /* push it to the left side */
 }

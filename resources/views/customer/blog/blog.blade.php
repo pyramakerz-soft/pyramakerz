@@ -79,174 +79,55 @@
 
     <!-- ///////////////////// -->
     <!-- ======= Blog Section ======= -->
-    <section id="blog" class="blog">
+    <section id="blog" class="recent-blog-posts mt-5" style="padding-bottom: 80px;">
+
         <div class="container" data-aos="fade-up">
 
-            <div class="row g-5">
+            <div class="row posts-list">
 
-                <div class="col-lg-8">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="post-box">
+                        <div class="post-img"><img src="assets/img/blog1.jpg" class="img-fluid" alt=""></div>
 
-                    <div class="row gy-4 posts-list">
-
-                        <div class="col-lg-12">
-                            <article class="d-flex flex-column">
-
-                                <div class="post-img">
-                                    <img src="assets/img/blog1.jpg" class="img-fluid" alt="">
-                                </div>
-
-                                <h2 class="title">
-                                    <a href="{{ route('customer.blogs1') }}">
-                                        {{ __('blog.title1') }}: <br>
-                                        {{ __('blog.title1_cont') }}
-                                    </a>
-                                </h2>
-
-
-                                <div class="content">
-                                    <p>
-                                        {{ __('blog.excerpt1') }}
-                                    </p>
-                                </div>
-
-                                <div class="read-more mt-auto align-self-end">
-                                    <a href="{{ route('customer.blogs1') }}">{{ __('blog.read_more') }}</a>
-                                </div>
-
-                            </article>
-                        </div><!-- End post list item -->
-
-                        <div class="col-lg-12">
-                            <article class="d-flex flex-column">
-
-                                <div class="post-img">
-                                    <img src="assets/img/blog2.jpg" class="img-fluid" alt="">
-                                </div>
-
-                                <h2 class="title">
-                                    <a href="{{ route('customer.blogs2') }}">
-                                        {{ __('blog.title2') }}: <br> {{ __('blog.title2_cont') }}
-                                    </a>
-                                </h2>
-                                <br>
-
-                                <div class="content">
-                                    <p>
-                                        {{ __('blog.excerpt2') }}
-                                    </p>
-                                </div>
-
-                                <div class="read-more mt-auto align-self-end">
-                                    <a href="{{ route('customer.blogs2') }}">{{ __('blog.read_more') }}</a>
-                                </div>
-
-                            </article>
-                        </div><!-- End post list item -->
-
-                        <div class="col-lg-12">
-                            <article class="d-flex flex-column">
-
-                                <div class="post-img">
-                                    <img src="assets/img/blog3.jpeg" class="img-fluid" alt="">
-                                </div>
-
-                                <h2 class="title">
-                                    <a href="{{ route('customer.blogs3') }}">
-                                        {{ __('blog.title3') }}: <br>{{ __('blog.title3_cont') }} </a>
-                                </h2>
-
-                                <div class="content">
-                                    <p>
-                                        {{ __('blog.excerpt3') }}
-                                    </p>
-                                </div>
-
-                                <div class="read-more mt-auto align-self-end">
-                                    <a href="{{ route('customer.blogs3') }}"> {{ __('blog.read_more') }}</a>
-                                </div>
-
-                            </article>
-                        </div><!-- End post list item -->
-
-
-                    </div><!-- End blog posts list -->
-
-                    <div class="blog-pagination">
-                        <!-- <ul class="justify-content-center">
-                            <li><a href="#">1</a></li>
-                            <li class="active"><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                        </ul> -->
-                    </div><!-- End blog pagination -->
-
+                        <h3 class="post-title"> {{ __('embracing_future') }} <br>
+                            {{ __('embracing_future_cont') }}
+                        </h3>
+                        <p>{{ __('embracing_future_text') }}</p>
+                        <br>
+                        <a href="{{ route('customer.blogs1') }}" class="readmore stretched-link"><span>{{ __('read_more') }}</span><i class="bi bi-arrow-right"></i></a>
+                    </div>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="post-box">
+                        <div class="post-img"><img src="assets/img/blog2.jpg" class="img-fluid" alt=""></div>
 
-                    <div class="sidebar">
-
-                        <!--<div class="sidebar-item search-form">-->
-                        <!--  <h3 class="sidebar-title">Search</h3>-->
-                        <!--  <form action="" class="mt-3">-->
-                        <!--    <input type="text">-->
-                        <!--    <button type="submit"><i class="bi bi-search"></i></button>-->
-                        <!--  </form>-->
-                        <!--</div>-->
-                        <!-- End sidebar search formn-->
-
-                        <!--<div class="sidebar-item categories">-->
-                        <!--  <h3 class="sidebar-title">Categories</h3>-->
-                        <!--  <ul class="mt-3">-->
-                        <!--    <li><a href="#">General <span>(25)</span></a></li>-->
-                        <!--    <li><a href="#">School Portal <span>(12)</span></a></li>-->
-                        <!--    <li><a href="#">Student Portal <span>(5)</span></a></li>-->
-                        <!--    <li><a href="#">Competitions <span>(22)</span></a></li>-->
-                        <!--    <li><a href="#">Alef Bot <span>(8)</span></a></li>-->
-
-                        <!--  </ul>-->
-                        <!--</div>-->
-                        <!-- End sidebar categories-->
-
-                        <div class="sidebar-item recent-posts">
-                            <h3 class="sidebar-title">{{ __('blog.recent_posts') }}</h3>
-
-                            <div class="mt-3">
-
-
-                                <div class="post-item mt-3">
-                                    <img src="assets/img/blog1.jpg" alt="" class="flex-shrink-0">
-                                    <div>
-                                        <h4><a href="{{ route('customer.blogs1') }}">{{ __('blog.title1') }}</a></h4>
-
-                                    </div>
-                                </div><!-- End recent post item-->
-
-                                <div class="post-item">
-                                    <img src="assets/img/blog2.jpg" alt="" class="flex-shrink-0">
-                                    <div>
-                                        <h4><a href="{{ route('customer.blogs2') }}">{{ __('blog.title2') }}</a></h4>
-
-                                    </div>
-                                </div><!-- End recent post item-->
-
-                                <div class="post-item">
-                                    <img src="assets/img/blog3.jpeg" alt="" class="flex-shrink-0">
-                                    <div>
-                                        <h4><a href="{{ route('customer.blogs3') }}"> {{ __('blog.title3') }}</a></h4>
-
-                                    </div>
-                                </div><!-- End recent post item-->
-                            </div>
-
-                        </div><!-- End sidebar recent posts-->
-
-
-                    </div><!-- End Blog Sidebar -->
-
+                        <h3 class="post-title">{{ __('exploring_interaction') }}<br>{{ __('exploring_interaction_cont') }}</h3>
+                        <p>{{ __('exploring_interaction_text') }}</p>
+                        @if (app()->getLocale() === 'en')
+                        <br>
+                        @endif
+                        <a href="{{ route('customer.blogs2') }}" class="readmore stretched-link"><span>{{ __('read_more') }}</span><i class="bi bi-arrow-right"></i></a>
+                    </div>
                 </div>
 
-    </section><!-- End Blog Section -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="post-box">
+                        <div class="post-img"><img src="assets/img/blog3.jpeg" class="img-fluid" alt=""></div>
 
+                        <h3 class="post-title">
+                            {{ __('empowering_educators') }}<br> {{ __('empowering_educators_cont') }}
+                        </h3>
+                        <p>{{ __('empowering_educators_text') }}</p>
+                        <a href="{{ route('customer.blogs3') }}" class="readmore stretched-link"><span>{{ __('read_more') }}</span><i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
 </main><!-- End #main -->
 
 

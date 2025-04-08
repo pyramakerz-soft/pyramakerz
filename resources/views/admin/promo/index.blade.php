@@ -46,7 +46,7 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        <div class="text-center mt-3">
+                        <div class="text-center mt-3 d-flex justify-content-center">
                             <a href="{{ route('admin.addPromo') }}" class="btn btn-sucess" id="submitForm" data-aos="flip-up"
                                 data-aos-delay="200">{{ __('admin/add_promo.add') }}</a>
                         </div>

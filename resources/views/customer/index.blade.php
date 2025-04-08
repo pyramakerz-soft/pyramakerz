@@ -9,8 +9,8 @@
     <span class="close" onclick="closePopup()">&times;</span>
     <h2>{{ __('welcome_popup_title') }}</h2>
     <p>{{ __('welcome_popup_message') }}</p>
-    <a href="https://api.whatsapp.com/send?phone=+201220016331&text=Welcome to Pyramakerz" target="blank" class="btn join-btn">{{ __('join_now') }} <i class="fab fa-whatsapp"></i></a>
-    <button class="btn remind-btn" onclick="closePopup()">{{ __('remind_me_later') }}</button>
+    <a style="display: inline;" href="https://api.whatsapp.com/send?phone=+201220016331&text=Welcome to Pyramakerz" target="blank" class="btn join-btn">{{ __('join_now') }} <i class="fab fa-whatsapp"></i></a>
+    <button class="btn remind-btn" onclick="closePopup()" style="display: inline;">{{ __('remind_me_later') }}</button>
 
   </div>
 </div>
@@ -345,9 +345,6 @@
             </h3>
             <p>{{ __('embracing_future_text') }}</p>
             <br>
-            @if (app()->getLocale() === 'en')
-            <br>
-            @endif
             <a href="{{ route('customer.blogs1') }}" class="readmore stretched-link"><span>{{ __('read_more') }}</span><i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
@@ -357,9 +354,10 @@
             <div class="post-img"><img src="assets/img/blog2.jpg" class="img-fluid" alt=""></div>
 
             <h3 class="post-title">{{ __('exploring_interaction') }}<br>{{ __('exploring_interaction_cont') }}</h3>
-            <br>
             <p>{{ __('exploring_interaction_text') }}</p>
-
+            @if (app()->getLocale() === 'en')
+            <br>
+            @endif
             <a href="{{ route('customer.blogs2') }}" class="readmore stretched-link"><span>{{ __('read_more') }}</span><i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
@@ -371,7 +369,6 @@
             <h3 class="post-title">
               {{ __('empowering_educators') }}<br> {{ __('empowering_educators_cont') }}
             </h3>
-            <br>
             <p>{{ __('empowering_educators_text') }}</p>
             <a href="{{ route('customer.blogs3') }}" class="readmore stretched-link"><span>{{ __('read_more') }}</span><i class="bi bi-arrow-right"></i></a>
           </div>

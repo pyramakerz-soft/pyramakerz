@@ -14,11 +14,7 @@
 
         <div class="container">
             <div class="row gy-5 ">
-                <div class="col-lg-5" data-aos="flip-left" data-aos-delay="400">
-                    <img src="{{ asset('/assets/img/logo.png') }}" class="img-form">
-
-                </div>
-                <div class="col-lg-7" data-aos="flip-right" data-aos-delay="400">
+                <div class="col-lg-12" data-aos="flip-right" data-aos-delay="400">
                     <form id="product-form" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
@@ -55,7 +51,7 @@
                                 accept="image/png, image/jpeg, image/jpg, image/gif, image/webp, image/bmp, image/tiff"
                                 required>
                         </div>
-                        <div class="text-center mt-3">
+                        <div class="text-center mt-3 d-flex justify-content-center">
                             <button type="submit" class="btn btn-sucess" id="submitForm" data-aos="flip-up"
                                 data-aos-delay="200">{{ __('admin/add_product.add') }}</button>
                         </div>

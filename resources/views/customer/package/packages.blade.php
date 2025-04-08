@@ -27,14 +27,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 @endsection
 @section('content')
-<main id="main" style="margin-top: 110px">
-
-    <!-- theme fixed shadow -->
-    <div>
-        <div class="theme__shadow__circle"></div>
-        <div class="theme__shadow__circle shadow__right"></div>
-    </div>
-    <!-- theme fixed shadow -->
+<main id="main">
     <!-- breadcrumbarea__section__start -->
 
     <div class="breadcrumbarea">
