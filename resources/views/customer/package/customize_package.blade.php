@@ -509,8 +509,8 @@
                         Authorization: `Bearer ${token}`
                     }
                 }).then(() => {
-                    alertSuccess("Your custom plan has been sent successfully!");
-                    window.location.href = "{{ route('customer.packages') }}";
+                    // alertSuccess("Your custom plan has been sent successfully!");
+                    // window.location.href = "{{ route('customer.packages') }}";
                 }).catch(error => {
                     console.error("Error sending email:", error.response);
                     alertError("Failed to send custom plan email.");

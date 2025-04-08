@@ -88,13 +88,13 @@ class OrderController extends Controller
             'plan_products' => 'required|array'
         ]);
 
-        // $adminEmail = "ahmed.elragal02@gmail.com";
-        // $adminEmail2 = "ahmed.elragal02@gmail.com";
-        // $adminEmail3 = "ahmed.elragal02@gmail.com";
+        $adminEmail = "testpyramakerzzz@gmail.com";
+        $adminEmail2 = "testpyramakerzzz@gmail.com";
+        $adminEmail3 = "testpyramakerzzz@gmail.com";
 
-        $adminEmail = "chairman@pyramakerz.com";
-        $adminEmail2 = "ahmed.elmohamady@pyramakerz.com";
-        $adminEmail3 = "magieginidy@pyramakerz.com";
+        // $adminEmail = "chairman@pyramakerz.com";
+        // $adminEmail2 = "ahmed.elmohamady@pyramakerz.com";
+        // $adminEmail3 = "magieginidy@pyramakerz.com";
         $userEmail = $request->user_email;
 
         // Fetch full product details using IDs

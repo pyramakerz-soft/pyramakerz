@@ -58,7 +58,7 @@
         }
 
         th {
-            background-color: #007bff;
+            background-color: var(--color-primary);
             color: white;
         }
 

@@ -3720,7 +3720,6 @@ span.text {
   font-size: 16px;
   color: var(--color-white);
   font-family: var(--font-secondary);
-  margin-right: 5%;
   background: var(--color-primary);
   padding: 10px 20px;
   border-radius: 4px;
@@ -3728,6 +3727,8 @@ span.text {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-color: var(--color-primary);
+
 }
 
 .btn.remind-btn {
@@ -3745,6 +3746,7 @@ span.text {
   /* border-radius: 5px;
   transform: scale(1.1); */
   color: var(--color-white);
+  border-color: var(--color-primary);
   background: rgba(var(--color-primary-rgb), 0.85);
 }
 

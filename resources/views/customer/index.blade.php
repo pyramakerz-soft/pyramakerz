@@ -9,8 +9,8 @@
     <span class="close" onclick="closePopup()">&times;</span>
     <h2>{{ __('welcome_popup_title') }}</h2>
     <p>{{ __('welcome_popup_message') }}</p>
-    <a style="display: inline;" href="https://api.whatsapp.com/send?phone=+201220016331&text=Welcome to Pyramakerz" target="blank" class="btn join-btn">{{ __('join_now') }} <i class="fab fa-whatsapp"></i></a>
-    <button class="btn remind-btn" onclick="closePopup()" style="display: inline;">{{ __('remind_me_later') }}</button>
+    <a style="display: inline; margin: 10px;" href="https://api.whatsapp.com/send?phone=+201220016331&text=Welcome to Pyramakerz" target="blank" class="btn join-btn">{{ __('join_now') }} <i class="fab fa-whatsapp"></i></a>
+    <button class="btn remind-btn" onclick="closePopup()" style="display: inline; margin: 10px;">{{ __('remind_me_later') }}</button>
 
   </div>
 </div>

@@ -11,6 +11,12 @@
 <!-- Template Main JS File -->
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="{{ asset('vendor/ziggy/dist/ziggy.min.js') }}"></script>
+<style>
+    .swal2-container {
+        z-index: 99999 !important;
+        /* very high z-index to ensure it’s on top */
+    }
+</style>
 @if (app()->getLocale() === 'ar')
 <script>
     function alertSuccess(response) {
