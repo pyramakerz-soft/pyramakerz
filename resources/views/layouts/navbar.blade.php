@@ -111,7 +111,7 @@
                           <i class="bi bi-person-circle" style="font-size: 24px; color: #ff7f00; margin-right: 7px;"></i>
                       </a>
                       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
-                          <li><a class="dropdown-item" href="{{ route('customer.account') }}">{{ __('navbar.manage_account') }}</a></li>
+                          <li><button class="dropdown-item text-danger" onclick="account()">{{ __('navbar.manage_account') }}</button></li>
                           <li><hr class="dropdown-divider"></li>
                           <li><button class="dropdown-item text-danger" onclick="logout()">{{ __('navbar.logout') }}</button></li>
                       </ul>
@@ -119,11 +119,13 @@
               `;
     } else {
       // If not logged in, show Login button
-      document.getElementById("authLinks").innerHTML = `
-                 <a class="btn-getstarted scrollto d-inline-block text-nowrap" href="{{ route('customer.login') }}" data-aos="flip-up" data-aos-delay="400">{{ __('navbar.login') }}</a>
-              `;
+      document.getElementById("authLinks").innerHTML = `<a class="btn-getstarted scrollto d-inline-block text-nowrap" href="{{ route('customer.login') }}" data-aos="flip-up" data-aos-delay="400">{{ __('navbar.login') }}</a>`;
     }
   });
+
+  function account() {
+    window.location.href = "{{ route('customer.account') }}";
+  }
 
   function logout() {
     let token = localStorage.getItem('auth_token_pyra12234');
