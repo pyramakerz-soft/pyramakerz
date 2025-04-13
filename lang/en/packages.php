@@ -24,4 +24,5 @@ return [
     'invalid_promocode' => 'Invalid Promocode',
     'package_details' => 'Details',
     'custom_package' => 'Customize Package',
+    'select_products' => ' Please select at least one product for your custom plan.'
 ];

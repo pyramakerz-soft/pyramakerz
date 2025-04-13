@@ -541,12 +541,12 @@
       <div class="row gy-5 ">
 
 
-        <div class="col-lg-5 justify-content-center" data-aos="flip-left" data-aos-delay="400">
+        <div class="col-lg-5" data-aos="flip-left" data-aos-delay="400">
           <img src="./assets/img/logo.png" class="img-form">
 
         </div>
         <div class="col-lg-7" data-aos="flip-right" data-aos-delay="400">
-          <form action="" method="post" role="form" class="php-email-form">
+          <form id="contactForm" role="form" class="php-email-form">
             <div class="row">
               <div class="col-md-6 form-group">
                 <label>{{ __('name') }}</label>
@@ -563,14 +563,15 @@
             </div>
             <div class="form-group mt-3">
               <label>{{ __('message') }}</label>
-              <textarea class="form-control" name="message" placeholder="Message" required></textarea>
+              <textarea class="form-control" name="message" id="message" placeholder="Message" required></textarea>
             </div>
             <div class="my-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
+              <div class="error-message" style="display: none; color: red;"></div>
+              <div class="sent-message" style="display: none; color: green; background-color: white;">{{ __('success_contact') }}</div>
             </div>
-            <div class="text-center"><button type="submit" data-aos="flip-up" data-aos-delay="200">{{ __('send_message') }}</button></div>
+            <div class="text-center">
+              <button type="submit" data-aos="flip-up" data-aos-delay="200">{{ __('send_message') }}</button>
+            </div>
           </form>
         </div><!-- End Contact Form -->
 
@@ -603,7 +604,65 @@
 
 <script src="app.js"></script>
 <!-- counter -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let token = localStorage.getItem("auth_token_pyra12234");
 
+    // Auto-fill email if user is logged in
+    if (token) {
+      axios.get(@json(url('/api/user')), {
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      }).then(response => {
+        document.getElementById("email").value = response.data.email;
+        document.getElementById("email").readOnly = true;
+      }).catch(error => {
+        console.error("Error fetching user:", error);
+      });
+    }
+
+    // Handle form submission
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      let formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        subject: document.getElementById("subject").value,
+        message: document.getElementById("message").value
+      };
+
+      document.querySelector(".error-message").style.display = "none";
+      document.querySelector(".sent-message").style.display = "none";
+
+      axios.post(@json(url('/api/contact')), formData, {
+        headers: {
+          "Authorization": token ? `Bearer ${token}` : "",
+          "Content-Type": "application/json"
+        }
+      }).then(response => {
+        document.querySelector(".sent-message").style.display = "block";
+        document.getElementById("contactForm").reset();
+        if (token) {
+          axios.get(@json(url('/api/user')), {
+            headers: {
+              "Authorization": `Bearer ${token}`
+            }
+          }).then(response => {
+            document.getElementById("email").value = response.data.email;
+            document.getElementById("email").readOnly = true;
+          }).catch(error => {
+            console.error("Error fetching user:", error);
+          });
+        }
+
+      }).catch(error => {
+        document.querySelector(".error-message").style.display = "block";
+        document.querySelector(".error-message").textContent = error.response?.data?.message || "Failed to send message.";
+      });
+    });
+  });
+</script>
 <script>
   const counters = document.querySelectorAll(".num");
 

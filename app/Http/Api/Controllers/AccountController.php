@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Order;
 use App\Http\Controllers\Controller;
+use App\Mail\ContactUsMail;
+use Illuminate\Support\Facades\Mail;
 
 class AccountController extends Controller
 {
@@ -19,13 +21,13 @@ class AccountController extends Controller
         return response()->json([
             'orders' => $orders->map(function ($order) {
                 return [
-                    'plan_name' => session('locale') === 'ar' ? $order->plan_name_ar : $order->plan_name,
+                    'plan_name' => app()->getLocale() === 'ar' ? $order->plan_name_ar : $order->plan_name,
                     'price' => $order->total_price,
-                    'status' => session('locale') === 'ar' ? $order->ar_status : $order->status,
+                    'status' => app()->getLocale() === 'ar' ? $order->ar_status : $order->status,
                     'products' => $order->products->map(function ($product) {
                         return [
                             'id' => $product->id,
-                            'name' => session('locale') === 'ar' ? $product->ar_name : $product->name,
+                            'name' => app()->getLocale() === 'ar' ? $product->ar_name : $product->name,
                             'price' => $product->price,
                             'quantity' => $product->pivot->quantity,
                         ];
@@ -47,7 +49,7 @@ class AccountController extends Controller
         $user = Auth::user();
 
         if (!Hash::check($request->current_password, $user->password)) {
-            if (session('locale') === 'ar') {
+            if (app()->getLocale() === 'ar') {
 
                 return response()->json(['error' => 'كلمة المرور الحالية غير صحيحة'], 400);
             } else {
@@ -56,7 +58,7 @@ class AccountController extends Controller
         }
 
         $user->update(['password' => Hash::make($request->new_password)]);
-        if (session('locale') === 'ar') {
+        if (app()->getLocale() === 'ar') {
             return response()->json(['message' => 'تم تحديث كلمة المرور بنجاح']);
         } else {
             return response()->json(['message' => 'Password updated successfully']);
@@ -71,9 +73,10 @@ class AccountController extends Controller
             'message' => 'required|string',
         ]);
 
-        ContactUs::create($request->only('name', 'email', 'subject', 'message'));
-
-        if (session('locale') === 'ar') {
+        $contact = ContactUs::create($request->only('name', 'email', 'subject', 'message'));
+        $supportEmail = 'info@pyramakerz.com';
+        Mail::to($supportEmail)->send(new ContactUsMail($contact));
+        if (app()->getLocale() === 'ar') {
             return response()->json(['message' => 'تم إرسال رسالتك بنجاح'], 201);
         } else {
             return response()->json(['message' => 'Your message has been sent'], 201);
@@ -94,7 +97,7 @@ class AccountController extends Controller
             'school_name' => $request->school_name,
             'user_location' => $request->user_location,
         ]);
-        if (session('locale') === 'ar') {
+        if (app()->getLocale() === 'ar') {
             return response()->json([
                 'message' => 'تم تحديث الملف الشخصي بنجاح!',
                 'user' => $user

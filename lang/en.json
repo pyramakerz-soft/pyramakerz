@@ -61,5 +61,6 @@
     "subject": "Subject",
     "message": "Message",
     "send_message": "Send Message",
-    "success_contact": "Your message has been sent. Thank you!"
+    "success_contact": "Your message has been sent. Thank you!",
+    "success_status": "Status updated successfully."
 }

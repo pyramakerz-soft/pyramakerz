@@ -24,4 +24,5 @@ return [
     'invalid_promocode' => 'الرمز الترويجي غير صالح',
     'package_details' => 'تفاصيل',
     'custom_package' => 'تخصيص الباقة الخاصة بك',
+    'select_products' => 'يرجى اختيار منتج واحد على الأقل .'
 ];

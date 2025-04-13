@@ -38,7 +38,7 @@ class ProductsController extends Controller
             $imageName = time() . '.' . request()->image->getClientOriginalExtension();
             request()->image->move(public_path('products'), $imageName);
         } else {
-            if (session('locale') === 'ar') {
+            if (app()->getLocale() === 'ar') {
                 return response()->json(['error' => 'فشل تحميل الصورة'], 400);
             } else {
                 return response()->json(['error' => 'Image upload failed'], 400);
@@ -54,7 +54,7 @@ class ProductsController extends Controller
             'price' => $request->price,
             'image' => $imageName,
         ]);
-        if (session('locale') === 'ar') {
+        if (app()->getLocale() === 'ar') {
             return response()->json(['message' => 'تمت إضافة المنتج بنجاح', 'product' => $product], 201);
         } else {
             return response()->json(['message' => 'Product added successfully', 'product' => $product], 201);
@@ -85,14 +85,14 @@ class ProductsController extends Controller
         $package = Product::find($request->product_id);
 
         if (!$package) {
-            if (session('locale') === 'ar') {
+            if (app()->getLocale() === 'ar') {
                 return response()->json(['message' => 'لم يتم العثور على المنتج'], 404);
             }
             return response()->json(['message' => 'Product not found'], 404);
         }
 
         $package->delete();
-        if (session('locale') === 'ar') {
+        if (app()->getLocale() === 'ar') {
             return response()->json(['message' => 'تم حذف المنتج بنجاح']);
         }
         return response()->json(['message' => 'Product deleted successfully']);

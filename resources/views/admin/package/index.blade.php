@@ -22,6 +22,7 @@
                                     <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_package.name_en') }}</th>
                                     <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_package.name_ar') }}</th>
                                     <th class="col-3 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_package.desc') }}</th>
+                                    <th class="col-3 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_package.desc_ar') }}</th>
                                     <th class="col-1 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_package.price') }}</th>
                                     <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_package.image') }}</th>
                                     <th class="col-2 text-center" style="background-color: var(--color-primary);">{{ __('admin/add_package.actions') }}</th>
@@ -33,6 +34,7 @@
                                     <td class="col-2 text-center">{{ $package->name }}</td>
                                     <td class="col-2 text-center">{{ $package->ar_name }}</td>
                                     <td class="col-2 text-center">{{ $package->description }}</td>
+                                    <td class="col-2 text-center">{{ $package->ar_description }}</td>
                                     <td class="col-2 text-center">{{ $package->price }} SAR</td>
                                     <td class="col-2 text-center"><img src="{{ asset("package/$package->image") }}" class="img-fluid" alt=""></td>
                                     <td class="col-2 text-center">

@@ -1,6 +1,7 @@
 <?php
 return [
     'user_email' => 'User Email',
+    'user_name' => 'User Name',
     'user_school' => 'User School',
     'location' => 'Location',
     'package' => 'Package',

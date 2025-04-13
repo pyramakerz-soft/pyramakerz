@@ -471,7 +471,7 @@
             });
 
             if (selectedProducts.length === 0) {
-                alertError("Please select at least one product for your custom plan.");
+                alertError("{{ __('packages.select_products') }}");
                 return;
             }
 

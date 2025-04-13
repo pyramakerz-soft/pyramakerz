@@ -138,7 +138,7 @@
                     }
                 })
                 .then(response => {
-                    document.getElementById("status-message").innerText = "Status updated successfully!";
+                    document.getElementById("status-message").innerText = "{{ __('success_status') }}";
                     document.getElementById("status-message").style.color = "green";
                 })
                 .catch(error => {
