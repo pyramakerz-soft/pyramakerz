@@ -7,7 +7,7 @@
     }
 
     [dir="rtl"] h1,
-    [dir="rtl"] h2,
+    [dir="rtl"] h2:not(.swal2-title),
     [dir="rtl"] h3,
     [dir="rtl"] h4,
     [dir="rtl"] p,

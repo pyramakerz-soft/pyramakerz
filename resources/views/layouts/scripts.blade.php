@@ -22,7 +22,7 @@
     function alertSuccess(response) {
         Swal.fire({
             title: "نجاح!",
-            html: `<div style="direction: rtl; text-align: right;">${response}</div>`,
+            html: `<div style="direction: rtl;">${response}</div>`,
             icon: "success",
             confirmButtonText: "موافق",
             customClass: {
@@ -36,7 +36,7 @@
     function alertError(response) {
         Swal.fire({
             title: "خطأ!",
-            html: `<div style="direction: rtl; text-align: right;">${response}</div>`,
+            html: `<div style="direction: rtl;">${response}</div>`,
             icon: "error",
             confirmButtonText: "حسناً",
             customClass: {

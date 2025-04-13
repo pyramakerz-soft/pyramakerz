@@ -12,6 +12,10 @@ return [
     "actions" => "Actions",
     "delete" => "Delete Package",
     "title" => "Added Packages",
-    "deletealert" => "Are you sure you want to delete this package?"
+    "deletealert" => "Are you sure you want to delete this package?",
+    "confirm_delete" => "Delete",
+    "cancel" => "Cancel",
+    "ok" => "OK",
+
 
 ];

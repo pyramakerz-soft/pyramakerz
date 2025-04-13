@@ -102,26 +102,47 @@
 
 <script>
     function deletePromo(promoId) {
-        if (!confirm("{{ __('admin/add_promo.deletealert') }}")) {
-            return;
-        }
+        Swal.fire({
+            title: "{{ __('admin/add_promo.deletealert') }}",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: "{{ __('admin/add_package.confirm_delete') ?? 'Yes, delete it!' }}",
+            cancelButtonText: "{{ __('admin/add_package.cancel') ?? 'Cancel' }}"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let token = localStorage.getItem("auth_token_pyra12234");
 
-        let token = localStorage.getItem("auth_token_pyra12234");
+                axios.delete(@json(url('api/promocodes/delete')) + `?promo_id=${promoId}`, {
+                        headers: {
+                            "Authorization": `Bearer ${token}`,
+                            "Content-Type": "application/json"
+                        }
+                    })
+                    .then(response => {
+                        Swal.fire({
+                            title: "{{ __('success') ?? 'success!' }}",
+                            text: response.data.message,
+                            icon: 'success',
+                            confirmButtonText: "{{ __('admin/add_package.ok') ?? 'OK' }}"
+                        }).then(() => {
+                            location.reload();
+                        });
+                    })
+                    .catch(error => {
+                        console.error("Error deleting package:", error.response);
+                        Swal.fire({
+                            title: "{{ __('admin/add_package.error_title') ?? 'Error' }}",
+                            text: "{{ __('admin/add_package.delete_failed') ?? 'Failed to delete package.' }}",
+                            icon: 'error',
+                            confirmButtonText: "{{ __('admin/add_package.ok') ?? 'OK' }}"
+                        });
+                    });
+            }
+        });
 
-        axios.delete(@json(url('api/promocodes/delete')) + `?promo_id=${promoId}`, {
-                headers: {
-                    "Authorization": `Bearer ${token}`,
-                    "Content-Type": "application/json"
-                }
-            })
-            .then(response => {
-                alertSuccess(response.data.message);
-                location.reload(); // Reload the page to reflect changes
-            })
-            .catch(error => {
-                console.error("Error deleting Promo:", error.response);
-                alertError("Failed to delete Promo.");
-            });
+
     }
 </script>
 

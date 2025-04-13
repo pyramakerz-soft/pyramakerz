@@ -3967,3 +3967,7 @@ span {
   margin-right: auto;
   /* push it to the left side */
 }
+
+.swal2-title {
+  text-align: center !important;
+}
