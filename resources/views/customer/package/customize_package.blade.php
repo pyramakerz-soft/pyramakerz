@@ -305,6 +305,9 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        if (localStorage.getItem('user_country') === 'egypt') {
+            window.location.href = "{{ route('customer.index') }}";
+        }
         document.querySelectorAll('.quantity-input').forEach(input => {
             // Store the previous valid value
             let previousValue = input.value;

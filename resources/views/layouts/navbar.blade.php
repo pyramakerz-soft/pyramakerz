@@ -23,7 +23,7 @@
             <li><a href="{{ route('customer.alefBot') }}">{{ __('navbar.alef_bot') }}</a></li>
           </ul>
         </li>
-        <li><a class="nav-link scrollto" href="{{ route('customer.packages') }}">{{ __('navbar.packages') }}</a></li>
+        <li id="packages_list" style="display: none;"><a class="nav-link scrollto" href="{{ route('customer.packages') }}">{{ __('navbar.packages') }}</a></li>
         <li><a class="nav-link scrollto" href="{{ route('customer.blogs') }}">{{ __('navbar.blogs') }}</a></li>
 
 
@@ -60,6 +60,55 @@
 
   </div>
 </header><!-- End Header -->
+<!-- <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    fetch('https://ipapi.co/json/')
+      .then(response => response.json())
+      .then(data => {
+        const countryCode = 'SA';
+        if (countryCode === 'EG') {
+          localStorage.setItem('user_country', 'egypt');
+        } else if (countryCode === 'SA') {
+          localStorage.setItem('user_country', 'saudi');
+          getElementById("packages_list").style.display = "block";
+        } else {
+          localStorage.setItem('user_country', 'other');
+        }
+        // location.reload(); 
+      });
+  });
+</script> -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const userCountry = localStorage.getItem('user_country');
+    if (!userCountry) {
+      fetch('http://ip-api.com/json/')
+        .then(response => response.json())
+        .then(data => {
+          const countryCode = data.countryCode;
+          // const countryCode = 'SA';
+          let detectedCountry = 'other';
+          if (countryCode === 'EG') {
+            detectedCountry = 'egypt';
+          } else if (countryCode === 'SA') {
+            detectedCountry = 'saudi';
+            document.getElementById("packages_list").style.display = "block";
+          }
+          localStorage.setItem('user_country', detectedCountry);
+          // console.log(localStorage.getItem('user_country'));
+        })
+        .catch(error => {
+          console.error('IP detection failed:', error);
+        });
+    }
+  });
+</script>
+<!-- <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    localStorage.removeItem('user_country');
+  });
+</script> -->
+
 <script>
   const langDropdown = document.getElementById('langDropdown');
   const langDropdownMenu = document.getElementById('langDropdownMenu');
@@ -148,6 +197,7 @@
 
   function clearAuthData() {
     localStorage.removeItem('auth_token_pyra12234');
+    localStorage.removeItem('user_country');
     sessionStorage.clear();
     document.cookie.split(";").forEach(cookie => {
       document.cookie = cookie.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date(0).toUTCString() + ";path=/");

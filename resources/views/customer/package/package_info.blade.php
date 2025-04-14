@@ -250,6 +250,10 @@ if ($originalTotal > 0 && $packagePrice < $originalTotal) {
     <script src="app.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // console.log(localStorage.getItem('user_country'));
+            if (localStorage.getItem('user_country') === 'egypt') {
+                window.location.href = "{{ route('customer.index') }}";
+            }
             let appliedPromocode = null;
             let discountAmount = 0;
             let discountType = "fixed";

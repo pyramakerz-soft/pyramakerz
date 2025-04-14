@@ -166,7 +166,31 @@
 <script src="{{ asset('assets/vendor/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/vendor/swiper/swiper-bundle.min.js') }}"></script>
 <!--<script src="assetsb2c/vendor/php-email-form/validate.js"></script>-->
-
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (localStorage.getItem('user_country') === 'egypt') {
+            window.location.href = "{{ route('customer.index') }}";
+        }
+    });
+</script>
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('https://ipapi.co/json/')
+            .then(response => response.json())
+            .then(data => {
+                const countryCode = data.country;
+                if (countryCode === 'EG') {
+                    localStorage.setItem('user_country', 'egypt');
+                    window.location.href = "{{ route('customer.index') }}";
+                } else if (countryCode === 'SA') {
+                    localStorage.setItem('user_country', 'saudi');
+                } else {
+                    localStorage.setItem('user_country', 'other');
+                }
+                // location.reload(); 
+            });
+    });
+</script> -->
 <!-- Template Main JS File -->
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script>
