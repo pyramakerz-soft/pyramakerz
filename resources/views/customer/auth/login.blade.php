@@ -90,7 +90,7 @@
     <header id="header" class="header fixed-top justify-content-center" data-scrollto-offset="0">
         <div class="container-fluid d-flex align-items-center justify-content-center">
             <a href="{{ route('customer.index') }}" class="logo d-flex align-items-center justify-content-center scrollto me-auto me-lg-0">
-                <img src="./assets/img/logo-orange.png">
+                <img style="margin: 0;" src="./assets/img/logo-orange.png">
             </a>
         </div>
     </header><!-- End Header -->
@@ -191,10 +191,10 @@
                 })
                 .then(response => {
                     localStorage.setItem('auth_token_pyra12234', response.data.token);
-                    if (response.data.user.role === 'admin') {
-                        window.location.href = "{{ route('admin.addProduct') }}";
-                        return;
-                    }
+                    // if (response.data.user.role === 'admin') {
+                    //     window.location.href = "{{ route('admin.addProduct') }}";
+                    //     return;
+                    // }
                     let redirectPage = localStorage.getItem("redirect_after_login");
                     if (redirectPage) {
                         localStorage.removeItem("redirect_after_login");
