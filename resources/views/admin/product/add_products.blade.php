@@ -4,17 +4,17 @@
 @endsection
 @section('content')
 <main id="main admin-content" class="mt-5" style="padding-top: 70px;">
-    <section id="contact" class="contact">
+    <section id="contact" class="contact" data-aos="zoom-in" data-aos-delay="200">
         <div class="container">
 
-            <div class="section-header" data-aos="zoom-in-up" data-aos-delay="200">
+            <div class="section-header">
                 <h2>{{ __('admin/add_product.add') }} </h2>
             </div>
         </div>
 
         <div class="container">
             <div class="row gy-5 ">
-                <div class="col-lg-12" data-aos="flip-right" data-aos-delay="400">
+                <div class="col-lg-12">
                     <form id="product-form" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">

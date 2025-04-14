@@ -129,7 +129,7 @@
                             icon: 'success',
                             confirmButtonText: "{{ __('admin/add_package.ok') ?? 'OK' }}"
                         }).then(() => {
-                            location.reload(); // Reload after user clicks OK
+                            location.reload();
                         });
                     })
                     .catch(error => {

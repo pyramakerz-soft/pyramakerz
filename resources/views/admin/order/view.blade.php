@@ -7,31 +7,84 @@
 
     <section class="pricing-section">
         <div class="container mt-3">
-            <div class="section-header text-center" data-aos="zoom-in-up">
+            <div class="section-header text-center" data-aos="zoom-in">
                 <h2 class="fw-bold text-uppercase fs-1">{{ __('admin/orders.manage') }}</h2>
             </div>
 
             <!-- Order Information Section -->
+            <div class="card mb-4 shadow" data-aos="zoom-in">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div class="col-md-6 justify-content-center">
+                            <h4 class="fs-2 mb-3">{{ __('admin/orders.info') }}</h4>
+                        </div>
+                        <div>
+                            <h4> {{ __('admin/orders.date') }}:
+                                <span>{{ $order->created_at->format('Y-m-d') }}</span>
+                            </h4>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <div class="col-md-6 justify-content-center">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th>{{ __('admin/orders.user_name') }}</th>
+                                        <td><span id="user-name">{{ $order->user->name }}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ __('admin/orders.user_email') }}</th>
+                                        <td><span id="user-email">{{ $order->user->email }}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ __('admin/orders.user_school') }}</th>
+                                        <td><span id="user-email">{{ $order->user->school_name }}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ __('admin/orders.location') }}</th>
+                                        <td><span id="user-email">{{ $order->user->user_location }}</span></td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6 justify-content-center">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th>{{ __('admin/orders.package') }}</th>
+                                        <td><span>{{ app()->getLocale() === 'ar' ? $order->plan_name_ar : $order->plan_name }}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ __('admin/orders.total_price') }}</th>
+                                        <td><span>{{ $order->total_price }} SAR</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ __('admin/orders.discount_type') }}</th>
+                                        <td><span>{{ $order->discount_type }}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ __('admin/orders.discount_applied') }}</th>
+                                        <td><span>{{ $order->discount_applied }}</span></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="card mb-4 shadow" data-aos="zoom-in-up">
                 <div class="card-body">
-                    <h4 class="fs-2 mb-3">{{ __('admin/orders.info') }}</h4>
-                    <p><strong>{{ __('admin/orders.user_name') }}:</strong> <span id="user-name">{{ $order->user->name }}</span></p>
-                    <p><strong>{{ __('admin/orders.user_email') }}:</strong> <span id="user-email">{{ $order->user->email }}</span></p>
-                    <p><strong>{{ __('admin/orders.user_school') }}:</strong> <span id="user-email">{{ $order->user->school_name }}</span></p>
-                    <p><strong>{{ __('admin/orders.location') }}:</strong> <span id="user-email">{{ $order->user->user_location }}</span></p>
-                    <p><strong>{{ __('admin/orders.package') }}:</strong> <span>{{ app()->getLocale()==='ar'? $order->plan_name_ar: $order->plan_name }}</span></p>
-                    <p><strong>{{ __('admin/orders.total_price') }}:</strong> <span>{{ $order->total_price }} SAR</span></p>
-                    <p><strong>{{ __('admin/orders.discount_type') }}:</strong> <span>{{ $order->discount_type}}</span></p>
-                    <p><strong>{{ __('admin/orders.discount_applied') }}:</strong> <span>{{ $order->discount_applied}}</span></p>
-                    <p><strong>{{ __('admin/orders.date') }}:</strong> <span>{{ $order->created_at->format('Y-m-d') }}</span></p>
-
                     <!-- Order Status Update Section -->
-                    <div class="mt-4">
+                    <div class="mt-2">
                         <h4 class="fs-2 mb-3">{{ __('admin/orders.status') }}</h4>
                         <form id="update-status-form">
                             @csrf
                             <div class="mb-3">
-                                <label for="status" class="form-label">{{ __('admin/orders.status') }}</label>
+                                <!-- <label for="status" class="form-label">{{ __('admin/orders.status') }}</label> -->
                                 <select id="status" class="form-control">
                                     <option value="Processing" data-ar="قيد التجهيز" {{ $order->status === 'Processing' ? 'selected' : '' }}>{{__('admin/orders.processing')}}</option>
                                     <option value="Under Review" data-ar="قيد المراجعة" {{ $order->status === 'processing' ? 'selected' : '' }}>{{__('admin/orders.under_review')}}</option>
@@ -45,10 +98,8 @@
                         </form>
                         <p id="status-message" class="mt-2"></p>
                     </div>
-
                 </div>
             </div>
-
             <!-- Products Section -->
             <div class="card" data-aos="fade-up" style="border: none !important;">
                 <div class="card-body shadow">
