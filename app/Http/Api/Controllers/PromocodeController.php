@@ -7,6 +7,7 @@ use App\Models\Promocode;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\App;
 
+
 class PromocodeController extends Controller
 {
     public function validatePromocode(Request $request)
@@ -33,6 +34,7 @@ class PromocodeController extends Controller
     }
     public function store(Request $request)
     {
+        App::setlocale($request->lang);
         $request->validate([
             'code' => 'required|unique:promocodes,code',
             'discount_type' => 'required|in:fixed,percentage',

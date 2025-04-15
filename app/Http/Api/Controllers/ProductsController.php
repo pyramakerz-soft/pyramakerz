@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\App;
 
 class ProductsController extends Controller
 {
@@ -22,7 +23,7 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all);
+        App::setlocale($request->lang);
         $request->validate([
             'en_name' => 'required|string|max:255',
             'ar_name' => 'required|string|max:255',
@@ -31,7 +32,6 @@ class ProductsController extends Controller
             'price' => 'required|numeric',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
         // Handle image upload
         if ($request->hasFile('image')) {
             // $imagePath = $request->file('image')->store('products', 'public');

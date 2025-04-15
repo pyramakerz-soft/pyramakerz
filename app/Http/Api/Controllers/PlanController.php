@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Package;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\App;
 
 class PlanController extends Controller
 {
@@ -22,6 +23,7 @@ class PlanController extends Controller
      */
     public function store(Request $request)
     {
+        App::setlocale($request->lang);
         $request->validate([
             'en_name' => 'required|string|max:255',
             'ar_name' => 'required|string|max:255',

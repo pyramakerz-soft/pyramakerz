@@ -139,6 +139,7 @@
         formData.append("ar_description", document.getElementById("ar_description").value);
         formData.append("price", document.getElementById("price").value);
         formData.append("image", document.getElementById("image").files[0]);
+        formData.append("lang", "{{ app()->getLocale() }}");
 
         let selectedProducts = [];
         document.querySelectorAll(".product-checkbox:checked").forEach((checkbox) => {

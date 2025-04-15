@@ -121,6 +121,7 @@
         formData.append("discount_type", document.getElementById("discount_type").value);
         formData.append("discount_amount", document.getElementById("discount_amount").value);
         formData.append("valid_until", document.getElementById("valid_until").value);
+        formData.append("lang", "{{ app()->getLocale() }}");
 
 
         let token = localStorage.getItem("auth_token_pyra12234");

@@ -27,7 +27,6 @@
             confirmButtonText: "موافق",
             customClass: {
                 popup: "rtl-popup",
-                title: "rtl-title",
                 confirmButton: "rtl-button"
             }
         });
@@ -41,7 +40,6 @@
             confirmButtonText: "حسناً",
             customClass: {
                 popup: "rtl-popup",
-                title: "rtl-title",
                 confirmButton: "rtl-button"
             }
         });

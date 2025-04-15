@@ -85,7 +85,6 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         let token = localStorage.getItem("auth_token_pyra12234");
-
         if (token) {
             axios.get(@json(url('/api/user')), {
                     headers: {
@@ -132,6 +131,7 @@
         formData.append("ar_description", document.getElementById("ar_description").value);
         formData.append("price", document.getElementById("price").value);
         formData.append("image", document.getElementById("image").files[0]);
+        formData.append("lang", "{{ app()->getLocale() }}");
 
 
         let token = localStorage.getItem("auth_token_pyra12234");
