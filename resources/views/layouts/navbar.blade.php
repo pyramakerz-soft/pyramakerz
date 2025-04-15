@@ -82,12 +82,12 @@
   document.addEventListener("DOMContentLoaded", function() {
     const userCountry = localStorage.getItem('user_country');
     if (!userCountry) {
-      fetch('http://ip-api.com/json/')
+      fetch('https://ipapi.co/json/')
         .then(response => response.json())
         .then(data => {
-          const countryCode = data.countryCode;
+          const countryCode = data.country;
           // const countryCode = 'SA';
-          let detectedCountry = 'other';
+          let detectedCountry = countryCode;
           if (countryCode === 'EG') {
             detectedCountry = 'egypt';
           } else if (countryCode === 'US') {
@@ -95,19 +95,15 @@
             document.getElementById("packages_list").style.display = "block";
           }
           localStorage.setItem('user_country', detectedCountry);
-          // console.log(localStorage.getItem('user_country'));
         })
         .catch(error => {
           console.error('IP detection failed:', error);
         });
+    } else if (userCountry === 'saudi') {
+      document.getElementById("packages_list").style.display = "block";
     }
   });
 </script>
-<!-- <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    localStorage.removeItem('user_country');
-  });
-</script> -->
 
 <script>
   const langDropdown = document.getElementById('langDropdown');
@@ -186,6 +182,7 @@
       })
       .then(response => {
         localStorage.removeItem('auth_token_pyra12234');
+        localStorage.removeItem('user_country');
         window.location.href = "{{ route('customer.login') }}";
       })
       .catch(error => {

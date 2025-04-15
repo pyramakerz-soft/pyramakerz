@@ -36,10 +36,10 @@
                 <div class="col-lg-2 col-md-6 footer-links">
                     <h4> {{ __('footer.explore') }}</h4>
                     <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.index') }}/"> {{ __('footer.home') }}</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.index') }}/#about"> {{ __('footer.about_us') }}</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.index') }}/#blog"> {{ __('footer.blogs') }}</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.index') }}/#contact"> {{ __('footer.careers') }}</a></li>
+                        <li><a href="{{ route('customer.index') }}/"> {{ __('footer.home') }}</a></li>
+                        <li><a href="{{ route('customer.index') }}/#about"> {{ __('footer.about_us') }}</a></li>
+                        <li><a href="{{ route('customer.index') }}/#blog"> {{ __('footer.blogs') }}</a></li>
+                        <li><a href="{{ route('customer.index') }}/#contact"> {{ __('footer.careers') }}</a></li>
 
                     </ul>
                 </div>
@@ -47,10 +47,10 @@
                 <div class="col-lg-2 col-md-6 footer-links">
                     <h4> {{ __('footer.our_solutions') }}</h4>
                     <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.schools') }}"> {{ __('footer.school_portal') }}</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.students') }}"> {{ __('footer.student_portal') }}</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.competitions') }}"> {{ __('footer.competitions') }}</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="{{ route('customer.alefBot') }}"> {{ __('footer.alef_bot') }}</a></li>
+                        <li><a href="{{ route('customer.schools') }}"> {{ __('footer.school_portal') }}</a></li>
+                        <li><a href="{{ route('customer.students') }}"> {{ __('footer.student_portal') }}</a></li>
+                        <li><a href="{{ route('customer.competitions') }}"> {{ __('footer.competitions') }}</a></li>
+                        <li><a href="{{ route('customer.alefBot') }}"> {{ __('footer.alef_bot') }}</a></li>
 
                     </ul>
                 </div>

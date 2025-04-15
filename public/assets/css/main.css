@@ -3098,8 +3098,13 @@ section {
   margin-bottom: 0;
   font-family: var(--font-primary);
   color: var(--color-black);
-  text-align: center !important;
+  text-align: left;
 }
+
+[direction="rtl"] .footer p {
+  text-align: right !important;
+}
+
 
 .footer .footer-content h4 {
   font-size: 16px;
