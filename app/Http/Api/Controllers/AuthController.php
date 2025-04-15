@@ -94,7 +94,14 @@ class AuthController extends Controller
             return response()->json(['error' => 'Email not verified'], 403);
         }
 
-        $token = $user->createToken('authToken')->plainTextToken;
+        // $token = $user->createToken('authToken')->plainTextToken;
+        $user->tokens()->delete();
+        $tokenResult = $user->createToken('authToken');
+        $token = $tokenResult->plainTextToken;
+
+        $tokenResult->accessToken->expires_at = now()->addMinutes(2);
+        $tokenResult->accessToken->save();
+        session(['expiry' => $tokenResult->accessToken->expires_at]);
 
         return response()->json(['token' => $token, 'user' => $user], 200);
     }

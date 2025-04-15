@@ -102,6 +102,8 @@
                 .catch(error => {
                     console.error("Failed to fetch user:", error);
                 });
+        } else {
+            window.location.href = "{{ route('customer.index') }}"
         }
     });
 </script>

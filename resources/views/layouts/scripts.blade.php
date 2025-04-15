@@ -17,6 +17,10 @@
         /* very high z-index to ensure it’s on top */
     }
 </style>
+<script>
+    localStorage.setItem('redirect_after_logout', window.location.href);
+</script>
+
 @if (app()->getLocale() === 'ar')
 <script>
     function alertSuccess(response) {
@@ -83,3 +87,54 @@
     };
 </script>
 @endif
+
+@if (session('expiry') && session('expiry') < now())
+    @php session()->forget('expiry'); @endphp
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Save current URL before logout
+            if (!localStorage.getItem('redirect_after_logout')) {
+                localStorage.setItem('redirect_after_logout', window.location.href);
+            }
+
+            logout();
+        });
+
+        function logout() {
+            let token = localStorage.getItem('auth_token_pyra12234');
+
+            if (token) {
+                axios.post(@json(url('/api/logout')), {}, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }).then(response => {
+                    clearAuthData();
+                    redirectToLastPage();
+                }).catch(error => {
+                    clearAuthData();
+                    redirectToLastPage();
+                });
+            } else {
+                clearAuthData();
+                redirectToLastPage();
+            }
+        }
+
+        function clearAuthData() {
+            localStorage.removeItem('auth_token_pyra12234');
+            localStorage.removeItem('user_country');
+            sessionStorage.clear();
+            document.cookie.split(";").forEach(cookie => {
+                document.cookie = cookie.replace(/^ +/, "")
+                    .replace(/=.*/, "=;expires=" + new Date(0).toUTCString() + ";path=/");
+            });
+        }
+
+        function redirectToLastPage() {
+            const redirectUrl = localStorage.getItem('redirect_after_logout') || "{{ route('customer.index') }}";
+            localStorage.removeItem('redirect_after_logout');
+            window.location.href = redirectUrl;
+        }
+    </script>
+    @endif

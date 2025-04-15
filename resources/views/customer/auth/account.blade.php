@@ -120,7 +120,7 @@
             })
             .catch(error => {
                 console.error("Error fetching user:", error.response);
-                alertError("Failed to fetch user details.");
+                // alertError("Failed to fetch user details.");
             });
 
         // Update Profile (School Name and Location)
@@ -234,7 +234,7 @@
             })
             .catch(error => {
                 console.error("Error fetching orders:", error.response);
-                alertError("Failed to fetch orders.");
+                // alertError("Failed to fetch orders.");
             });
     });
 </script>
