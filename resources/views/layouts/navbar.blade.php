@@ -90,7 +90,7 @@
           let detectedCountry = countryCode;
           if (countryCode === 'EG') {
             detectedCountry = 'egypt';
-          } else if (countryCode === 'US') {
+          } else if (countryCode === 'SA') {
             detectedCountry = 'saudi';
             document.getElementById("packages_list").style.display = "block";
           }
@@ -102,6 +102,7 @@
     } else if (userCountry === 'saudi') {
       document.getElementById("packages_list").style.display = "block";
     }
+    document.getElementById("packages_list").style.display = "block";
   });
 </script>
 

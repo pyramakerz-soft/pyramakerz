@@ -93,8 +93,7 @@ class OrderController extends Controller
         // $adminEmail3 = "testpyramakerzzz@gmail.com";
 
         $adminEmail = "chairman@pyramakerz.com";
-        $adminEmail2 = "ahmed.elmohamady@pyramakerz.com";
-        $adminEmail3 = "magieginidy@pyramakerz.com";
+        $adminEmail2 = "magieginidy@pyramakerz.com";
         $userEmail = $request->user_email;
 
         // Fetch full product details using IDs
@@ -128,10 +127,6 @@ class OrderController extends Controller
         });
         Mail::send('emails.plan-selected', $data, function ($message) use ($adminEmail2) {
             $message->to($adminEmail2)
-                ->subject('New Package Order');
-        });
-        Mail::send('emails.plan-selected', $data, function ($message) use ($adminEmail3) {
-            $message->to($adminEmail3)
                 ->subject('New Package Order');
         });
 
