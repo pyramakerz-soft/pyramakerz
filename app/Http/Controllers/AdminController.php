@@ -40,6 +40,17 @@ class AdminController extends Controller
     {
         return view('admin.product.add_products');
     }
+    public function editProduct($id)
+    {
+        $product = Products::findOrFail($id);
+        return view('admin.product.edit_products', compact('product'));
+    }
+    public function editPackage($id)
+    {
+        $products = Products::all();
+        $package = Package::findOrFail($id);
+        return view('admin.package.edit_package', compact('package', 'products'));
+    }
     public function addPackage()
     {
         $products = Products::all();

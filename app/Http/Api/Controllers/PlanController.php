@@ -89,9 +89,54 @@ class PlanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'en_name' => 'required|string|max:255',
+            'ar_name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'ar_description' => 'required|string',
+            'price' => 'required|numeric|min:0',
+            'products' => 'required|string' // JSON string
+        ]);
+
+        $products = json_decode($request->products, true);
+
+        if (!$products || !is_array($products)) {
+            if (app()->getLocale() === 'ar') {
+                return response()->json(['error' => 'اختيار المنتج غير صالح'], 400);
+            } else {
+                return response()->json(['error' => 'Invalid product selection'], 400);
+            }
+        }
+
+        if ($request->hasFile('image')) {
+            // $imagePath = $request->file('image')->store('products', 'public');
+            $imageName = time() . '.' . request()->image->getClientOriginalExtension();
+            request()->image->move(public_path('package'), $imageName);
+        }
+
+        $package = Package::findOrFail($request->package_id);
+        $package->update([
+            'name' => $request->en_name,
+            'ar_name' => $request->ar_name,
+            'description' => $request->description,
+            'ar_description' => $request->ar_description,
+            'price' => $request->price,
+        ]);
+        if ($request->hasFile('image')) {
+            $package->update(['image' => $imageName]);
+        }
+
+        // Attach products with quantities
+        foreach ($products as $product) {
+            $package->products()->attach($product['id'], ['quantity' => $product['quantity']]);
+        }
+        if (app()->getLocale() === 'ar') {
+            return response()->json(['message' => 'تم تعديل الباقة بنجاح!', 'package' => $package], 201);
+        } else {
+            return response()->json(['message' => 'Package updated successfully!', 'package' => $package], 201);
+        }
     }
 
     /**

@@ -39,6 +39,8 @@
                                         <button class="dropdown-item text-danger" onclick="deleteProduct({{ $product->id }})">
                                             {{ __('admin/add_product.delete') }}
                                         </button>
+                                        <a href="{{ route('admin.editProduct', $product->id) }}" data-aos="flip-up"
+                                            data-aos-delay="200">{{ __('admin/add_product.edit') }}</a>
                                     </td>
                                 </tr>
                                 @empty

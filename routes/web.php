@@ -43,9 +43,11 @@ Route::get('/customize', [CustomerController::class, 'customizePackage'])->name(
 
 Route::get('/admin/products/view', [AdminController::class, 'viewProducts'])->name('admin.viewProducts');
 Route::get('/admin/products/add_product', [AdminController::class, 'addProduct'])->name('admin.addProduct');
+Route::get('/admin/products/edit_product/{id}', [AdminController::class, 'editProduct'])->name('admin.editProduct');
 
 Route::get('/admin/packages/view', [AdminController::class, 'viewPackages'])->name('admin.viewPackages');
 Route::get('/admin/packages/add_package', [AdminController::class, 'addPackage'])->name('admin.addPackage');
+Route::get('/admin/products/edit_package/{id}', [AdminController::class, 'editPackage'])->name('admin.editPackage');
 
 Route::get('/admin/promos/view', [AdminController::class, 'viewPromos'])->name('admin.viewPromos');
 Route::get('/admin/promos/add_promo', [AdminController::class, 'addPromo'])->name('admin.addPromo');

@@ -7,6 +7,7 @@ return [
     "price" => "السعر",
     "upload_image" => "رفع صورة",
     "add" => "اضافة باقة",
+    "edit" => "تعديل باقة",
     "select_product" => "اختيار منتج",
     "image" => "صورة الباقة",
     "actions" => "الإجراءات",

@@ -72,9 +72,42 @@ class ProductsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        App::setlocale($request->lang);
+        $request->validate([
+            'en_name' => 'required|string|max:255',
+            'ar_name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'ar_description' => 'required|string',
+            'price' => 'required|numeric',
+        ]);
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // $imagePath = $request->file('image')->store('products', 'public');
+            $imageName = time() . '.' . request()->image->getClientOriginalExtension();
+            request()->image->move(public_path('products'), $imageName);
+        }
+        // dd($request->all);
+        // Create Product
+        $product = Product::find($request->product_id);
+        $product->update([
+            'name' => $request->en_name,
+            'ar_name' => $request->ar_name,
+            'description' => $request->description,
+            'ar_description' => $request->ar_description,
+            'price' => $request->price,
+        ]);
+
+        if ($request->hasFile('image')) {
+            $product->update(['image' => $imageName]);
+        }
+        $product->save();
+        if (app()->getLocale() === 'ar') {
+            return response()->json(['message' => 'تمت تعديل المنتج بنجاح', 'product' => $product], 201);
+        } else {
+            return response()->json(['message' => 'Product updated successfully', 'product' => $product], 201);
+        }
     }
 
     /**

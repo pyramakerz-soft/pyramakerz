@@ -99,7 +99,7 @@ class AuthController extends Controller
         $tokenResult = $user->createToken('authToken');
         $token = $tokenResult->plainTextToken;
 
-        $tokenResult->accessToken->expires_at = now()->addMinutes(2);
+        $tokenResult->accessToken->expires_at = now()->addDays(7);
         $tokenResult->accessToken->save();
         session(['expiry' => $tokenResult->accessToken->expires_at]);
 

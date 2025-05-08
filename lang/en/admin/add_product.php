@@ -7,9 +7,11 @@ return [
     "price" => "Price",
     "upload_image" => "Upload Image",
     "add" => "Add Product",
+    "edit" => "Edit Product",
     "delete" => "Delete Product",
     "image" => "Product Image",
     "actions" => "Actions",
     "title" => "Products and Components",
     "deletealert" => "Are you sure you want to delete this product?"
+
 ];

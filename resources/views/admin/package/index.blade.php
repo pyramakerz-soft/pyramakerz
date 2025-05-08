@@ -41,6 +41,8 @@
                                         <button class="dropdown-item text-danger" onclick="deletePackage({{ $package->id }})">
                                             {{ __('admin/add_package.delete') }}
                                         </button>
+                                        <a href="{{ route('admin.editPackage', $package->id) }}" data-aos="flip-up"
+                                            data-aos-delay="200">{{ __('admin/add_package.edit') }}</a>
                                     </td>
                                 </tr>
                                 @empty
