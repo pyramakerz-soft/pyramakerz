@@ -166,13 +166,13 @@
 <script src="{{ asset('assets/vendor/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/vendor/swiper/swiper-bundle.min.js') }}"></script>
 <!--<script src="assetsb2c/vendor/php-email-form/validate.js"></script>-->
-<script>
+<!-- <script>
     document.addEventListener("DOMContentLoaded", function() {
         if (localStorage.getItem('user_country') === 'egypt') {
             window.location.href = "{{ route('customer.index') }}";
         }
     });
-</script>
+</script> -->
 <!-- <script>
     document.addEventListener("DOMContentLoaded", function() {
         fetch('https://ipapi.co/json/')

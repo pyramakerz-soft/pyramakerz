@@ -23,7 +23,8 @@
             <li><a href="{{ route('customer.alefBot') }}">{{ __('navbar.alef_bot') }}</a></li>
           </ul>
         </li>
-        <li id="packages_list" style="display: none;"><a class="nav-link scrollto" href="{{ route('customer.packages') }}">{{ __('navbar.packages') }}</a></li>
+        <!-- <li id="packages_list" style="display: none;"><a class="nav-link scrollto" href="{{ route('customer.packages') }}">{{ __('navbar.packages') }}</a></li> -->
+        <li id="packages_list"><a class="nav-link scrollto" href="{{ route('customer.packages') }}">{{ __('navbar.packages') }}</a></li>
         <li><a class="nav-link scrollto" href="{{ route('customer.blogs') }}">{{ __('navbar.blogs') }}</a></li>
 
 
@@ -78,7 +79,7 @@
       });
   });
 </script> -->
-<script>
+<!-- <script>
   document.addEventListener("DOMContentLoaded", function() {
     const userCountry = localStorage.getItem('user_country');
     if (!userCountry) {
@@ -104,7 +105,7 @@
     }
     document.getElementById("packages_list").style.display = "block";
   });
-</script>
+</script> -->
 
 <script>
   const langDropdown = document.getElementById('langDropdown');
