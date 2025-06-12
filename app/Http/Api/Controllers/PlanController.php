@@ -64,6 +64,8 @@ class PlanController extends Controller
             'ar_description' => $request->ar_description,
             'price' => $request->price,
             'image' => $imageName,
+            'bullets' => $request->bullets ? json_decode($request->bullets) : null,
+            'ar_bullets' => $request->ar_bullets ? json_decode($request->ar_bullets) : null,
         ]);
 
         // Attach products with quantities
@@ -123,6 +125,8 @@ class PlanController extends Controller
             'description' => $request->description,
             'ar_description' => $request->ar_description,
             'price' => $request->price,
+            'bullets' => $request->bullets ? json_decode($request->bullets) : null,
+            'ar_bullets' => $request->ar_bullets ? json_decode($request->ar_bullets) : null,
         ]);
         if ($request->hasFile('image')) {
             $package->update(['image' => $imageName]);

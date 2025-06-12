@@ -17,4 +17,7 @@ return [
     "confirm_delete" => "حذف",
     "cancel" => "إلغاء",
     "ok" => "موافق",
+    "bullet_points" => "نقاط البند بالانجليزي",
+    "bullet_points_ar" => "نقاط البند بالعربي",
+    "add_bullet" => "إضافة نقطة بند",
 ];

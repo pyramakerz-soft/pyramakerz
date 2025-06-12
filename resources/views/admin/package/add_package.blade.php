@@ -3,6 +3,14 @@
 @include('layouts.main_css')
 @endsection
 @section('content')
+<style>
+    .input-group-ar {
+        position: relative;
+        display: flex;
+        align-items: stretch;
+        width: 100%;
+    }
+</style>
 <main id="main admin-content" class="mt-5" style="padding-top: 70px;">
     <section id="contact" class="contact">
         <div class="container">
@@ -37,6 +45,18 @@
                             <label>{{ __('admin/add_package.desc_ar') }}:</label>
                             <input type="text" class="form-control" name="ar_description" id="ar_description"
                                 placeholder="{{ __('admin/add_package.desc_ar') }}" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label>{{ __('admin/add_package.bullet_points') }}:</label>
+                            <div id="bullet-container">
+                            </div>
+                            <button type="button" class="btn btn-primary mt-2" onclick="addBullet()">{{ __('admin/add_package.add_bullet') }}</button>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label>{{ __('admin/add_package.bullet_points_ar') }}:</label>
+                            <div id="bullet-container-ar">
+                            </div>
+                            <button type="button" class="btn btn-primary mt-2" onclick="addBulletAr()">{{ __('admin/add_package.add_bullet') }}</button>
                         </div>
                         <div class="form-group mt-3">
                             <label>{{ __('admin/add_package.price') }}:</label>
@@ -128,6 +148,36 @@
             quantityInput.value = 1; // Reset quantity
         }
     }
+
+    function addBullet() {
+        const container = document.getElementById("bullet-container");
+        const div = document.createElement("div");
+        div.classList.add("input-group", "mb-2");
+        div.innerHTML = `
+        <input type="text" name="bullets[]" class="form-control" placeholder=" " required>
+        <button type="button" class="btn btn-danger" onclick="removeBullet(this)">×</button>
+    `;
+        container.appendChild(div);
+    }
+
+    function removeBullet(button) {
+        button.closest(".input-group").remove();
+    }
+
+    function addBulletAr() {
+        const container = document.getElementById("bullet-container-ar");
+        const div = document.createElement("div");
+        div.classList.add("input-group-ar", "mb-2");
+        div.innerHTML = `
+        <input type="text" name="ar_bullets[]" class="form-control" placeholder=" " required>
+        <button type="button" class="btn btn-danger" onclick="removeBulletAr(this)">×</button>
+    `;
+        container.appendChild(div);
+    }
+
+    function removeBulletAr(button) {
+        button.closest(".input-group-ar").remove();
+    }
 </script>
 <script>
     document.getElementById("package-form").addEventListener("submit", function(e) {
@@ -142,6 +192,27 @@
         formData.append("price", document.getElementById("price").value);
         formData.append("image", document.getElementById("image").files[0]);
         formData.append("lang", "{{ app()->getLocale() }}");
+        let bulletInputs = document.querySelectorAll("input[name='bullets[]']");
+        let bullets = [];
+
+        bulletInputs.forEach(input => {
+            if (input.value.trim() !== "") {
+                bullets.push(input.value.trim());
+            }
+        });
+
+        formData.append("bullets", JSON.stringify(bullets));
+
+        let bulletInputsAr = document.querySelectorAll("input[name='ar_bullets[]']");
+        let bulletsAr = [];
+
+        bulletInputsAr.forEach(input => {
+            if (input.value.trim() !== "") {
+                bulletsAr.push(input.value.trim());
+            }
+        });
+
+        formData.append("ar_bullets", JSON.stringify(bulletsAr));
 
         let selectedProducts = [];
         document.querySelectorAll(".product-checkbox:checked").forEach((checkbox) => {

@@ -115,14 +115,32 @@
                                 <!-- <span> ($55.10)</span> -->
                             </div>
                             <br><br>
+                            @if (app()->getLocale() === 'ar')
+                                @if (!empty($package->ar_bullets) && is_array($package->ar_bullets))
+                                <ul>
+                                    @foreach ($package->ar_bullets as $bullet)
+                                    <li class="d-flex align-items-center mb-2 justify-content-center">
+                                        <i class="bi bi-check2"></i> {{ $bullet }}
+                                    </li>
+                                    <hr class="my-2">
+                                    @endforeach
+                                </ul>
+                                @endif
+                            @else
                             <ul>
-                                @foreach ($package->products->take(3) as $product )
-                                <li style="display: flex;justify-content: center;">
-                                    <i class="bi bi-check2"></i> {{app()->getLocale() === 'ar' ? $product->ar_name : $product->name}}
-                                </li>
-                                <hr>
-                                @endforeach
+                                @if (!empty($package->bullets) && is_array($package->bullets))
+                                <ul>
+                                    @foreach ($package->bullets as $bullet)
+                                    <li class="d-flex align-items-center mb-2 justify-content-center">
+                                        <i class="bi bi-check2"></i> {{ $bullet }}
+                                    </li>
+                                    <hr class="my-2">
+                                    @endforeach
+                                </ul>
+                                @endif
                             </ul>
+                            @endif
+
                             <div class="buy-container">
                                 <a href="{{ route('customer.package_info', ['package' => $package->id]) }}" class="btn-buy">
                                     {{ __('packages.package_details') }}

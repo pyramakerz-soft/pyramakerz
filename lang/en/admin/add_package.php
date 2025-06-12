@@ -17,6 +17,7 @@ return [
     "confirm_delete" => "Delete",
     "cancel" => "Cancel",
     "ok" => "OK",
-
-
+    "bullet_points" => "English Bullet Points",
+    "bullet_points_ar" => "Arabic Bullet Points",
+    "add_bullet" => "Add Bullet Point",
 ];

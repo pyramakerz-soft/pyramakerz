@@ -11,7 +11,10 @@ class Package extends Model
 
     protected $guarded = [];
     // protected $fillable = ['name', 'description', 'price', 'ar_name', 'image'];
-
+    protected $casts = [
+        'bullets' => 'array',
+        'ar_bullets' => 'array',
+    ];
     public function products()
     {
         return $this->belongsToMany(Product::class, 'package_products')
